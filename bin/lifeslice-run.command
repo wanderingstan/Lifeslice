@@ -20,37 +20,9 @@
 NOW=$(date "+%Y-%m-%dT%H-%M-%SZ%z")
  
 ## Lifeslice Data Path ##
-BINDIR=$(cd "$(dirname "$0")"; pwd) # directory where our scripts and helper applications live (defaults to same dir as this script is in)
-#DIR="/Users/stan/Documents/Lifeslice" # our destination directory where periodic data will be stored
+BINDIR=$HOME"/Lifeslice/bin" # $(cd "$(dirname "$0")"; pwd) # directory where our scripts and helper applications live (defaults to same dir as this script is in)
 DIR=$HOME"/Lifeslice" # our destination directory where periodic data will be stored
 REPORTDIR=$HOME"/Lifeslice/reports"
-
-# See if crontab is set up 
-
-if crontab -l | grep -q "$BINDIR"
-then
-	echo "Cron job is set up."
-else	
-	echo
-	echo "==========================================================="
-	echo
-	echo "    Thank you trying Lifeslice"
-	echo
-	echo "==========================================================="
-	echo -e "`crontab -l`\n# Lifeslice: webcam and screenshots every hour\n0 * * * * $BINDIR/lifeslice-run.command >/dev/null 2>&1" | crontab -
-	echo
-	echo "A cron job has just been created to run every hour."
-	echo
-	echo "Webcam shots, screen shots, and more will be saved to:"
-	echo "$DIR"
-	echo
-	echo "You can view your web report at:"
-	echo "file://$REPORTDIR/lifeslice-summary.html"
-	echo
-	echo "(Ignore what you see below.)"
-	echo "==========================================================="
-	echo
-fi
 
 # Create our destination directory if it doesn't already exist
 # (Might not work because of permissions)
