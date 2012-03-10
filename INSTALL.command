@@ -8,7 +8,7 @@
 echo
 echo "==========================================================="
 echo
-echo "    Thank you trying Lifeslice"
+echo "    Thank you for trying Lifeslice"
 echo
 echo "==========================================================="
 
@@ -44,10 +44,11 @@ fi
 
 
 echo
-echo "Webcam shots, screen shots, and more will be saved to:"
+echo "Raw webcam shots, screen shots, geo coordinates, and "
+echo "current applications will be saved to:"
 echo "$DIR"
 echo
-echo "You can view your web report at:"
+echo "You can view your Lifeslice web report at:"
 echo "file://$REPORTDIR/lifeslice-summary.html"
 echo
 echo "==========================================================="
