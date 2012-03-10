@@ -12,6 +12,12 @@ echo "    Thank you for trying Lifeslice"
 echo
 echo "==========================================================="
 
+# Needed because a script launched as .command seems to start
+# in the user's home directory, and not the directory where 
+# the script is.
+BASEDIR=$(dirname $0)
+cd $BASEDIR
+
 #
 # Copy files to the right place, if they aren't already there
 #
@@ -21,13 +27,16 @@ REPORTDIR=$HOME"/Lifeslice/reports"
 
 if [ "${PWD##*/}" != "Lifeslice" ]
 then
-	echo "Sorry, this script needs to be in a folder named 'Lifeslice' in order to be installed."
+	echo "Sorry, this script needs to be in a folder named 'Lifeslice'"
+	echo " in order to be installed."
+	echo ""
+	echo "Currently it is named "${PWD##*/}
 	exit
 fi
 if [ $(pwd) != $HOME"/Lifeslice" ]
 then
 	echo "Copying Lifeslice directory to user directory."
-# 	cp -R .. $HOME"/Lifeslice"
+ 	cp -R . $HOME"/Lifeslice"
 fi
 
 # 
