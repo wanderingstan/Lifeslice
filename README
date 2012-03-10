@@ -2,11 +2,10 @@ Lifeslice
 
 By Stan James http://wanderingstan.com/
 
-Simple script to capture webcam shot, screenshot, and other data every hour.
+Simple script for Macs to capture webcam shot, screenshot, and other data every hour.
 First demo'd at the Berkley Quantified Self meetup March 2012
 E.g. http://www.meetup.com/Berkeley-QS/photos/6538452/99770812/
-Thanks to Moritz Stefaner for the inspiration.
-
+Thanks to Moritz Stefaner for the inspiration. http://moritz.stefaner.eu/
 
 TO USE:
 -Put "Lifeslice" folder in your user folder.
