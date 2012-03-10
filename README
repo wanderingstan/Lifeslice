@@ -11,10 +11,7 @@ Thanks to Moritz Stefaner for the inspiration.
 TO USE:
 -Put "Lifeslice" folder in your user folder.
   e.g. ~/Lifeslice
--Double-click on lifeslice-run.command in the bin directory.
-  This should install the cron job.
-  Answer "Yes" and "Don't ask me again" when asked to allow
-  whereami app to know your location. 
+-Double-click on INSTALL.command 
 
--Visualization of your hours is built to file here:
+-Visualization of your hours will be here:
   ~/Lifeslice/reports/lifeslice-summary.html
