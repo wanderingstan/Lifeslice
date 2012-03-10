@@ -1,0 +1,20 @@
+Lifeslice
+
+By Stan James http://wanderingstan.com/
+
+Simple script to capture webcam shot, screenshot, and other data every hour schedule.
+First demo'd at the Berkley Quantified Self meetup March 2012
+E.g. http://www.meetup.com/Berkeley-QS/photos/6538452/99770812/
+Thanks to Moritz Stefaner for the inspiration.
+
+
+TO USE:
+-Put "Lifeslice" folder in your user folder.
+  e.g. ~/Lifeslice
+-Double-click on lifeslice-run.command in the bin directory.
+  This should install the cron job.
+  Answer "Yes" and "Don't ask me again" when asked to allow
+  whereami app to know your location. 
+
+-Visualization of your hours is built to file here:
+  ~/Lifeslice/reports/lifeslice-summary.html
