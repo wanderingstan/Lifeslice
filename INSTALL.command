@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Lifeslice
 #
 # By Stan James http://wanderingstan.com/
