@@ -10,9 +10,12 @@
   table {border-collapse: collapse;}
   td {padding: 0 0 0 0; margin: 0 0 0 0;}
 </style>
-<script src="js/jquery-1.7.1.min.js"></script>
-<body>
 
+
+<!-- <script src="js/jquery-1.7.1.min.js"></script> -->
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>
+
+<body>
 
 <?php
 
@@ -42,6 +45,12 @@ while ($entry_name = readdir($my_directory)) {
 
     // check for valid date
     if (date('Y-m-d', strtotime($date))==$date) {
+
+      // see if it's the earliest date
+      if ((strtotime($date) < $earliest_date) || (!$earliest_date)) {
+        $earliest_date = strtotime($date);
+        print ("New earliest:" . $date ."-->" . strtotime($date) . " " . date('Y-m-d', $earliest_date). "<--". $earliest_date . "\n");
+      }
       if (!isset($faces[$date.'T'.$time])) {
         $faces[$date.'T'.$time] = $entry_name;
         //print($date . " x " . $time . " ");
@@ -103,7 +112,9 @@ while ($entry_name = readdir($my_directory)) {
 closedir($my_directory);
 
 // create array of our dates and hours
-$current_date = '2011-12-21'; // date of first record
+// $current_date = '2011-12-21'; // date of first record 
+$current_date = date('Y-m-d', $earliest_date);
+
 $days = array();
 while (strtotime($current_date) < time()) {
   $hours = array();
