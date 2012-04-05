@@ -41,6 +41,14 @@ then
  	cp -R . $HOME"/Lifeslice"
 fi
 
+#
+# For legacy installs move all data into our data folder
+#
+mkdir $HOME"/Lifeslice/data"
+mv $HOME/Lifeslice/*.jpg $HOME/Lifeslice/data/
+mv $HOME/Lifeslice/*.png $HOME/Lifeslice/data/
+mv $HOME/Lifeslice/*.txt $HOME/Lifeslice/data/
+
 # 
 # Set up cron job
 #
