@@ -3,13 +3,13 @@
   body {background-color:#000;color:white;font-family:helvetica,arial,sans-serif;text-shadow: black 1px 1px 1px}
   .hour {width:50px;height:40px;color:white;overflow:hidden;margin:0 0 0 0;padding 0 0 0 0;background-size:50px 40px;background-repeat:no-repeat;}
   .hour img {width:50px;height:40px;position:absolute;}
-  .heading {background-color:#000;height:60px;text-align:center;}
-  .total-hours {background-color:#000;width:50px; height: 60px;text-align:center; font-size:xx-large;}
+  .heading {background-color:#000;height:40px;text-align:center;}
+  .total-hours {background-color:#000;width:50px; height: 40px;text-align:center; font-size:xx-large;}
   #face-table   {position:absolute;top:0px;z-index:1;}
   #screen-table {position:absolute;top:0px;z-index:2;display:none;}
   .screen-thumb {display:none;}
   table {border-collapse: collapse;}
-  td {padding: 0 0 0 0; margin: 0 0 0 0;}
+  td {padding: 0 0 0 0; margin: 0 0 0 0; border: height: 40px;}
 
   .floatingHeader {
     position: fixed;
@@ -49,7 +49,7 @@ if (!is_dir('thumbnails')) {
 }
 
 // open directory 
-$images_directory = "../data";
+$images_directory = "../data"; // (we're assuming images are one directory above us)
 $my_directory = opendir($images_directory);
 while ($entry_name = readdir($my_directory)) {
   $dir_array[] = $entry_name;
@@ -65,13 +65,11 @@ while ($entry_name = readdir($my_directory)) {
     $time = substr($time,0,2);
 
     // check for valid date
-    date_default_timezone_set('America/Denver');
     if (date('Y-m-d', strtotime($date))==$date) {
 
       // see if it's the earliest date
       if ((strtotime($date) < $earliest_date) || (!$earliest_date)) {
         $earliest_date = strtotime($date);
-        print ("New earliest:" . $date ."-->" . strtotime($date) . " " . date('Y-m-d', $earliest_date). "<--". $earliest_date . "\n");
       }
       if (!isset($faces[$date.'T'.$time])) {
         $faces[$date.'T'.$time] = $entry_name;
@@ -190,10 +188,14 @@ while (strtotime($current_date) < time()) {
   $current_date_ts = strtotime($current_date);
   $current_date = date('Y-m-d', strtotime('+1 day', $current_date_ts)); 
 }
-//print_r($days);
+
+// reverse dates
+$days = array_reverse($days);
+
 
 // render dates and hours
 ?>
+
 
 <script>
 $("body").keydown(function(e) {
@@ -201,50 +203,31 @@ $("body").keydown(function(e) {
     //$("#screen-table").toggle();
     $(".screen-thumb").toggle();
     $(".face-thumb").toggle();
-    alert('toggling');
   }
 });
 </script>
 
 <?
-/*
-print "\n".'<table id="screen-table"><tr>';
-foreach($days as $date=>$day){
-  $do_labels = (date( "w", strtotime($date)) == 0);  
-  print '<td>';
-  $header=date( "Y n/j D", strtotime($date));
-  $header=str_replace(' ','<br>',$header);
-  print '<div class="hour heading">'.$header.'</div>';
-  foreach($day as $hour=>$data){
-    $screen_thumb='thumbnails/'.$data['screen'].'.thumbnail.png';
-    $style = (($data['screen'] && $data['face']) ? $style='background-image:url(thumbnails/'.$data['screen'].'.thumbnail.png)' : '');
-    print '<div class="hour" style="'.$style.'">';
-    print $img;
-//    print '<div style="position:abolute;top:0;right:0;">'.($data['screen']?substr($hour, 0, -3):'').'</div>';
-    print ($do_labels ? '<div style="position:abolute;top:0;right:0;">'.substr($hour, 0, -3).'</div>' : '');
-    print '</div>'. "\n";
-  }
-  print '</td>';
-}
-print "\n".'</tr></table>';
-*/
 
 $weekly_latlons = array();
 $current_week_latlons = array();
-print "\n".'<table id="face-table"><tr>';
+print "\n".'<table id="face-table">';
 foreach($days as $date=>$day){
+  print '<tr>';
   $do_labels = (date( "w", strtotime($date)) == 0);
 
+  // keep track of weekly locations
   if ($do_labels) {
     $weekly_latlons[$date]=$current_week_latlons;
     unset($current_week_latlons);
     $current_week_latlons = array();
   }
 
-  print '<td>';
+  // day header
   $header=date( "n/j D", strtotime($date));
-  $header=str_replace(' ','<br>',$header);  
-  print '<div class="hour heading" >'.$header.'</div>';
+  //$header=str_replace(' ','<br>',$header);  
+  print '<td class="hour heading" >'.$header.'<td>';
+
   $filled_hour_count = 0;  
   foreach($day as $hour=>$data){
     $current_week_latlons[] = $data['latlon'];
@@ -255,11 +238,12 @@ foreach($days as $date=>$day){
     $screen_thumb='thumbnails/'.$data['screen'].'.thumbnail.jpg';
 
     $img = ($data['face'] ? '<img src="thumbnails/'.$data['face'].'.thumbnail.jpg"/>' : '');
-    print '<div class="hour" style="'.$style.'">';
+    print '<td><div class="hour">';
+//    print '<div class="hour" style="'.$style.'">';
     print '<a class="face-thumb" href="../data/'.$data['face'].'">'.$img.'</a>';
 
-    $img = ($data['screen'] ? '<img src="thumbnails/'.$data['screen'].'.thumbnail.png"/>' : '');
-    print '<a class="screen-thumb" href="../data/'.$data['screen'].'">'.$img.'</a>';
+//    $img = ($data['screen'] ? '<img src="thumbnails/'.$data['screen'].'.thumbnail.png"/>' : '');
+//    print '<a class="screen-thumb" href="../'.$data['screen'].'">'.$img.'</a>';
 
     $display_hour = intval(substr($hour, 0, -3));
     if ($display_hour>12) {
@@ -269,13 +253,15 @@ foreach($days as $date=>$day){
       $display_hour=12;
     }
     print ($do_labels ? '<div style="position:abolute;top:0;right:0;">'.$display_hour.'</div>' : '');
-    print '</div>'. "\n";
+    print '</div>';
+    print '</td>';
     $filled_hour_count += ($data['face']?1:0);
   }
-  print "\n".'<div class="total-hours">' . ($filled_hour_count>0 ? $filled_hour_count : '') . '</div>';
-  print "\n".'</td>';
+  print "\n".'<td class="total-hours">' . ($filled_hour_count?$filled_hour_count:'') . '</td>';
+  print "\n".'</tr>';
 }
-print "\n".'</tr>';
+
+/*
 print "\n".'<tr>';
 array_shift($weekly_latlons);
 foreach($weekly_latlons as $date=>$current_week_latlons){
@@ -289,9 +275,11 @@ foreach($weekly_latlons as $date=>$current_week_latlons){
   if ($latlons_url) {
     $latlons_url = '<img src="http://open.mapquestapi.com/staticmap/v3/getmap?size=350,200&type=map&pois=' . $latlons_url . '&imagetype=PNG" />';
   }
-  print '<td colspan="7"><div style="display:inline-block; width:350px; height:200px;">' . $latlons_url . '</div></td>';
+  print '<td colspan="7"><div style="display:inline-block; width:350px; height:200px;">' . $latlons_url . '<br>'.$date . '</div></td>';
 }
 print "\n".'</tr>';
+*/
+
 print '</table>';
 
 
