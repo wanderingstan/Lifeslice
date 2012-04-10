@@ -40,6 +40,8 @@ $(function() {
 
 <?php
 
+date_default_timezone_set('America/Denver'); // need to figure out how to set this to whatever the server is
+
 $screens = array();
 $face = array();
 $latlons = array();
@@ -153,6 +155,8 @@ $days = array();
 while (strtotime($current_date) < time()) {
   $hours = array();
   for ($hour=0;$hour<24;$hour++) {
+    $data = array();
+
     // on the hour
     $current_date_time = $current_date.'T'.($hour<10?'0':'') . $hour; // '-00-00'
     if ($faces[$current_date_time]) {
