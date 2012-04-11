@@ -60,6 +60,7 @@ fi
 LATLON=$DIR"/latlon_"$NOW".txt"
 echo `$BINDIR/whereami > $LATLON`
 
-# Re-make our HTML report
+# Re-make our HTML reports
 cd $REPORTDIR
 echo `php $REPORTDIR/lifeslice-summary.php > $REPORTDIR/lifeslice-summary.html`
+echo `php $REPORTDIR/lifeslice-summary-vertical.php > $REPORTDIR/lifeslice-summary-vertical.html`

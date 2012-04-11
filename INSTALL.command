@@ -10,7 +10,8 @@
 echo
 echo "==========================================================="
 echo
-echo "    Thank you for trying Lifeslice"
+echo "  Thank you for trying Lifeslice."
+echo "  Please report bugs and kudos to stan@wanderingstan.com"
 echo
 echo "==========================================================="
 
@@ -27,19 +28,20 @@ BINDIR=$HOME"/Lifeslice/bin"
 DIR=$HOME"/Lifeslice" # our destination directory where periodic data will be stored
 REPORTDIR=$HOME"/Lifeslice/reports"
 
-if [ "${PWD##*/}" != "Lifeslice" ]
-then
-	echo "Sorry, this script needs to be in a folder named 'Lifeslice'"
-	echo " in order to be installed."
-	echo ""
-	echo "Currently it is named "${PWD##*/}
-	exit
-fi
 if [ $(pwd) != $HOME"/Lifeslice" ]
 then
-	echo "Copying Lifeslice directory to user directory."
+	echo "Setting up Lifeslice in your user directory at "$HOME"/Lifeslice"
  	cp -R . $HOME"/Lifeslice"
 fi
+
+# if [ "${PWD##*/}" != "Lifeslice" ]
+# then
+#	echo "Sorry, this script needs to be in a folder named 'Lifeslice'"
+#	echo " in order to be installed."
+#	echo ""
+# 	echo "Currently it is named "${PWD##*/}
+# 	exit
+# fi
 
 #
 # For legacy installs move all data into our data folder
@@ -82,4 +84,4 @@ read dummy
 $BINDIR/lifeslice-run.command
 
 # open report
-open $REPORTDIR"/lifeslice-summary.html"
+open $REPORTDIR"/lifeslice-summary-vertical.html"
