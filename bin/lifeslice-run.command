@@ -7,14 +7,14 @@
 # Simple script to capture webcam shot, screenshot, and other data every hour schedule.
 # E.g. http://www.meetup.com/Berkeley-QS/photos/6538452/99770812/
 
-## Check if user has been idle too long
-## (To we want this? User could be just watching a long movie)
-#MAX_IDLE_SECONDS="600" 
-#IDLE_SECONDS=`ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print $NF/1000000000; exit}'`
-#if [ `echo "if($IDLE_SECONDS>$MAX_IDLE_SECONDS)r=1;r"|bc`="1" ]
-#then
-#	exit
-#fi
+# Check if user has been idle too long
+# (To we want this? User could be just watching a long movie)
+MAX_IDLE_SECONDS="600" 
+IDLE_SECONDS=`ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print $NF/1000000000; exit}'`
+if [ `echo "if($IDLE_SECONDS>$MAX_IDLE_SECONDS)r=1;r"|bc`=="1" ]
+then
+	exit
+fi
 
 # Create a filename pattern based on current date/time
 NOW=$(date "+%Y-%m-%dT%H-%M-%SZ%z")
