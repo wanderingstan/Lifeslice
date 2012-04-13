@@ -44,8 +44,6 @@ then
  	cp -R "$BASEDIR" "$DIR"
 fi
 
-exit
-
 #
 # For legacy installs move all data into our data folder
 #
