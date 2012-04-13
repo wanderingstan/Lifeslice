@@ -30,7 +30,8 @@ REPORTDIR=$HOME"/Lifeslice/reports"
 if [ -d "$DIR" ]; then
 	echo
 	echo "It looks like LifeSlice is already installed,"
-	echo "because this directory already exists: $DIR"	
+	echo "because this directory already exists: "
+	echo "$DIR"	
 	echo
 	echo "Try running $DIR/UPDATE.command to update to latest version."
 	echo
