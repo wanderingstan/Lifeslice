@@ -9,10 +9,12 @@
 
 # Check if user has been idle too long
 # (To we want this? User could be just watching a long movie)
-MAX_IDLE_SECONDS="600" 
+MAX_IDLE_SECONDS="600.0" # 600 seconds = 10 minutes
 IDLE_SECONDS=`ioreg -c IOHIDSystem | awk '/HIDIdleTime/ {print $NF/1000000000; exit}'`
-if [ `echo "if($IDLE_SECONDS>$MAX_IDLE_SECONDS)r=1;r"|bc`=="1" ]
+COMPARE=$(echo "r=0;if($IDLE_SECONDS > $MAX_IDLE_SECONDS)r=1;r" | bc)
+if [ $COMPARE = '1' ]
 then
+	echo "System is idle too long. "$IDLE_SECONDS" seconds, maximum is "$MAX_IDLE_SECONDS". "
 	exit
 fi
 

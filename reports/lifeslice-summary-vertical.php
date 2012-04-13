@@ -61,10 +61,11 @@ $days = array_reverse($days);
 
 <script>
 $("body").keydown(function(e) {
-  if(e.keyCode == 13) { // left
+  if(e.keyCode == 13) { 
     //$("#screen-table").toggle();
     $(".screen-thumb").toggle();
     $(".face-thumb").toggle();
+    alert($(".face-thumb").length + "=face  " + $(".screen-thumb").length + "=screen");
   }
 });
 </script>
@@ -97,17 +98,17 @@ foreach($days as $date=>$day){
 
     unset($img);
     unset($style);
-    $face_thumb='thumbnails/'.$data['face'].'.thumbnail.jpg';
-    $screen_thumb='thumbnails/'.$data['screen'].'.thumbnail.jpg';
 
-    $img = ($data['face'] ? '<img src="thumbnails/'.$data['face'].'.thumbnail.jpg"/>' : '');
     print '<td><div class="hour">';
-//    print '<div class="hour" style="'.$style.'">';
-    print '<a class="face-thumb" href="../data/'.$data['face'].'">'.$img.'</a>';
-
-//    $img = ($data['screen'] ? '<img src="thumbnails/'.$data['screen'].'.thumbnail.png"/>' : '');
-//    print '<a class="screen-thumb" href="../'.$data['screen'].'">'.$img.'</a>';
-
+    if ($data['face']) {
+      $img = '<img src="thumbnails/'.$data['face'].'.thumbnail.jpg"/>';
+      print '<a class="face-thumb" href="../data/'.$data['face'].'">'.$img.'</a>';  
+      if ($data['screen']) {
+        $img = '<img src="thumbnails/'.$data['screen'].'.thumbnail.png"/>';
+        print '<a class="screen-thumb" href="../data/'.$data['screen'].'">'.$img.'</a>';          
+      }
+    }
+    
     $display_hour = intval(substr($hour, 0, -3));
     if ($display_hour>12) {
       $display_hour-=12;
