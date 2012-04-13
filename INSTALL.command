@@ -10,38 +10,40 @@
 echo
 echo "==========================================================="
 echo
-echo "  Thank you for trying Lifeslice."
-echo "  Please report bugs and kudos to stan@wanderingstan.com"
+echo "    Thank you for trying Lifeslice"
 echo
 echo "==========================================================="
 
 # Needed because a script launched as .command seems to start
 # in the user's home directory, and not the directory where 
 # the script is.
-BASEDIR=$(dirname $0)
+BASEDIR=$(cd "$(dirname "$0")"; pwd)
 cd $BASEDIR
 
 #
 # Copy files to the right place, if they aren't already there
 #
 BINDIR=$HOME"/Lifeslice/bin"
-DIR=$HOME"/Lifeslice" # our destination directory where periodic data will be stored
+DIR=$HOME"/Lifeslice" # our destination directory 
 REPORTDIR=$HOME"/Lifeslice/reports"
+
+if [ -d "$DIR" ]; then
+	echo
+	echo "It looks like LifeSlice is already installed,"
+	echo "because this directory already exists: $DIR"	
+	echo
+	echo "Try running $DIR/UPDATE.command to update to latest version."
+	echo
+	exit
+fi
 
 if [ $(pwd) != $HOME"/Lifeslice" ]
 then
-	echo "Setting up Lifeslice in your user directory at "$HOME"/Lifeslice"
- 	cp -R . $HOME"/Lifeslice"
+	echo "Copying Lifeslice directory to user directory."
+ 	cp -R "$BASEDIR" "$DIR"
 fi
 
-# if [ "${PWD##*/}" != "Lifeslice" ]
-# then
-#	echo "Sorry, this script needs to be in a folder named 'Lifeslice'"
-#	echo " in order to be installed."
-#	echo ""
-# 	echo "Currently it is named "${PWD##*/}
-# 	exit
-# fi
+exit
 
 #
 # For legacy installs move all data into our data folder
@@ -84,4 +86,4 @@ read dummy
 $BINDIR/lifeslice-run.command
 
 # open report
-open $REPORTDIR"/lifeslice-summary-vertical.html"
+open $REPORTDIR"/lifeslice-summary.html"
