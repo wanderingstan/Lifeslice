@@ -70,7 +70,7 @@ $("body").keydown(function(e) {
 });
 </script>
 
-<?
+<?php
 
 $weekly_latlons = array();
 $current_week_latlons = array();
