@@ -63,7 +63,7 @@ $("body").keydown(function(e) {
 });
 </script>
 
-<?
+<?php
 /*
 print "\n".'<table id="screen-table"><tr>';
 foreach($days as $date=>$day){
