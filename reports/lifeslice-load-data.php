@@ -163,5 +163,3 @@ while (strtotime($current_date) < time()) {
   $current_date_ts = strtotime($current_date);
   $current_date = date('Y-m-d', strtotime('+1 day', $current_date_ts)); 
 }
-
-?>
