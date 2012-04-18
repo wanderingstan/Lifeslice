@@ -2,19 +2,21 @@
 <head>
 <title>LifeSlice Report</title>
 <style>
+/*
   @font-face { font-family: "Ostrich"; font-weight: normal;  src: url('./ostrich-sans/ostrich-regular.ttf') format("truetype"); }
   @font-face { font-family: "Ostrich"; font-weight: bold;    src: url('./ostrich-sans/ostrich-bold.otf') format("truetype");; }
   @font-face { font-family: "Ostrich"; font-weight: bolder;  src: url('./ostrich-sans/ostrich-black.otf') format("truetype");; }
   @font-face { font-family: "Ostrich"; font-weight: lighter; src: url('./ostrich-sans/ostrich-light.otf') format("truetype");; }
+*/
 
   body {background-color:#000;color:white;font-family:Ostrich,helvetica,arial,sans-serif;text-shadow: black 1px 1px 1px}
   .hour {width:50px;height:40px;color:white;overflow:hidden;margin:0 0 0 0;padding 0 0 0 0;background-size:50px 40px;background-repeat:no-repeat;}
   .hour img {width:50px;height:40px;position:absolute;}
   .heading {background-color:#000;height:40px;text-align:right; font-size:40px;padding-right:5px;}
-  .total-hours {background-color:#000;width:50px; height: 40px;text-align:center; font-size:40px;}
-  .hour-label {font-family: Ostrich; font-weight:bold; font-size: xx-large; width:100%; text-align:right;}
-  #face-table   {position:absolute;top:0px;z-index:1;}
-  #screen-table {position:absolute;top:0px;z-index:2;display:none;}
+  .total-hours {background-color:#000;width:50px; height: 40px;text-align:left; font-size:40px; padding-left:5px;}
+  .hour-label {font-family: Ostrich, helvetica,arial,sans-serif; font-size: 25px; width:100%; text-align:right;}
+  #face-table   {position:absolute;top:100px;z-index:1;}
+  #screen-table {position:absolute;top:100px;z-index:2;display:none;}
   .screen-thumb {display:none;}
   table {border-collapse: collapse;}
   td {padding: 0 0 0 0; margin: 0 0 0 0; border: height: 40px;}
@@ -25,9 +27,24 @@
     visibility: hidden;
   }
 
-  .lightbox-image {
+  #lightbox-image {
     max-width: 800px;
-    max-height: 600px;
+    max-height: 500px;
+  }
+  #lightbox-container-image-box, 
+  #lightbox-container-image-data-box {
+    max-width: 850px;
+    max-height: 550px;
+  }
+
+  h1 {
+    margin: 0px;
+    margin-right: 10px;        
+    color: #92D270;
+    font-size:60px;
+    font-family: helvetica, arial, sans-serif;
+    letter-spacing: -3px;
+    display: inline-block;    
   }
 
 </style>
@@ -46,9 +63,12 @@ $(function() {
 </script>
 
 </head>
-
+<h1>LifeSlice</h1>
+<div>Be sure to bookmark this page so you can see it later. Check for <a href="https://github.com/wanderingstan/Lifeslice">updates here</a>. Use Command +/- to zoom in and out.</div>
 <body>
-
+<script>
+//$('#jquery-overlay').width($(window).width()).height($(window).height());
+</script>
 <?php
 // load our data
 require_once('lifeslice-load-data.php');

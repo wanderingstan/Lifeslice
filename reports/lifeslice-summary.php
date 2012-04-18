@@ -10,23 +10,25 @@
   .hour img {width:50px;height:40px;position:absolute;}
   .heading {background-color:#000;height:60px;text-align:center;}
   .total-hours {background-color:#000;width:50px; height: 60px;text-align:center; font-size:xx-large;}
-  #face-table   {position:absolute;top:0px;z-index:1;}
-  #screen-table {position:absolute;top:0px;z-index:2;display:none;}
+  #face-table   {position:absolute;top:100px;z-index:1;}
+  #screen-table {position:absolute;top:100px;z-index:2;display:none;}
   .screen-thumb {display:none;}
   table {border-collapse: collapse;}
   td {padding: 0 0 0 0; margin: 0 0 0 0;}
-
-  .floatingHeader {
-    position: fixed;
-    top: 0;
-    visibility: hidden;
-  }
 
   .lightbox-image {
     max-width: 800px;
     max-height: 600px;
   }
 
+  h1 {
+    margin: 0px;
+    margin-right: 10px;    
+    color: #92D270;
+    font-size:60px;
+    font-family: helvetica, arial, sans-serif;
+    letter-spacing: -3px;
+  }
 </style>
 
 <!--<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.2.min.js"></script>-->
@@ -43,6 +45,8 @@ $(function() {
 </head>
 
 <body>
+<h1>LifeSlice</h1>
+<div>Be sure to bookmark this page so you can see it later. Check for <a href="https://github.com/wanderingstan/Lifeslice">updates here</a>. Use Command +/- to zoom in and out.</div>
 
 <?php
 
