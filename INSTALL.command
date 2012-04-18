@@ -26,8 +26,9 @@ cd $BASEDIR
 BINDIR=$HOME"/Lifeslice/bin"
 DIR=$HOME"/Lifeslice" # our destination directory 
 REPORTDIR=$HOME"/Lifeslice/reports"
+DATADIR=$HOME"/Lifeslice/data"
 
-if [ -d "$DIR" ]; then
+if [ -d "$DIR" ] && [ `ls "$DIR" | wc -l` -gt 0 ]; then
 	echo
 	echo "It looks like LifeSlice is already installed,"
 	echo "because this directory already exists: "
@@ -47,7 +48,7 @@ fi
 #
 # For legacy installs move all data into our data folder
 #
-mkdir $HOME"/Lifeslice/data"
+mkdir $DATADIR
 mv $HOME/Lifeslice/*.jpg $HOME/Lifeslice/data/
 mv $HOME/Lifeslice/*.png $HOME/Lifeslice/data/
 mv $HOME/Lifeslice/*.txt $HOME/Lifeslice/data/
