@@ -1,32 +1,40 @@
 Lifeslice
 
-By Stan James http://wanderingstan.com/
+By Stan James 
+http://wanderingstan.com/lifeslice
 
 Simple script for Mac to capture webcam shot, screenshot, and other data every hour. Everything is just stored locally.
 
 First demo'd at the Berkley Quantified Self meetup March 2012
 http://www.meetup.com/Berkeley-QS/photos/6538452/99770812/
 
-
-DEMO:
+(OLD) Sample Report:
 http://wanderingstan.com/drop/lifeslice/index.html
 
 TO USE:
--Uncompress
--Double-click on INSTALL.command 
+- Download
+- Uncompress
+- Double-click on INSTALL.command 
 
-That's it!
+That's it! Don't forget to bookmark the reports that it will open in your browser.
+Check back in a few days to see what you've been up to. :)
 
 For geeks wanting to do a git pull, in Terminal:
 $ cd ~    
 $ git clone git@github.com:wanderingstan/Lifeslice.git
 $ INSTALL.command
 
-NOTE:
+TO UPDATE:
+- Double-click on UPDATE.command
+
+TO UNINSTALL:
+- Double-click on UN-INSTALL.command
+
+SECURITY:
 This using precompiled binaries for webcam capture and geolocation. These are open source projects. I encourage you to download and install them yourself rather than using the binaries provided here.
+- ImageSnap command line tool (for webcam shots): http://iharder.sourceforge.net/current/macosx/imagesnap/
+- Whereami project (for geolocation): https://github.com/victor/whereami
 
 THANK YOU:
 - Thanks to Moritz Stefaner for the inspiration. http://moritz.stefaner.eu/
 - Thanks to Derek Greentree, Joel Longtine, Randy Sparks, and Phil von Stade for testing.
-- ImageSnap command line tool (for webcam shots): http://iharder.sourceforge.net/current/macosx/imagesnap/
-- Whereami project (for geolocation): https://github.com/victor/whereami
