@@ -41,9 +41,10 @@ echo `/usr/sbin/screencapture -m -x $SCREEN`
 # Using : http://iharder.sourceforge.net/current/macosx/imagesnap/
 FACE=$DIR"/face_"$NOW".jpg"
 echo `$BINDIR/imagesnap $FACE`
+
 # Alternate code for selecting which specific webcam to use. Defaults to the first one listed.
-#WEBCAM=`"$BINDIR"/imagesnap -l | awk 'NR==2 {print;exit}'`
-#echo `$BINDIR/imagesnap -d "$WEBCAM" $FACE`
+# WEBCAM=`"$BINDIR"/imagesnap -l | awk 'NR==2 {print;exit}'`
+# echo `$BINDIR/imagesnap -d "$WEBCAM" $FACE`
 
 # TODO: Use face-detection code (e.g. from SmileFile) to detect if there is a face in front of the screen.
 

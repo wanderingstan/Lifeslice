@@ -28,15 +28,19 @@ DIR=$HOME"/Lifeslice" # our destination directory
 REPORTDIR=$HOME"/Lifeslice/reports"
 DATADIR=$HOME"/Lifeslice/data"
 
-if [ -d "$DIR" ] && [ `ls "$DIR" | wc -l` -gt 0 ]; then
+if [ -d "$DATADIR" ] && [ `ls "$DATADIR" | wc -l` -gt 0 ]; then
 	echo
 	echo "It looks like LifeSlice is already installed,"
 	echo "because this directory already exists: "
 	echo "$DIR"	
 	echo
-	echo "Try running $DIR/UPDATE.command to update to latest version."
+	echo "Try running $DIR/UPDATE.command to update to latest version?"
 	echo
-	exit
+	read -p " Are you sure you want to install? Y / N ?" ans
+	if [ "$ans" == "N" ]
+	then
+	     exit 
+	fi
 fi
 
 if [ $(pwd) != $HOME"/Lifeslice" ]
@@ -87,3 +91,4 @@ $BINDIR/lifeslice-run.command
 
 # open report
 open $REPORTDIR"/lifeslice-summary.html"
+open $REPORTDIR"/lifeslice-summary-vertical.html"
