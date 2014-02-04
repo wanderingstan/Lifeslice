@@ -35,7 +35,12 @@ echo `mkdir -p $DIR`
 SCREEN=$DIR"/screen_"$NOW".png"
 echo `/usr/sbin/screencapture -m -x $SCREEN`
 
-# TODO: Test if a screenshot was taken: if not, screen is probably off, i.e. user is not there
+# Check if screenshot has been taken, if it has not the screen is off and the user is
+# probably not there.
+if [ ! -f $SCREEN ]
+then
+  exit
+fi
 
 # Take a picture of user
 # Using : http://iharder.sourceforge.net/current/macosx/imagesnap/
