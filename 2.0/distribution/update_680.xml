@@ -1,0 +1,11 @@
+        <item>
+            <title>LifeSlice Version 0.5 (680)</title>
+            <sparkle:releaseNotesLink>http://www.wanderingstan.com/apps/lifeslice/.html</sparkle:releaseNotesLink>
+            <pubDate>Mon, 21 Oct 2013 12:24:34 -0700</pubDate>
+            <enclosure
+                url="http://www.wanderingstan.com/apps/lifeslice/LifeSlice_680.zip"
+                sparkle:version="680"
+                type="application/octet-stream"
+                length="1798686"
+            />
+        </item>

@@ -1,0 +1,674 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
+		256AC3DA0F4B6AC300CF3369 /* MouseTracksAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 256AC3D90F4B6AC300CF3369 /* MouseTracksAppDelegate.m */; };
+		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
+		8D11072D0486CEB800E47090 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; settings = {ATTRIBUTES = (); }; };
+		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		F614B5F817DE280D00A83FF8 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F614B5F617DE280D00A83FF8 /* LaunchAtLoginController.m */; };
+		F61F3DEC176FC71C00776CED /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
+		F61F3DEF176FC76500776CED /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
+		F63E7C0E16C3522B0080BF82 /* IPMenuIcon.tif in Resources */ = {isa = PBXBuildFile; fileRef = F63E7C0D16C3522B0080BF82 /* IPMenuIcon.tif */; };
+		F652997D17D937A900BF088C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652997C17D937A900BF088C /* CoreLocation.framework */; };
+		F652997F17D937D200BF088C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652997E17D937D200BF088C /* IOKit.framework */; };
+		F652998117D937DA00BF088C /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652998017D937DA00BF088C /* QTKit.framework */; };
+		F652998317D937E500BF088C /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652998217D937E500BF088C /* Quartz.framework */; };
+		F652998517D937F100BF088C /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652998417D937F100BF088C /* WebKit.framework */; };
+		F652998717D9380000BF088C /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F652998617D9380000BF088C /* libsqlite3.0.dylib */; };
+		F652998917D939FA00BF088C /* IPMenuIcon-Debug.tif in Resources */ = {isa = PBXBuildFile; fileRef = F652998817D939FA00BF088C /* IPMenuIcon-Debug.tif */; };
+		F652998A17D9427E00BF088C /* jquery-2.0.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F827017D8E4FE00A8AD03 /* jquery-2.0.3.min.js */; };
+		F652998B17D9428500BF088C /* d3.v3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F826F17D8E4FE00A8AD03 /* d3.v3.min.js */; };
+		F657518917B1E5F200A3CA8D /* old_import.py in Resources */ = {isa = PBXBuildFile; fileRef = F657518817B1E5F200A3CA8D /* old_import.py */; };
+		F65CB37218158AA00095BA84 /* reports.sql in Resources */ = {isa = PBXBuildFile; fileRef = F65CB37118158AA00095BA84 /* reports.sql */; };
+		F65CB3771815B7D90095BA84 /* lifeslice_package.command in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3751815B7D90095BA84 /* lifeslice_package.command */; };
+		F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */; };
+		F66235C7172A047800CFAFBF /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F66235C6172A047800CFAFBF /* ImageSnap.m */; };
+		F6634A1C17ECE03000097988 /* lifeslice.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F6634A1B17ECE03000097988 /* lifeslice.iconset */; };
+		F678C6B6177E15B60077F051 /* IPMenuIconPieSlice.tif in Resources */ = {isa = PBXBuildFile; fileRef = F678C6B5177E15B60077F051 /* IPMenuIconPieSlice.tif */; };
+		F68F53AF16AA4450008A37DC /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */; };
+		F69F826E17D8E47A00A8AD03 /* moment.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F826C17D8E44600A8AD03 /* moment.min.js */; };
+		F69F827817D8E4FE00A8AD03 /* jquery-2.0.3.min.map in Resources */ = {isa = PBXBuildFile; fileRef = F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */; };
+		F69F827A17D8E4FE00A8AD03 /* slicebrowser-d3.html in Resources */ = {isa = PBXBuildFile; fileRef = F69F827317D8E4FE00A8AD03 /* slicebrowser-d3.html */; };
+		F69F827B17D8E4FE00A8AD03 /* slicebrowser-day-d3.html in Resources */ = {isa = PBXBuildFile; fileRef = F69F827417D8E4FE00A8AD03 /* slicebrowser-day-d3.html */; };
+		F69F827C17D8E4FE00A8AD03 /* slicebrowser.html in Resources */ = {isa = PBXBuildFile; fileRef = F69F827517D8E4FE00A8AD03 /* slicebrowser.html */; };
+		F6A0150316B1048D001CCC5F /* categories.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014DD16B1048D001CCC5F /* categories.pbxbtree */; };
+		F6A0150416B1048D001CCC5F /* cdecls.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014DE16B1048D001CCC5F /* cdecls.pbxbtree */; };
+		F6A0150516B1048D001CCC5F /* decls.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014DF16B1048D001CCC5F /* decls.pbxbtree */; };
+		F6A0150616B1048D001CCC5F /* files.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E016B1048D001CCC5F /* files.pbxbtree */; };
+		F6A0150716B1048D001CCC5F /* imports.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E116B1048D001CCC5F /* imports.pbxbtree */; };
+		F6A0150816B1048D001CCC5F /* pbxindex.header in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E216B1048D001CCC5F /* pbxindex.header */; };
+		F6A0150916B1048D001CCC5F /* protocols.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E316B1048D001CCC5F /* protocols.pbxbtree */; };
+		F6A0150A16B1048D001CCC5F /* refs.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E416B1048D001CCC5F /* refs.pbxbtree */; };
+		F6A0150B16B1048D001CCC5F /* control in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E616B1048D001CCC5F /* control */; };
+		F6A0150C16B1048D001CCC5F /* strings in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E716B1048D001CCC5F /* strings */; };
+		F6A0150D16B1048D001CCC5F /* subclasses.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E816B1048D001CCC5F /* subclasses.pbxbtree */; };
+		F6A0150E16B1048D001CCC5F /* symbols0.pbxsymbols in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E916B1048D001CCC5F /* symbols0.pbxsymbols */; };
+		F6A0151116B1048D001CCC5F /* fmdb.1 in Resources */ = {isa = PBXBuildFile; fileRef = F6A014EC16B1048D001CCC5F /* fmdb.1 */; };
+		F6A0151416B1048D001CCC5F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014F516B1048D001CCC5F /* FMDatabase.m */; };
+		F6A0151516B1048D001CCC5F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014F716B1048D001CCC5F /* FMDatabaseAdditions.m */; };
+		F6A0151616B1048D001CCC5F /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014F916B1048D001CCC5F /* FMDatabasePool.m */; };
+		F6A0151716B1048D001CCC5F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FB16B1048D001CCC5F /* FMDatabaseQueue.m */; };
+		F6A0151916B1048D001CCC5F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FE16B1048D001CCC5F /* FMResultSet.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F6A0151C16B1048E001CCC5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6A014ED16B1048D001CCC5F /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DD76FA10486AA7600D96B5E;
+			remoteInfo = fmdb;
+		};
+		F6A0151E16B1048E001CCC5F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F6A014ED16B1048D001CCC5F /* fmdb.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EE4290EF12B42F870088BD94;
+			remoteInfo = FMDB;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F61F3DED176FC74700776CED /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F61F3DEF176FC76500776CED /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		089C165DFE840E0CC02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		13E42FB307B3F0F600E4EEF1 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+		1DDD58150DA1D0A300B32029 /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = English.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		256AC3D80F4B6AC300CF3369 /* MouseTracksAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseTracksAppDelegate.h; sourceTree = "<group>"; };
+		256AC3D90F4B6AC300CF3369 /* MouseTracksAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MouseTracksAppDelegate.m; sourceTree = "<group>"; };
+		256AC3F00F4B6AF500CF3369 /* LifeSlice_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LifeSlice_Prefix.pch; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		8D1107310486CEB800E47090 /* LifeSlice-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LifeSlice-Info.plist"; sourceTree = "<group>"; };
+		8D1107320486CEB800E47090 /* LifeSlice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LifeSlice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F614B5F517DE280D00A83FF8 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
+		F614B5F617DE280D00A83FF8 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
+		F614B5F717DE280D00A83FF8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		F61F3DEB176FC71C00776CED /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
+		F629A6481726016100094B10 /* Project Next Steps.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Project Next Steps.rtf"; sourceTree = "<group>"; };
+		F63E7C0D16C3522B0080BF82 /* IPMenuIcon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = IPMenuIcon.tif; sourceTree = "<group>"; };
+		F652997C17D937A900BF088C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
+		F652997E17D937D200BF088C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		F652998017D937DA00BF088C /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = DEVELOPER_DIR; };
+		F652998217D937E500BF088C /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
+		F652998417D937F100BF088C /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
+		F652998617D9380000BF088C /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
+		F652998817D939FA00BF088C /* IPMenuIcon-Debug.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = "IPMenuIcon-Debug.tif"; sourceTree = "<group>"; };
+		F657518817B1E5F200A3CA8D /* old_import.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = old_import.py; path = old_import/old_import.py; sourceTree = "<group>"; };
+		F65CB37118158AA00095BA84 /* reports.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reports.sql; sourceTree = "<group>"; };
+		F65CB3751815B7D90095BA84 /* lifeslice_package.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = lifeslice_package.command; path = distribution/lifeslice_package.command; sourceTree = "<group>"; };
+		F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = lifeslice_appcast.xml; path = distribution/lifeslice_appcast.xml; sourceTree = "<group>"; };
+		F66235C5172A047800CFAFBF /* ImageSnap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSnap.h; sourceTree = "<group>"; };
+		F66235C6172A047800CFAFBF /* ImageSnap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSnap.m; sourceTree = "<group>"; };
+		F6634A1717ECDB6A00097988 /* lifeslice-logo.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = "lifeslice-logo.psd"; path = "Artwork/lifeslice-logo.psd"; sourceTree = "<group>"; };
+		F6634A1B17ECE03000097988 /* lifeslice.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = lifeslice.iconset; path = Artwork/lifeslice.iconset; sourceTree = "<group>"; };
+		F678C6B5177E15B60077F051 /* IPMenuIconPieSlice.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = IPMenuIconPieSlice.tif; sourceTree = "<group>"; };
+		F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
+		F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
+		F69F826C17D8E44600A8AD03 /* moment.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = moment.min.js; path = html/moment.min.js; sourceTree = "<group>"; };
+		F69F826F17D8E4FE00A8AD03 /* d3.v3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = d3.v3.min.js; path = html/d3.v3.min.js; sourceTree = "<group>"; };
+		F69F827017D8E4FE00A8AD03 /* jquery-2.0.3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = "jquery-2.0.3.min.js"; path = "html/jquery-2.0.3.min.js"; sourceTree = "<group>"; };
+		F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = "jquery-2.0.3.min.map"; path = "html/jquery-2.0.3.min.map"; sourceTree = "<group>"; };
+		F69F827217D8E4FE00A8AD03 /* moment.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = moment.min.js; path = html/moment.min.js; sourceTree = "<group>"; };
+		F69F827317D8E4FE00A8AD03 /* slicebrowser-d3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "slicebrowser-d3.html"; path = "html/slicebrowser-d3.html"; sourceTree = "<group>"; };
+		F69F827417D8E4FE00A8AD03 /* slicebrowser-day-d3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "slicebrowser-day-d3.html"; path = "html/slicebrowser-day-d3.html"; sourceTree = "<group>"; };
+		F69F827517D8E4FE00A8AD03 /* slicebrowser.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = slicebrowser.html; path = html/slicebrowser.html; sourceTree = "<group>"; };
+		F6A014D916B1048D001CCC5F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		F6A014DD16B1048D001CCC5F /* categories.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = categories.pbxbtree; sourceTree = "<group>"; };
+		F6A014DE16B1048D001CCC5F /* cdecls.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdecls.pbxbtree; sourceTree = "<group>"; };
+		F6A014DF16B1048D001CCC5F /* decls.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = decls.pbxbtree; sourceTree = "<group>"; };
+		F6A014E016B1048D001CCC5F /* files.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = files.pbxbtree; sourceTree = "<group>"; };
+		F6A014E116B1048D001CCC5F /* imports.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = imports.pbxbtree; sourceTree = "<group>"; };
+		F6A014E216B1048D001CCC5F /* pbxindex.header */ = {isa = PBXFileReference; lastKnownFileType = file; path = pbxindex.header; sourceTree = "<group>"; };
+		F6A014E316B1048D001CCC5F /* protocols.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = protocols.pbxbtree; sourceTree = "<group>"; };
+		F6A014E416B1048D001CCC5F /* refs.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = refs.pbxbtree; sourceTree = "<group>"; };
+		F6A014E616B1048D001CCC5F /* control */ = {isa = PBXFileReference; lastKnownFileType = file; path = control; sourceTree = "<group>"; };
+		F6A014E716B1048D001CCC5F /* strings */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings; sourceTree = "<group>"; };
+		F6A014E816B1048D001CCC5F /* subclasses.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = subclasses.pbxbtree; sourceTree = "<group>"; };
+		F6A014E916B1048D001CCC5F /* symbols0.pbxsymbols */ = {isa = PBXFileReference; lastKnownFileType = file; path = symbols0.pbxsymbols; sourceTree = "<group>"; };
+		F6A014EA16B1048D001CCC5F /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
+		F6A014EB16B1048D001CCC5F /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
+		F6A014EC16B1048D001CCC5F /* fmdb.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = fmdb.1; sourceTree = "<group>"; };
+		F6A014ED16B1048D001CCC5F /* fmdb.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = fmdb.xcodeproj; sourceTree = "<group>"; };
+		F6A014F016B1048D001CCC5F /* fmdb_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fmdb_Prefix.pch; sourceTree = "<group>"; };
+		F6A014F116B1048D001CCC5F /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		F6A014F216B1048D001CCC5F /* README.markdown */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.markdown; sourceTree = "<group>"; };
+		F6A014F416B1048D001CCC5F /* FMDatabase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabase.h; sourceTree = "<group>"; };
+		F6A014F516B1048D001CCC5F /* FMDatabase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabase.m; sourceTree = "<group>"; };
+		F6A014F616B1048D001CCC5F /* FMDatabaseAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseAdditions.h; sourceTree = "<group>"; };
+		F6A014F716B1048D001CCC5F /* FMDatabaseAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseAdditions.m; sourceTree = "<group>"; };
+		F6A014F816B1048D001CCC5F /* FMDatabasePool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabasePool.h; sourceTree = "<group>"; };
+		F6A014F916B1048D001CCC5F /* FMDatabasePool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabasePool.m; sourceTree = "<group>"; };
+		F6A014FA16B1048D001CCC5F /* FMDatabaseQueue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDatabaseQueue.h; sourceTree = "<group>"; };
+		F6A014FB16B1048D001CCC5F /* FMDatabaseQueue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMDatabaseQueue.m; sourceTree = "<group>"; };
+		F6A014FD16B1048D001CCC5F /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
+		F6A014FE16B1048D001CCC5F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
+		F6C82B7F16CB2DB90009E9D3 /* LifeSlice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LifeSlice.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8D11072E0486CEB800E47090 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F652998717D9380000BF088C /* libsqlite3.0.dylib in Frameworks */,
+				F652998517D937F100BF088C /* WebKit.framework in Frameworks */,
+				F652998317D937E500BF088C /* Quartz.framework in Frameworks */,
+				F652998117D937DA00BF088C /* QTKit.framework in Frameworks */,
+				F652997F17D937D200BF088C /* IOKit.framework in Frameworks */,
+				F652997D17D937A900BF088C /* CoreLocation.framework in Frameworks */,
+				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
+				F61F3DEC176FC71C00776CED /* Sparkle.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F614B5F417DE280D00A83FF8 /* LaunchAtLoginController--with-ARC- */,
+				F66235C5172A047800CFAFBF /* ImageSnap.h */,
+				F66235C6172A047800CFAFBF /* ImageSnap.m */,
+				F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */,
+				F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */,
+				256AC3D80F4B6AC300CF3369 /* MouseTracksAppDelegate.h */,
+				256AC3D90F4B6AC300CF3369 /* MouseTracksAppDelegate.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7A2FEA54F0111CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				29B97324FDCFA39411CA2CEA /* AppKit.framework */,
+				13E42FB307B3F0F600E4EEF1 /* CoreData.framework */,
+				29B97325FDCFA39411CA2CEA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8D1107320486CEB800E47090 /* LifeSlice.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* MouseTracks */ = {
+			isa = PBXGroup;
+			children = (
+				F65CB3741815B7AE0095BA84 /* Distribution */,
+				F6C82B7F16CB2DB90009E9D3 /* LifeSlice.entitlements */,
+				F6A014D816B1048D001CCC5F /* fmdb */,
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = MouseTracks;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				256AC3F00F4B6AF500CF3369 /* LifeSlice_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F65CB37018158AA00095BA84 /* sql */,
+				F6634A1B17ECE03000097988 /* lifeslice.iconset */,
+				F6634A1717ECDB6A00097988 /* lifeslice-logo.psd */,
+				F652998817D939FA00BF088C /* IPMenuIcon-Debug.tif */,
+				F678C6B5177E15B60077F051 /* IPMenuIconPieSlice.tif */,
+				F6F4CFAF1739513C008E89B8 /* old_import */,
+				F621501E172F145B0060072C /* html */,
+				F63E7C0D16C3522B0080BF82 /* IPMenuIcon.tif */,
+				8D1107310486CEB800E47090 /* LifeSlice-Info.plist */,
+				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
+				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
+				F629A6481726016100094B10 /* Project Next Steps.rtf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F652998617D9380000BF088C /* libsqlite3.0.dylib */,
+				F652998417D937F100BF088C /* WebKit.framework */,
+				F652998217D937E500BF088C /* Quartz.framework */,
+				F652998017D937DA00BF088C /* QTKit.framework */,
+				F652997E17D937D200BF088C /* IOKit.framework */,
+				F652997C17D937A900BF088C /* CoreLocation.framework */,
+				F61F3DEB176FC71C00776CED /* Sparkle.framework */,
+				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
+				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F614B5F417DE280D00A83FF8 /* LaunchAtLoginController--with-ARC- */ = {
+			isa = PBXGroup;
+			children = (
+				F614B5F517DE280D00A83FF8 /* LaunchAtLoginController.h */,
+				F614B5F617DE280D00A83FF8 /* LaunchAtLoginController.m */,
+				F614B5F717DE280D00A83FF8 /* README.md */,
+			);
+			path = "LaunchAtLoginController--with-ARC-";
+			sourceTree = "<group>";
+		};
+		F621501E172F145B0060072C /* html */ = {
+			isa = PBXGroup;
+			children = (
+				F69F826F17D8E4FE00A8AD03 /* d3.v3.min.js */,
+				F69F827017D8E4FE00A8AD03 /* jquery-2.0.3.min.js */,
+				F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */,
+				F69F827217D8E4FE00A8AD03 /* moment.min.js */,
+				F69F827317D8E4FE00A8AD03 /* slicebrowser-d3.html */,
+				F69F827417D8E4FE00A8AD03 /* slicebrowser-day-d3.html */,
+				F69F827517D8E4FE00A8AD03 /* slicebrowser.html */,
+				F69F826C17D8E44600A8AD03 /* moment.min.js */,
+			);
+			name = html;
+			sourceTree = "<group>";
+		};
+		F65CB37018158AA00095BA84 /* sql */ = {
+			isa = PBXGroup;
+			children = (
+				F65CB37118158AA00095BA84 /* reports.sql */,
+			);
+			path = sql;
+			sourceTree = "<group>";
+		};
+		F65CB3741815B7AE0095BA84 /* Distribution */ = {
+			isa = PBXGroup;
+			children = (
+				F65CB3751815B7D90095BA84 /* lifeslice_package.command */,
+				F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */,
+			);
+			name = Distribution;
+			sourceTree = "<group>";
+		};
+		F6A014D816B1048D001CCC5F /* fmdb */ = {
+			isa = PBXGroup;
+			children = (
+				F6A014D916B1048D001CCC5F /* .gitignore */,
+				F6A014DA16B1048D001CCC5F /* build */,
+				F6A014EA16B1048D001CCC5F /* CHANGES_AND_TODO_LIST.txt */,
+				F6A014EB16B1048D001CCC5F /* CONTRIBUTORS.txt */,
+				F6A014EC16B1048D001CCC5F /* fmdb.1 */,
+				F6A014ED16B1048D001CCC5F /* fmdb.xcodeproj */,
+				F6A014F016B1048D001CCC5F /* fmdb_Prefix.pch */,
+				F6A014F116B1048D001CCC5F /* LICENSE.txt */,
+				F6A014F216B1048D001CCC5F /* README.markdown */,
+				F6A014F316B1048D001CCC5F /* src */,
+			);
+			path = fmdb;
+			sourceTree = "<group>";
+		};
+		F6A014DA16B1048D001CCC5F /* build */ = {
+			isa = PBXGroup;
+			children = (
+				F6A014DB16B1048D001CCC5F /* fmdb.build */,
+			);
+			path = build;
+			sourceTree = "<group>";
+		};
+		F6A014DB16B1048D001CCC5F /* fmdb.build */ = {
+			isa = PBXGroup;
+			children = (
+				F6A014DC16B1048D001CCC5F /* fmdb.pbxindex */,
+			);
+			path = fmdb.build;
+			sourceTree = "<group>";
+		};
+		F6A014DC16B1048D001CCC5F /* fmdb.pbxindex */ = {
+			isa = PBXGroup;
+			children = (
+				F6A014DD16B1048D001CCC5F /* categories.pbxbtree */,
+				F6A014DE16B1048D001CCC5F /* cdecls.pbxbtree */,
+				F6A014DF16B1048D001CCC5F /* decls.pbxbtree */,
+				F6A014E016B1048D001CCC5F /* files.pbxbtree */,
+				F6A014E116B1048D001CCC5F /* imports.pbxbtree */,
+				F6A014E216B1048D001CCC5F /* pbxindex.header */,
+				F6A014E316B1048D001CCC5F /* protocols.pbxbtree */,
+				F6A014E416B1048D001CCC5F /* refs.pbxbtree */,
+				F6A014E516B1048D001CCC5F /* strings.pbxstrings */,
+				F6A014E816B1048D001CCC5F /* subclasses.pbxbtree */,
+				F6A014E916B1048D001CCC5F /* symbols0.pbxsymbols */,
+			);
+			path = fmdb.pbxindex;
+			sourceTree = "<group>";
+		};
+		F6A014E516B1048D001CCC5F /* strings.pbxstrings */ = {
+			isa = PBXGroup;
+			children = (
+				F6A014E616B1048D001CCC5F /* control */,
+				F6A014E716B1048D001CCC5F /* strings */,
+			);
+			path = strings.pbxstrings;
+			sourceTree = "<group>";
+		};
+		F6A014EE16B1048D001CCC5F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F6A0151D16B1048E001CCC5F /* fmdb */,
+				F6A0151F16B1048E001CCC5F /* libFMDB.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F6A014F316B1048D001CCC5F /* src */ = {
+			isa = PBXGroup;
+			children = (
+				F6A014F416B1048D001CCC5F /* FMDatabase.h */,
+				F6A014F516B1048D001CCC5F /* FMDatabase.m */,
+				F6A014F616B1048D001CCC5F /* FMDatabaseAdditions.h */,
+				F6A014F716B1048D001CCC5F /* FMDatabaseAdditions.m */,
+				F6A014F816B1048D001CCC5F /* FMDatabasePool.h */,
+				F6A014F916B1048D001CCC5F /* FMDatabasePool.m */,
+				F6A014FA16B1048D001CCC5F /* FMDatabaseQueue.h */,
+				F6A014FB16B1048D001CCC5F /* FMDatabaseQueue.m */,
+				F6A014FD16B1048D001CCC5F /* FMResultSet.h */,
+				F6A014FE16B1048D001CCC5F /* FMResultSet.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		F6F4CFAF1739513C008E89B8 /* old_import */ = {
+			isa = PBXGroup;
+			children = (
+				F657518817B1E5F200A3CA8D /* old_import.py */,
+			);
+			name = old_import;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8D1107260486CEB800E47090 /* LifeSlice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "LifeSlice" */;
+			buildPhases = (
+				8D1107290486CEB800E47090 /* Resources */,
+				8D11072C0486CEB800E47090 /* Sources */,
+				8D11072E0486CEB800E47090 /* Frameworks */,
+				F61F3DED176FC74700776CED /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LifeSlice;
+			productInstallPath = "$(HOME)/Applications";
+			productName = MouseTracks;
+			productReference = 8D1107320486CEB800E47090 /* LifeSlice.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+			};
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LifeSlice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 1;
+			knownRegions = (
+				English,
+				Japanese,
+				French,
+				German,
+			);
+			mainGroup = 29B97314FDCFA39411CA2CEA /* MouseTracks */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = F6A014EE16B1048D001CCC5F /* Products */;
+					ProjectRef = F6A014ED16B1048D001CCC5F /* fmdb.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				8D1107260486CEB800E47090 /* LifeSlice */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		F6A0151D16B1048E001CCC5F /* fmdb */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = fmdb;
+			remoteRef = F6A0151C16B1048E001CCC5F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		F6A0151F16B1048E001CCC5F /* libFMDB.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libFMDB.a;
+			remoteRef = F6A0151E16B1048E001CCC5F /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8D1107290486CEB800E47090 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F69F826E17D8E47A00A8AD03 /* moment.min.js in Resources */,
+				F652998B17D9428500BF088C /* d3.v3.min.js in Resources */,
+				F6634A1C17ECE03000097988 /* lifeslice.iconset in Resources */,
+				F652998A17D9427E00BF088C /* jquery-2.0.3.min.js in Resources */,
+				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */,
+				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
+				F6A0150316B1048D001CCC5F /* categories.pbxbtree in Resources */,
+				F6A0150416B1048D001CCC5F /* cdecls.pbxbtree in Resources */,
+				F65CB37218158AA00095BA84 /* reports.sql in Resources */,
+				F69F827817D8E4FE00A8AD03 /* jquery-2.0.3.min.map in Resources */,
+				F65CB3771815B7D90095BA84 /* lifeslice_package.command in Resources */,
+				F6A0150516B1048D001CCC5F /* decls.pbxbtree in Resources */,
+				F6A0150616B1048D001CCC5F /* files.pbxbtree in Resources */,
+				F6A0150716B1048D001CCC5F /* imports.pbxbtree in Resources */,
+				F6A0150816B1048D001CCC5F /* pbxindex.header in Resources */,
+				F6A0150916B1048D001CCC5F /* protocols.pbxbtree in Resources */,
+				F652998917D939FA00BF088C /* IPMenuIcon-Debug.tif in Resources */,
+				F6A0150A16B1048D001CCC5F /* refs.pbxbtree in Resources */,
+				F6A0150B16B1048D001CCC5F /* control in Resources */,
+				F69F827A17D8E4FE00A8AD03 /* slicebrowser-d3.html in Resources */,
+				F6A0150C16B1048D001CCC5F /* strings in Resources */,
+				F6A0150D16B1048D001CCC5F /* subclasses.pbxbtree in Resources */,
+				F6A0150E16B1048D001CCC5F /* symbols0.pbxsymbols in Resources */,
+				F6A0151116B1048D001CCC5F /* fmdb.1 in Resources */,
+				F69F827B17D8E4FE00A8AD03 /* slicebrowser-day-d3.html in Resources */,
+				F63E7C0E16C3522B0080BF82 /* IPMenuIcon.tif in Resources */,
+				F678C6B6177E15B60077F051 /* IPMenuIconPieSlice.tif in Resources */,
+				F69F827C17D8E4FE00A8AD03 /* slicebrowser.html in Resources */,
+				F657518917B1E5F200A3CA8D /* old_import.py in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8D11072C0486CEB800E47090 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8D11072D0486CEB800E47090 /* main.m in Sources */,
+				F614B5F817DE280D00A83FF8 /* LaunchAtLoginController.m in Sources */,
+				256AC3DA0F4B6AC300CF3369 /* MouseTracksAppDelegate.m in Sources */,
+				F68F53AF16AA4450008A37DC /* NSFileManager+DirectoryLocations.m in Sources */,
+				F6A0151416B1048D001CCC5F /* FMDatabase.m in Sources */,
+				F6A0151516B1048D001CCC5F /* FMDatabaseAdditions.m in Sources */,
+				F6A0151616B1048D001CCC5F /* FMDatabasePool.m in Sources */,
+				F6A0151716B1048D001CCC5F /* FMDatabaseQueue.m in Sources */,
+				F6A0151916B1048D001CCC5F /* FMResultSet.m in Sources */,
+				F66235C7172A047800CFAFBF /* ImageSnap.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C165CFE840E0CC02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C165DFE840E0CC02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		1DDD58140DA1D0A300B32029 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1DDD58150DA1D0A300B32029 /* English */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C01FCF4B08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LifeSlice_Prefix.pch;
+				INFOPLIST_FILE = "LifeSlice-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				PRODUCT_NAME = LifeSlice;
+				SDKROOT = macosx10.8;
+			};
+			name = Debug;
+		};
+		C01FCF4C08A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = LifeSlice_Prefix.pch;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = RELEASE_TEST_BUILD;
+				INFOPLIST_FILE = "LifeSlice-Info.plist";
+				INSTALL_PATH = "$(HOME)/Applications";
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = LifeSlice;
+				SDKROOT = macosx10.8;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.7;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx10.7;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "LifeSlice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4B08A954540054247B /* Debug */,
+				C01FCF4C08A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LifeSlice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

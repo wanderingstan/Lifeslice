@@ -1,0 +1,394 @@
+
+<!DOCTYPE html>
+<html>
+<!-- 
+MONTH
+
+TODO: use jqueryUI do show images 
+--><head>
+    <title>LifeSlice Reporting</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <style>
+            body {
+                background-color:#333;
+                color:white;
+                font-family:"Helvetica Neue",arial,sans-serif;
+                font-weight:100;
+            }
+
+            #lifeSliceLink {
+                text-decoration: none;
+                color: green;
+                font-size: 23px;
+                margin-right: 1em;
+            }
+            #lifeSliceLink:hover {
+                text-decoration: underline;
+            }
+            
+            h1 {
+                margin: 0px;
+                margin-right: 10px;
+                font-size:60px;
+                font-family: "Helvetica Neue", arial, sans-serif;
+                font-weight:100;         
+            }
+
+            input {
+                font-family:"Helvetica Neue",arial,sans-serif;
+                font-size: 30px;
+            }
+            #displayDate {
+                background-color:black;
+                color: white;
+                font-size: 12px;
+            }
+
+
+            text.axis-day {
+                fill: #FFF;
+                font-size: 36px;
+            }
+            text.axis-hour {
+                fill: #FFF;
+                font-size: 18px;
+            }
+
+            #preview{
+                position:absolute;
+                border:1px solid #ccc;
+                background:#333;
+                padding:5px;
+                display:none;
+                color:#fff;
+                z-index:999;
+                border-radius: 5px;
+            }
+            #preview img {
+                width:200px;
+                max-height:150px;
+            }
+
+            .wordCountLine{
+                fill: steelblue;
+                fill-opacity: 0.8;
+            }
+            .mouseCursorDistanceLine{
+                fill: green;
+                fill-opacity: 0.8;
+            }
+
+            </style>
+        
+        <script src="d3.v3.min.js"></script>
+        <script src="jquery-2.0.3.min.js"></script>
+        <script src="moment.min.js"></script>
+
+        </head>
+
+<body>
+
+
+    <div>
+        <a id="lifeSliceLink" href="http://wanderingstan.com/lifeslice" target="_new">LifeSlice</a>
+        <input type="button" value="Today" onclick="
+            document.getElementById('displayDate').value = moment().format('YYYY-MM-DD')
+            draw();
+        ">
+        <input type="button" value="<" onClick="
+            document.getElementById('displayDate').value = moment(document.getElementById('displayDate').value).add('months', -1).startOf('month').format('YYYY-MM-DD');
+            draw();
+        ">
+        <input type="button" value=">" onClick="
+            document.getElementById('displayDate').value = moment(document.getElementById('displayDate').value).add('months', +1).startOf('month').format('YYYY-MM-DD');
+            draw();
+        ">
+
+        <input id="displayDate" value="" onChange="draw()" size="10"/>
+
+        <input type="button" value="Refresh" onClick="location.reload(true)"/>
+        <input type="button" value="Day View" onClick="window.location.href='slicebrowser-day-d3.html';"/>
+
+        <label><input type="checkbox" id="doShowWordCount" onChange="draw()"> Word Count</label>
+        <label><input type="checkbox" id="doShowMouseCursorDistance" onChange="draw()"> Mouse Distance</label>
+<!--         <input type="button" value="clear" onClick="svg.selectAll('.hour').remove();"/>
+ -->    </div>
+
+    <h1 id="pageHeader"><!--date will be inserted here--></h1>
+
+    <div id="chart"></div>
+
+    <script>
+
+        // default to today/this month
+        document.getElementById('displayDate').value = moment().startOf("month").format('YYYY-MM-DD');
+
+        // Utility for 
+        Date.prototype.addDays = function(days) {
+            var dat = new Date(this.valueOf())
+            dat.setDate(dat.getDate() + days);
+            return dat;
+        }
+
+        function getDates(startDate, stopDate) {
+            var dateArray = new Array();
+            var currentDate = startDate;
+            while (currentDate <= stopDate) {
+                dateArray.push( new Date (currentDate) )
+                currentDate = currentDate.addDays(1);
+            }
+            return dateArray;
+        }
+
+        // iso date handling functions
+
+        function isoDateMonth(isoDate) {
+            return parseInt(isoDate.substr(5,2));
+        }
+        function isoDateDay(isoDate) {
+            return parseInt(isoDate.substr(8,2));
+        }
+        function isoDateHour(isoDate) {
+            return parseInt(isoDate.substr(11,2));
+        }
+        function isoDateMinute(isoDate) {
+            return parseInt(isoDate.substr(14,2));
+        }        
+
+        var webcam, screenshot, keyboard;
+        // load all our data sources
+        // https://groups.google.com/d/msg/d3-js/3Y9VHkOOdCM/YnmOPopWUxQJ
+        var remaining = 4; // change this number to equal the number of data sources we're loading from
+        d3.csv("webcam.csv", function(csv) {
+            webcam = csv;
+            if (!--remaining) draw();
+        });
+        d3.csv("screenshot.csv", function(csv) {
+            screenshot = csv;
+            if (!--remaining) draw();
+        });
+        d3.csv("keyboard.csv", function(csv) {
+            keyboard = csv;
+            if (!--remaining) draw();
+        });
+        d3.csv("mouse.csv", function(csv) {
+            mouse = csv;
+            if (!--remaining) draw();
+        });
+
+        // page setup
+        var margin = { top: 0, right: 0, bottom: 100, left: 50 },
+            width = 960 - margin.left - margin.right,
+            gridSizeX = Math.floor(width / 24),
+            gridSizeY = Math.floor(gridSizeX * 0.75),
+            height = (32*gridSizeY) - margin.top - margin.bottom
+        ;
+        var svg = d3.select("#chart").append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+        ;
+
+        // utility: is our data in the user-selected date range? 
+        function inSelectedDateRange(d,i,self) {
+            // console.log(Math.random() + " " + d.datetime.substr(0,10) + " >= ");
+            // console.log((document.getElementById('displayDate').value) +  " yo yo " + moment(document.getElementById('displayDate').value).endOf("month").format('YYYY-MM-DD'));
+            // console.log (" yields " + ((d.datetime.substr(0,10) >= document.getElementById('displayDate').value) && (d.datetime.substr(0,10) <  moment(document.getElementById('displayDate').value).endOf("month").format('YYYY-MM-DD'))) + " fucking safari.");
+            return (
+                (d.datetime.substr(0,10) >= moment(document.getElementById('displayDate').value).startOf("month").format('YYYY-MM-DD')) &&
+                (d.datetime.substr(0,10) <  moment(document.getElementById('displayDate').value).endOf("month").format('YYYY-MM-DD'))
+            );
+                    //document.getElementById('displaySelectionEndDate').value)
+        }
+
+        // draw our data!
+        function draw() {
+
+            // show the date
+            $('#pageHeader').text(moment(document.getElementById('displayDate').value).format("MMMM YYYY"));
+
+            svg.selectAll(".hour").remove();
+            svg.selectAll(".wordCountLine").remove();
+            svg.selectAll(".mouseCursorDistanceLine").remove();
+
+            // filter data so we only have one picture per hour
+            // doto: switch to D3 style filtering
+            webcamHourFilteredData = webcam.filter(
+                function(value, index, self) {
+                    return (index==0) || (isoDateHour(self[index].datetime)!=isoDateHour(self[index-1].datetime));
+                } 
+            );
+            screenshotFilteredData = screenshot.filter(
+                function(value, index, self) {
+                    return (index==0) || (isoDateHour(self[index].datetime)!=isoDateHour(self[index-1].datetime));
+                } 
+            );
+
+            // calculate our date range
+
+
+            // Our tranformation functions
+            var gridX = function (d) {
+                return ((isoDateHour(d.datetime)+1) * gridSizeX) + ((isoDateMinute(d.datetime) * gridSizeX)/60);
+            }
+            var gridY = function (d,i) {
+                return ((isoDateDay(d.datetime)+2) * gridSizeY);
+            }
+
+            //
+            // axis and labels
+            //
+
+            // TODO: function to give all the dates between start and end selection date..
+            var dayLabels = svg.selectAll(".dayLabel")
+              .data([" 1"," 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31"])
+                .enter()
+                .append("a")
+                .attr("xlink:href", function(d) { return "slicebrowser-day-d3.html?date="+document.getElementById('displayDate').value.substr(0,8)+d; })
+                .attr("class", "axis-day")                
+                .append("text")
+                .text(function (d) { return d; })
+                .attr("x", 0)
+                .attr("y", function (d, i) { return (i+1) * gridSizeY; })
+                .style("text-anchor", "end")
+                .attr("transform", "translate(-6," + gridSizeY / 1.5 + ")")
+                .attr("class", "axis-day")
+            ;
+
+            var hourLabels = svg.selectAll(".hourLabel")
+              .data([" 0"," 1"," 2"," 3"," 4"," 5"," 6"," 7"," 8"," 9","10","11","12","13","14","15","16","17","18","19","20","21","22","23"])
+              .enter().append("text")
+                .text(function (d) { return d; })
+                .attr("x", function (d, i) { return (i+1) * gridSizeX; })
+                .attr("y", (gridSizeY*0))
+                .style("text-anchor", "end")
+                .attr("transform", "translate(-6," + gridSizeY / 1.5 + ")")
+                .attr("class", "axis-hour");            
+            ;
+
+            //
+            // webcam
+            //
+            hourCells = svg.selectAll(".hour")
+                .data(webcamHourFilteredData.filter(inSelectedDateRange))
+                .enter()
+                .append("a")
+                .attr("xlink:href", function(d) { return "slicebrowser-day-d3.html?date="+d.datetime; })               
+                .append("svg:image")
+                .attr("xlink:href", function(d) { return "../webcam_thumbs/"+d.filename; })
+                .attr("x", function(d) { return (isoDateHour(d.datetime) * gridSizeX); })
+                .attr("y", function(d) { return (isoDateDay(d.datetime) * gridSizeY); })
+                .attr("width", gridSizeX)
+                .attr("height", gridSizeY)
+                .attr("datetime",function(d) {return d.datetime;})
+                .attr("class", "hour")                       
+                .append("svg:title")                
+                .text(function(d) { return d.datetime; });
+            ;
+            svg.selectAll(".hour")
+                .data(webcamHourFilteredData.filter(inSelectedDateRange))
+                .exit().remove();
+
+            //
+            // wordcount
+            //
+            if (document.getElementById('doShowWordCount').checked) { 
+                var wordCountHeight = function(d) {
+                    return d3.scale.linear()
+                    .domain([0,200])
+                    .range([0,30])(d.wordCount);
+                }
+
+                wordLine = svg.selectAll(".wordCountLine")
+                    .data(keyboard.filter(inSelectedDateRange))
+                    .enter().append("rect")
+                    .attr("class","wordCountLine")
+                    .attr("x", gridX)
+                    .attr("y", function(d, i) { return gridY(d) - wordCountHeight(d)}) // function(d, i) { return ((isoDateDay(d.datetime)+2) * gridSizeY) - (d.wordCount / 10); }
+                    .attr("width", 3)
+                    .attr("height", wordCountHeight )
+                ;        
+                svg.selectAll(".wordCountLine")
+                    .data(keyboard.filter(inSelectedDateRange))
+                    .exit().remove();
+            } 
+            else {
+                 svg.selectAll(".wordCountLine")
+                    .remove();
+            }
+
+            //
+            // mouse cursor distance 
+            //
+            if (document.getElementById('doShowMouseCursorDistance').checked) {
+                mouseCursorDistanceLine = svg.selectAll(".mouseCursorDistanceLine")
+                    .data(mouse.filter(inSelectedDateRange))
+                    .enter().append("rect")
+                    .attr("class","mouseCursorDistanceLine")
+                    .attr("x", function(d) { return ((isoDateHour(d.datetime)+1) * gridSizeX) + ((isoDateMinute(d.datetime) * gridSizeX)/60); })
+                    .attr("y", function(d, i) { return ((isoDateDay(d.datetime)+2) * gridSizeY) - (d.cursorDistance / 2000); })
+                    .attr("width", 3)
+                    .attr("height", function(d) { return d.cursorDistance / 2000})
+                ;        
+                svg.selectAll(".mouseCursorDistanceLine")
+                    .data(mouse.filter(inSelectedDateRange))
+                    .exit().remove();
+            }
+            else {
+                 svg.selectAll(".mouseCursorDistanceLine")
+                    .remove();
+            }
+
+
+        }
+
+        // d3.select("body").selectAll("p")
+        //     .data(displaySelectionFilteredLifeSliceData)
+        //     .enter()
+        //     .append("p")
+        //     .text(function (d) {return "yo! "+d.webcam_filename});
+
+
+        // HOVER EFFECT 
+
+        xOffset = -200;
+        yOffset = 250;
+        previewWidth = 425; // this should be calculated from the DOM
+        // these 2 variable determine popup's distance from the cursor
+        // you might want to adjust to get the right result
+            
+        // d3.selectAll(".hour_cell")
+        //     .on("mouseover", function() {
+
+        //     }
+        // );
+
+        // /* END CONFIG */
+        // $("image.hour").hover(
+        //     function(e) {
+        //         imgHref = this.getAttribute("href");
+        //         $("body").append("<div id='preview'><p>"+this.getAttribute("datetime")+"</p><img src='"+ imgHref.replace('webcam_thumbs/face_','webcam/face_') +"' /><img src='"+ imgHref.replace('webcam_thumbs/face_','screenshot/screen_').replace('jpg','png') +"'  />"+"</div>");
+        //         $("#preview")
+        //             .css("top",(e.pageY - yOffset) + "px")
+        //             .css("left", Math.max(Math.min((e.pageX + xOffset),($(window).width()-previewWidth)),0) + "px")
+        //             .fadeIn("fast");
+        //     },
+        //     function() {
+        //         $("#preview").remove();
+        //     }
+        // ); 
+        // $("image.hour").mousemove(
+        //     function(e) {
+        //         if (this.css) {
+        //             $("#preview")
+        //                 .css("top",(this.css.Y - yOffset) + "px")
+        //                 .css("left", Math.max(Math.min((e.pageX + xOffset),($(window).width()-previewWidth)),0) + "px");
+        //         }
+        //     }
+        // );         
+
+    </script>
+</body>
+</html>
