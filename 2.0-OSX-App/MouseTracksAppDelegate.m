@@ -145,7 +145,7 @@
 /**
  * Setup
  */
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+-(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
     NSLog(@"applicationDidFinishLaunching start");
     
@@ -550,7 +550,7 @@
 //	mouseLoc = [NSEvent mouseLocation]; //get current mouse position
 //	NSLog(@"Timer update: Mouse location: %f %f", mouseLoc.x, mouseLoc.y);
 
--(int) minuteTimerCallback:(NSTimer *)myTimer{
+-(int) minuteTimerCallback:(NSTimer *)myTimer {
 	
     // If we're not passed a timer,@ that's our signal to do ALL logging for debug.
     int doAll = (myTimer == nil);
@@ -653,7 +653,9 @@
         // get shot from webcam using imagesnap 
         NSString *webcamShotFilename = [NSString stringWithFormat:@"face_%@.jpg", s];
         NSString *webcamShotPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam"] stringByAppendingPathComponent:webcamShotFilename];
-        [ImageSnap saveSingleSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname];
+
+        [ImageSnap saveSingleSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname withWarmup:@1.0 withTimelapse:nil];
+        
         // save for csv output
         [logColumnValues setObject: webcamShotFilename  forKey: @"webcamShotFilename"];
         [logColumnValues setObject: [NSString stringWithFormat:@"%u",webcamIntervalMins] forKey: @"webcamIntervalMins"];
