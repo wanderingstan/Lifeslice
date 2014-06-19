@@ -287,25 +287,26 @@
  * Blocks until session is stopped.
  */
 -(void)stopSession{
-	//verbose("Stopping session...\n" );
+	NSLog(@"Stopping session...\n" );
     
     // Make sure we've stopped
     while( mCaptureSession != nil ){
-		//verbose("\tCaptureSession != nil\n");
+		NSLog(@"\tCaptureSession != nil\n");
         
 		//verbose("\tStopping CaptureSession...");
         [mCaptureSession stopRunning];
-		//verbose("Done.\n");
+		NSLog(@"Done.\n");
         
         if( [mCaptureSession isRunning] ){
 			//verbose( "[mCaptureSession isRunning]");
             [[NSRunLoop currentRunLoop] runUntilDate:[NSDate dateWithTimeIntervalSinceNow: 0.1]];
         }else {
-            //verbose( "\tShutting down 'stopSession(..)'" );
-            
+            NSLog(@"\tShutting down 'stopSession(..)'" );
             mCaptureSession = nil;
             mCaptureDeviceInput = nil;
             mCaptureDecompressedVideoOutput = nil;
+            CVBufferRelease(mCurrentImageBuffer);
+            
         }   // end if: stopped
         
     }   // end while: not stopped

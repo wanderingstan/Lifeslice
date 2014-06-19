@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>2A3B6774-674E-4F3A-8A8B-0F28B7A482C5</string>
+	<key>IDESourceControlProjectName</key>
+	<string>LifeSlice</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F0A206FB-30DC-48A2-B0A8-17B8484B0FFD</key>
+		<string>https://github.com/wanderingstan/Lifeslice.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>2.0-OSX-App/LifeSlice.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F0A206FB-30DC-48A2-B0A8-17B8484B0FFD</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/wanderingstan/Lifeslice.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F0A206FB-30DC-48A2-B0A8-17B8484B0FFD</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F0A206FB-30DC-48A2-B0A8-17B8484B0FFD</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Lifeslice-Github</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -668,6 +668,7 @@
         ]) {
             NSLog(@"ERROR: webcam: Database Error %d: %@", [self.db lastErrorCode], [self.db lastErrorMessage]);
         };
+        
         // Create thumbnail version
         NSString *webcamShotThumbFilename = [NSString stringWithFormat:@"face_%@.jpg", s];
         NSString *webcamShotThumbPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam_thumbs"] stringByAppendingPathComponent:webcamShotThumbFilename];
@@ -675,6 +676,7 @@
         NSLog(@"ss %@",webcamShotThumbPathname);
         NSLog(@"ss %@",webcamMakeThumbCmd);
         system([webcamMakeThumbCmd cStringUsingEncoding:NSUTF8StringEncoding]);
+        
         // show in live stats
         NSString *inFilePath = [NSString stringWithFormat:@"%@/%@/%@", self.appDirectory, @"webcam", webcamShotFilename];
         NSImage *webcamImage = [[NSImage alloc] initWithContentsOfFile:inFilePath];
