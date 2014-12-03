@@ -64,14 +64,16 @@
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
     
-    #ifdef RELEASE_TEST_BUILD
-        NSString *path = [bundle pathForResource:@"IPMenuIconPieSlice" ofType:@"tif"];
-    #else
-        // Show a different debug icon when we're testing/debugging/developing
-        NSString *path = [bundle pathForResource:@"IPMenuIcon-Debug" ofType:@"tif"];
-    #endif
+#ifdef RELEASE_TEST_BUILD
+    //        NSString *path = [bundle pathForResource:@"IPMenuIconPieSlice" ofType:@"tif"];
+    menuIcon = [NSImage imageNamed:@"MenuletIcon"];
+#else
+    // Show a different debug icon when we're testing/debugging/developing
+    //        NSString *path = [bundle pathForResource:@"IPMenuIcon-Debug" ofType:@"tif"];
+    menuIcon = [NSImage imageNamed:@"MenuletIconDebug"];
+#endif
     
-    menuIcon= [[NSImage alloc] initWithContentsOfFile:path];
+//    menuIcon = [[NSImage alloc] initWithContentsOfFile:path];
     
     [statusItem setImage:menuIcon];
     [statusItem setTitle:@""];
