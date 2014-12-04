@@ -8,8 +8,6 @@
 	<string>LifeSlice</string>
 	<key>CFBundleExecutable</key>
 	<string>${EXECUTABLE_NAME}</string>
-	<key>CFBundleIconFile</key>
-	<string>lifeslice</string>
 	<key>CFBundleIdentifier</key>
 	<string>com.wanderingstan.lifeslice</string>
 	<key>CFBundleInfoDictionaryVersion</key>

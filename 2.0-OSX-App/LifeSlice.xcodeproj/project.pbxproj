@@ -15,7 +15,6 @@
 		F614B5F817DE280D00A83FF8 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F614B5F617DE280D00A83FF8 /* LaunchAtLoginController.m */; };
 		F61F3DEC176FC71C00776CED /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
 		F61F3DEF176FC76500776CED /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
-		F63E7C0E16C3522B0080BF82 /* IPMenuIcon.tif in Resources */ = {isa = PBXBuildFile; fileRef = F63E7C0D16C3522B0080BF82 /* IPMenuIcon.tif */; };
 		F652997D17D937A900BF088C /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652997C17D937A900BF088C /* CoreLocation.framework */; };
 		F652997F17D937D200BF088C /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652997E17D937D200BF088C /* IOKit.framework */; };
 		F652998117D937DA00BF088C /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F652998017D937DA00BF088C /* QTKit.framework */; };
@@ -105,7 +104,6 @@
 		F614B5F717DE280D00A83FF8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F61F3DEB176FC71C00776CED /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		F629A6481726016100094B10 /* Project Next Steps.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Project Next Steps.rtf"; sourceTree = "<group>"; };
-		F63E7C0D16C3522B0080BF82 /* IPMenuIcon.tif */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; path = IPMenuIcon.tif; sourceTree = "<group>"; };
 		F652997C17D937A900BF088C /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
 		F652997E17D937D200BF088C /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
 		F652998017D937DA00BF088C /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.8.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = DEVELOPER_DIR; };
@@ -255,7 +253,6 @@
 				F6634A1717ECDB6A00097988 /* lifeslice-logo.psd */,
 				F6F4CFAF1739513C008E89B8 /* old_import */,
 				F621501E172F145B0060072C /* html */,
-				F63E7C0D16C3522B0080BF82 /* IPMenuIcon.tif */,
 				8D1107310486CEB800E47090 /* LifeSlice-Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
 				1DDD58140DA1D0A300B32029 /* MainMenu.xib */,
@@ -520,7 +517,6 @@
 				F6A0150E16B1048D001CCC5F /* symbols0.pbxsymbols in Resources */,
 				F6A0151116B1048D001CCC5F /* fmdb.1 in Resources */,
 				F69F827B17D8E4FE00A8AD03 /* slicebrowser-day-d3.html in Resources */,
-				F63E7C0E16C3522B0080BF82 /* IPMenuIcon.tif in Resources */,
 				F69F827C17D8E4FE00A8AD03 /* slicebrowser.html in Resources */,
 				F657518917B1E5F200A3CA8D /* old_import.py in Resources */,
 			);
@@ -572,6 +568,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -586,6 +583,7 @@
 				GCC_PREFIX_HEADER = LifeSlice_Prefix.pch;
 				INFOPLIST_FILE = "LifeSlice-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = LifeSlice;
 				SDKROOT = macosx10.9;
 			};
@@ -595,6 +593,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
@@ -609,6 +608,7 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = RELEASE_TEST_BUILD;
 				INFOPLIST_FILE = "LifeSlice-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = LifeSlice;
 				SDKROOT = macosx10.9;
