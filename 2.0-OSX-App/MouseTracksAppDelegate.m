@@ -162,7 +162,10 @@
 #else
     NSLog(@"Not RELEASE_TEST_BUILD, so normal logging.");
 #endif
-    
+
+    // Register for notifications
+    [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
+
     // Set our last date to null, in case someone selects "Delete last slice" when there is no last slice
     self->lastSliceIsoDate = @"";
     
@@ -623,6 +626,8 @@
         self.dayWordCount = 0;
         self.dayCurrentScrollEventCount = 0;
         self.dayAppSwitchCount = 0;
+        
+        [self showYesterdaySummaryNotification];
     }
     lastSliceDay = [[now dateWithCalendarFormat:nil timeZone:nil] dayOfMonth];
 
@@ -1377,6 +1382,9 @@
     [aboutWindow makeKeyAndOrderFront:pId];
     [aboutWindow setLevel:NSFloatingWindowLevel]; // keep it on top
     [NSApp activateIgnoringOtherApps:YES];
+    
+    [self showYesterdaySummaryNotification];
+    
 }
 
 - (IBAction)showLocationInMaps:(id)pId {
@@ -1485,8 +1493,98 @@
 }
 
 #pragma mark -
+#pragma mark Notification Center
+#pragma mark -
+
+- (void) showYesterdaySummaryNotification
+{
+
+    // Get total values for yesterday
+    NSDate* yesterday = [[NSDate date] dateByAddingTimeInterval:(24*60*60*-1)];
+
+    NSDateFormatter *f1 = [[NSDateFormatter alloc] init];
+    [f1 setDateStyle:NSDateFormatterLongStyle];
+    NSString *yesterdayPrettyDateString = [f1 stringFromDate:yesterday];
+
+    NSString* reportText;
+    {
+        FMDatabase *yesterdayDb = [FMDatabase databaseWithPath:[self.appDirectory stringByAppendingPathComponent:@"lifeslice.sqlite"]];
+        if (![yesterdayDb open]) {
+            NSLog(@"Could not open db.");
+            // TODO: Bigger error message here!
+        }
+        
+        NSDateFormatter *f = [[NSDateFormatter alloc] init];
+        [f setDateFormat:@"yyyy'-'MM'-'dd'%'"];
+        NSString *yesterdayDateIsoString = [f stringFromDate:yesterday];
+
+        
+        int yesterdayKeyCount = 0;
+        int yesterdayKeyDeleteCount = 0;
+        int yesterdayKeyZXCVCount = 0;
+        int yesterdayWordCount = 0;
+        int yesterdayAppSwitchCount = 0;
+        int yesterdayClickCount = 0;
+        int yesterdayDragCount = 0;
+        int yesterdayScrollCount = 0;
+        int yesterdayCursorDistance = 0;
+
+        FMResultSet *rs1 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(keyCount) AS dayKeyCount, SUM(keyDeleteCount) AS dayKeyDeleteCount, SUM(keyZXCVCount) AS dayKeyZXCVCount, SUM(wordCount) AS dayWordCount FROM keyboard WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
+        while ([rs1 next]) {
+            yesterdayKeyCount = [rs1 intForColumn:@"dayKeyCount"];
+            yesterdayKeyDeleteCount = [rs1 intForColumn:@"dayKeyDeleteCount"];
+            yesterdayKeyZXCVCount = [rs1 intForColumn:@"dayKeyZXCVCount"];
+            yesterdayWordCount = [rs1 intForColumn:@"dayWordCount"];
+        }
+        FMResultSet *rs2 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(appSwitchCount) AS dayAppSwitchCount FROM app WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
+        while ([rs2 next]) {
+            yesterdayAppSwitchCount = [rs2 intForColumn:@"dayAppSwitchCount"];
+        }
+        FMResultSet *rs3 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(clickCount) AS dayClickCount,SUM(dragCount) AS dayDragCount,SUM(scrollCount) AS dayScrollCount, SUM(cursorDistance) AS dayCursorDistance FROM mouse WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
+        while ([rs3 next]) {
+            yesterdayClickCount = [rs3 intForColumn:@"dayClickCount"];
+            yesterdayDragCount = [rs3 intForColumn:@"dayDragCount"];
+            yesterdayScrollCount = [rs3 intForColumn:@"dayScrollCount"];
+            yesterdayCursorDistance = [rs3 intForColumn:@"dayCursorDistance"];
+        }
+        
+        [rs1 close];
+        [rs2 close];
+        [rs3 close];
+        [yesterdayDb close];
+        
+        // TODO: Report hours that user was working (productive vs passive?)
+        
+        reportText = [NSString stringWithFormat:@"Words:%d Keys:%d Clicks:%d Distance:%d", yesterdayWordCount, yesterdayKeyCount, yesterdayClickCount, yesterdayCursorDistance];
+    }
+    
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"LifeSlice Report";
+    notification.subtitle = [NSString stringWithFormat:@"For Yesterday, %@", yesterdayPrettyDateString];
+    notification.informativeText = reportText;
+    notification.soundName = nil;
+    
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification{
+    return YES;
+}
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center
+       didActivateNotification:(NSUserNotification *)notification
+{
+    if (notification.activationType != NSUserNotificationActivationTypeNone) {
+        // TODO: Figure out a way to set window to yesterday
+        [self showBrowseSliceWindow:nil];
+    }
+}
+
+#pragma mark -
 #pragma mark Misc/Helper functions
 #pragma mark -
+
 
 /**
  * Interface to import old data

@@ -38,7 +38,7 @@ BOOL g_quiet = NO;
 
 static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
 
-@interface MouseTracksAppDelegate : NSObject <NSApplicationDelegate, CLLocationManagerDelegate> {
+@interface MouseTracksAppDelegate : NSObject <NSApplicationDelegate, CLLocationManagerDelegate, NSApplicationDelegate, NSUserNotificationCenterDelegate> {
 	CLLocationManager *locationManager; // lat/lon
 	IBOutlet NSMenu *statusMenu; // menu
     NSStatusItem * statusItem; // menulet thing (i think)

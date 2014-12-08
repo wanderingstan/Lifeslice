@@ -28,7 +28,6 @@
 		F65CB3771815B7D90095BA84 /* lifeslice_package.command in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3751815B7D90095BA84 /* lifeslice_package.command */; };
 		F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */; };
 		F66235C7172A047800CFAFBF /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F66235C6172A047800CFAFBF /* ImageSnap.m */; };
-		F6634A1C17ECE03000097988 /* lifeslice.iconset in Resources */ = {isa = PBXBuildFile; fileRef = F6634A1B17ECE03000097988 /* lifeslice.iconset */; };
 		F68F53AF16AA4450008A37DC /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */; };
 		F69F826E17D8E47A00A8AD03 /* moment.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F826C17D8E44600A8AD03 /* moment.min.js */; };
 		F69F827817D8E4FE00A8AD03 /* jquery-2.0.3.min.map in Resources */ = {isa = PBXBuildFile; fileRef = F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */; };
@@ -117,7 +116,6 @@
 		F66235C5172A047800CFAFBF /* ImageSnap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageSnap.h; sourceTree = "<group>"; };
 		F66235C6172A047800CFAFBF /* ImageSnap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageSnap.m; sourceTree = "<group>"; };
 		F6634A1717ECDB6A00097988 /* lifeslice-logo.psd */ = {isa = PBXFileReference; lastKnownFileType = file; name = "lifeslice-logo.psd"; path = "Artwork/lifeslice-logo.psd"; sourceTree = "<group>"; };
-		F6634A1B17ECE03000097988 /* lifeslice.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = lifeslice.iconset; path = Artwork/lifeslice.iconset; sourceTree = "<group>"; };
 		F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		F69F826C17D8E44600A8AD03 /* moment.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = moment.min.js; path = html/moment.min.js; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				F65CB37018158AA00095BA84 /* sql */,
-				F6634A1B17ECE03000097988 /* lifeslice.iconset */,
 				F6634A1717ECDB6A00097988 /* lifeslice-logo.psd */,
 				F6F4CFAF1739513C008E89B8 /* old_import */,
 				F621501E172F145B0060072C /* html */,
@@ -493,7 +490,6 @@
 			files = (
 				F69F826E17D8E47A00A8AD03 /* moment.min.js in Resources */,
 				F652998B17D9428500BF088C /* d3.v3.min.js in Resources */,
-				F6634A1C17ECE03000097988 /* lifeslice.iconset in Resources */,
 				F652998A17D9427E00BF088C /* jquery-2.0.3.min.js in Resources */,
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */,
