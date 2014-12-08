@@ -427,6 +427,8 @@
  */
 - (IBAction)quitApplication:(id)pId;
 {
+    
+#ifdef RELEASE_TEST_BUILD
     NSAlert *alert = [[NSAlert alloc] init];
     [alert addButtonWithTitle:@"Quit"];
     [alert addButtonWithTitle:@"Cancel"];
@@ -444,6 +446,10 @@
         // confirmed. Quit the app.
         [[NSApplication sharedApplication] terminate:nil];
     }
+#else
+    [[NSApplication sharedApplication] terminate:nil];
+#endif
+    
 }
 
 /**
@@ -664,7 +670,7 @@
 
         [ImageSnap saveSingleSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname withWarmup:@1.0 withTimelapse:nil];
         
-        [AVImageSnap captureNowToFile:@"\tmp\test.jpg"];
+//        [AVImageSnap captureNowToFile:@"\tmp\test.jpg"];
         
         
         // save for csv output
@@ -1329,7 +1335,7 @@
 - (IBAction)showAboutWindow:(id)pId {
     NSLog(@"Showing about window!");
     
-    [versionLabel setStringValue: [NSString stringWithFormat:@"Version: %@ (Build %@)",
+    [versionLabel setStringValue: [NSString stringWithFormat:@"Version %@ (%@)",
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]
     ];

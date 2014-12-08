@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="6250"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -680,19 +680,19 @@
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="766">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="196" y="240" width="586" height="313"/>
+            <rect key="contentRect" x="196" y="240" width="586" height="348"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
             <view key="contentView" id="767">
-                <rect key="frame" x="0.0" y="0.0" width="586" height="313"/>
+                <rect key="frame" x="0.0" y="-2" width="586" height="348"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView id="mek-1A-06V">
-                        <rect key="frame" x="20" y="183" width="110" height="110"/>
+                        <rect key="frame" x="20" y="218" width="110" height="110"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="LifeSliceIcon" id="gMy-OL-7t5"/>
                     </imageView>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="770">
-                        <rect key="frame" x="149" y="57" width="419" height="162"/>
+                        <rect key="frame" x="149" y="49" width="419" height="162"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" id="771">
                             <font key="font" size="12" name="HelveticaNeue"/>
@@ -708,7 +708,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Xy0-Qv-26o">
-                        <rect key="frame" x="329" y="233" width="106" height="17"/>
+                        <rect key="frame" x="160" y="261" width="239" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" placeholderString="Version Number" id="ZMu-zJ-ejR">
                             <font key="font" size="13" name="HelveticaNeue-Light"/>
@@ -717,7 +717,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="jUW-WJ-3Pd">
-                        <rect key="frame" x="148" y="248" width="296" height="60"/>
+                        <rect key="frame" x="148" y="283" width="296" height="60"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LifeSlice" id="PQL-JG-1a1">
                             <font key="font" size="56" name="HelveticaNeue-UltraLight"/>
@@ -736,12 +736,12 @@
                             <action selector="showHomepage:" target="494" id="2d8-E2-zW0"/>
                         </connections>
                     </button>
-                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Gpn-oA-GNA">
-                        <rect key="frame" x="148" y="227" width="197" height="23"/>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="Gpn-oA-GNA">
+                        <rect key="frame" x="149" y="219" width="295" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Copyright 2015 by Stan James" id="6PV-iw-Kxj">
-                            <font key="font" size="13" name="HelveticaNeue-Light"/>
-                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Copyright 2015 by Stan James. Contact stan@wanderingstan.com with questions or feedback." id="6PV-iw-Kxj">
+                            <font key="font" size="10" name="HelveticaNeue-Light"/>
+                            <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
@@ -753,7 +753,7 @@
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="titlebarAppearsTransparent" value="YES"/>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="309" y="684.5"/>
+            <point key="canvasLocation" x="309" y="702"/>
         </window>
         <customObject id="822" customClass="SUUpdater"/>
         <userDefaultsController id="YFG-3T-i6O"/>
