@@ -1203,101 +1203,47 @@
     [reportingDB close];
 }
 
-/**
- * Our browser window for exploring our logged data
- *
- * Use this: http://blog.grio.com/2012/07/uiwebview-javascript-to-objective-c-communication.html
- */
-- (IBAction)showBrowseSliceWindow:(id)pId {
-
-    NSLog(@"Preparing BrowseLife window");
-
-    [[NSFileManager defaultManager] changeCurrentDirectoryPath: self.appDirectory];
+- (void) exportReportData
+{
+    [[NSFileManager defaultManager] changeCurrentDirectoryPath:self.appDirectory];
     
     // Run our generated reports
     system([[NSString stringWithFormat:@"sqlite3 lifeslice.sqlite < '%@'",[[NSBundle mainBundle] pathForResource:@"reports" ofType:@"sql"]] UTF8String]);
     
-	// Dump our sqlite data to a csv (for d3 to use)
+    // Dump our sqlite data to a csv (for d3 to use)
     system("echo '.mode csv\n.headers on\nselect * from webcam;'     | sqlite3 lifeslice.sqlite > html/webcam.csv    ");
     system("echo '.mode csv\n.headers on\nselect * from screenshot;' | sqlite3 lifeslice.sqlite > html/screenshot.csv");
     system("echo '.mode csv\n.headers on\nselect * from keyboard;'   | sqlite3 lifeslice.sqlite > html/keyboard.csv  ");
     system("echo '.mode csv\n.headers on\nselect * from app;'        | sqlite3 lifeslice.sqlite > html/app.csv       ");
     system("echo '.mode csv\n.headers on\nselect * from mouse;'      | sqlite3 lifeslice.sqlite > html/mouse.csv     ");
     system("echo '.mode csv\n.headers on\nselect * from location;'   | sqlite3 lifeslice.sqlite > html/location.csv  ");
-
+    
     system("echo '.mode csv\n.headers on\nselect * from _generated_dailyAggregates;'     | sqlite3 lifeslice.sqlite > html/dailyAggregates.csv  ");
     system("echo '.mode csv\n.headers on\nselect * from _generated_dailyMaxAggregates;'  | sqlite3 lifeslice.sqlite > html/dailyMaxAggregates.csv  ");
     system("echo '.mode csv\n.headers on\nselect * from _generated_hourlyAggregates;'    | sqlite3 lifeslice.sqlite > html/dailyMaxAggregates.csv  ");
     system("echo '.mode csv\n.headers on\nselect * from _generated_hourlyMaxAggregates;' | sqlite3 lifeslice.sqlite > html/dailyMaxAggregates.csv  ");
+}
 
-//    NSString *sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-d3.html", self.appDirectory];
-    // Use random number to defeat safari caching
-    NSString *sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-day-d3.html?rand=%d", self.appDirectory, (arc4random() % 65536)];
+- (void) showBrowseSliceWindowForDate:(NSString*)isoDate
+{
+    NSLog(@"Preparing BrowseLife window");
 
-//	// write our results to a json
-//    NSString *logFilename = [NSString stringWithFormat:@"%@/html/slicebrowser.json", self.appDirectory];
-//	FILE * pFile;
-//    NSLog(@"Opening log file at %@",logFilename);
-//	pFile = fopen ([logFilename UTF8String] ,"w");
-//	if (!pFile) {
-//		fprintf(stderr,"Could not open log file.\n");
-//	}
-//    else {
-//        // Set up SQLite
-//        NSLog(@"Connecting to Sqlite database at %@", [self.appDirectory stringByAppendingPathComponent:@"lifeslice.sqlite"]);
-//        self.db = [FMDatabase databaseWithPath:[self.appDirectory stringByAppendingPathComponent:@"lifeslice.sqlite"]];
-//        if (![self.db open]) {
-//            NSLog(@"Could not open db.");
-//            return;
-//        }
-//        else {
-//            
-//#pragma mark Report Webcam
-//            
-//            // limit to matching on hour (need SQLite string functions)
-//            FMResultSet *rs = [db executeQuery:@"SELECT webcam.datetime,webcam.filename AS webcam_filename,screenshot.filename AS screenshot_filename FROM webcam, screenshot WHERE webcam.datetime=screenshot.datetime ORDER BY webcam.datetime"];
-//            fprintf(pFile, "var webcamData = [\n");
-//            while ([rs next]) {
-//                    // TODO: find json library for writing file
-//                    fprintf(
-//                        pFile,"{'datetime':'%s','webcam_filename':'%s','screenshot_filename':'%s'},\n",
-//                        [[rs stringForColumn:@"datetime"] UTF8String],
-//                        [[rs stringForColumn:@"webcam_filename"] UTF8String],
-//                        [[rs stringForColumn:@"screenshot_filename"] UTF8String]                            
-//                    );
-//            }
-//            // close the SQLite result set.
-//            // it'll also close when it's dealloc'd, but we're closing the database before
-//            // the autorelease pool closes, so sqlite will complain about it.
-//            [rs close];
-//            
-//#pragma mark Report Keyboard
-//            
-//            // limit to matching on hour (need SQLite string functions)
-//            FMResultSet *rs2 = [db executeQuery:@"SELECT * FROM keyboard ORDER BY datetime"];
-//            fprintf(pFile, "var keyboardData = [\n");
-//            while ([rs2 next]) {
-//                // just print out what we've got in a number of formats.
-//            fprintf( pFile,"{'datetime':'%s','keyCount':'%s','keyDeleteCount':'%s','keyZXCVCount':'%s','wordCount':'%s'},\n",
-//                    [[rs2 stringForColumn:@"datetime"] UTF8String],
-//                    [[rs2 stringForColumn:@"keyCount"] UTF8String],
-//                    [[rs2 stringForColumn:@"keyDeleteCount"] UTF8String],
-//                    [[rs2 stringForColumn:@"keyZXCVCount"] UTF8String],
-//                    [[rs2 stringForColumn:@"wordCount"] UTF8String]
-//                );
-//            }
-//            // close the SQLite result set.
-//            // it'll also close when it's dealloc'd, but we're closing the database before
-//            // the autorelease pool closes, so sqlite will complain about it.
-//            [rs2 close];
-//            
-//        }
-//        fprintf(pFile, "]\n");
-//        fclose(pFile);
-//    }
+    [self exportReportData];
+    
+    // Give time for our report files to write. .75 seconds // TODO: Make this smarter
+    // TODO: Better solution!
+    [NSThread sleepForTimeInterval:0.75];
 
-    // Try to load webpage from string
-//    [[theWebView mainFrame] loadHTMLString:@"<html><body>Some <strong>html</strong>Cool.</body></html>" baseURL:nil];
+    NSString *sliceBrowserHtmlFilename;
+    if (isoDate == nil) {
+        //    NSString *sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-d3.html", self.appDirectory];
+        // Use random number to defeat safari caching
+        sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-day-d3.html?rand=%d", self.appDirectory, (arc4random() % 65536)];
+    }
+    else {
+        // actual date
+        sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-day-d3.html?date=%@", self.appDirectory, isoDate];
+    }
     
     // Load webpage from file
     // file:///Users/stan/Lifeslice/reports/lifeslice-report-2012-06.html
@@ -1306,18 +1252,24 @@
     //    [[theWebView mainFrame] loadRequest:request];
     
     NSLog(@"Showing BrowseSliceWindow window!");
-    [browseSliceWindow makeKeyAndOrderFront:pId];
+    [browseSliceWindow makeKeyAndOrderFront:self];
     [browseSliceWindow setDelegate:self];
     [(NSWindow*)browseSliceWindow center];
     [NSApp activateIgnoringOtherApps:YES];
     
-    // Give time for our report files to write. .75 seconds
-    // TODO: Better solution!
-    [NSThread sleepForTimeInterval:0.75];
-    
-//    [theWebView setMainFrameURL:@"file:///Users/stan/Lifeslice/reports/lifeslice-report-2012-06.html"];
+    //    [theWebView setMainFrameURL:@"file:///Users/stan/Lifeslice/reports/lifeslice-report-2012-06.html"];
     [theWebView setMainFrameURL:[@"file://" stringByAppendingPathComponent:sliceBrowserHtmlFilename]];
+
+}
+
+/**
+ * Our browser window for exploring our logged data
+ *
+ * Use this: http://blog.grio.com/2012/07/uiwebview-javascript-to-objective-c-communication.html
+ */
+- (IBAction)showBrowseSliceWindow:(id)pId {
     
+    [self showBrowseSliceWindowForDate:nil];
 }
 
 //
@@ -1558,13 +1510,12 @@
         [yesterdayDb close];
         
         // TODO: Report hours that user was working (productive vs passive?)
-        
         reportText = [NSString stringWithFormat:@"Hours: %.2f Words:%d Keys:%d Clicks:%d Distance:%d", yesterdayMinuteCount / 60.0,  yesterdayWordCount, yesterdayKeyCount, yesterdayClickCount, yesterdayCursorDistance];
     }
     
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = @"LifeSlice Report";
-    notification.subtitle = [NSString stringWithFormat:@"For Yesterday, %@", yesterdayPrettyDateString];
+    notification.subtitle = [NSString stringWithFormat:@"Yesterday, %@", yesterdayPrettyDateString];
     notification.informativeText = reportText;
     notification.soundName = nil;
     
@@ -1581,7 +1532,13 @@
 {
     if (notification.activationType != NSUserNotificationActivationTypeNone) {
         // TODO: Figure out a way to set window to yesterday
-        [self showBrowseSliceWindow:nil];
+        NSDate* yesterday = [[NSDate date] dateByAddingTimeInterval:(24*60*60*-1)];
+        
+        NSDateFormatter *f = [[NSDateFormatter alloc] init];
+        [f setDateFormat:@"yyyy'-'MM'-'dd"];
+        NSString *yesterdayDateIsoString = [f stringFromDate:yesterday];
+
+        [self showBrowseSliceWindowForDate:yesterdayDateIsoString];
     }
 }
 
