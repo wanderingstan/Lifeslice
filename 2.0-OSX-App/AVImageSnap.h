@@ -6,8 +6,9 @@
 //
 //
 
-#import <UIKit/UIKit.h>
 
-@interface AVImageSnap : UITabBarController
+@interface AVImageSnap : NSObject 
+
++ (void) captureNowToFile:(NSString*)filepath;
 
 @end

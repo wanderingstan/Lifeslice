@@ -9,6 +9,7 @@
 #define DEBUG
 
 #import "MouseTracksAppDelegate.h"
+#import "AVImageSnap.h"
 
 @implementation MouseTracksAppDelegate
 
@@ -662,6 +663,9 @@
         NSString *webcamShotPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam"] stringByAppendingPathComponent:webcamShotFilename];
 
         [ImageSnap saveSingleSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname withWarmup:@1.0 withTimelapse:nil];
+        
+        [AVImageSnap captureNowToFile:@"\tmp\test.jpg"];
+        
         
         // save for csv output
         [logColumnValues setObject: webcamShotFilename  forKey: @"webcamShotFilename"];
