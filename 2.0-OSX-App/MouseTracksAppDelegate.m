@@ -644,7 +644,7 @@
     if (isFullScreen){
         NSLog(@"We are fullscreen, so assuming that user is there watching a movie or something.");
     }
-    BOOL userIsIdle = ((SystemIdleTime() > (60*5))) && (!isFullScreen); // for now we hardcode idle to mean "nothing for 5 minutes"
+    BOOL userIsIdle = ((SystemIdleTime() > (60 * 5))) && (!isFullScreen); // for now we hardcode idle to mean "nothing for 5 minutes"
     
     //
     // Log our various data sources (webcam, screenshot, keyboard stats, etc...)
@@ -1383,7 +1383,9 @@
     [aboutWindow setLevel:NSFloatingWindowLevel]; // keep it on top
     [NSApp activateIgnoringOtherApps:YES];
     
+#ifndef RELEASE_TEST_BUILD
     [self showYesterdaySummaryNotification];
+#endif
     
 }
 
@@ -1511,19 +1513,20 @@
         FMDatabase *yesterdayDb = [FMDatabase databaseWithPath:[self.appDirectory stringByAppendingPathComponent:@"lifeslice.sqlite"]];
         if (![yesterdayDb open]) {
             NSLog(@"Could not open db.");
-            // TODO: Bigger error message here!
+            return;
+            // TODO: Find OSX error reporting, a la crashlytics
         }
         
         NSDateFormatter *f = [[NSDateFormatter alloc] init];
         [f setDateFormat:@"yyyy'-'MM'-'dd'%'"];
         NSString *yesterdayDateIsoString = [f stringFromDate:yesterday];
 
-        
         int yesterdayKeyCount = 0;
         int yesterdayKeyDeleteCount = 0;
         int yesterdayKeyZXCVCount = 0;
         int yesterdayWordCount = 0;
         int yesterdayAppSwitchCount = 0;
+        int yesterdayMinuteCount = 0;
         int yesterdayClickCount = 0;
         int yesterdayDragCount = 0;
         int yesterdayScrollCount = 0;
@@ -1536,9 +1539,10 @@
             yesterdayKeyZXCVCount = [rs1 intForColumn:@"dayKeyZXCVCount"];
             yesterdayWordCount = [rs1 intForColumn:@"dayWordCount"];
         }
-        FMResultSet *rs2 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(appSwitchCount) AS dayAppSwitchCount FROM app WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
+        FMResultSet *rs2 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(interval) AS dayMinuteCount, SUM(appSwitchCount) AS dayAppSwitchCount FROM app WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
         while ([rs2 next]) {
             yesterdayAppSwitchCount = [rs2 intForColumn:@"dayAppSwitchCount"];
+            yesterdayMinuteCount = [rs2 intForColumn:@"dayMinuteCount"];
         }
         FMResultSet *rs3 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(clickCount) AS dayClickCount,SUM(dragCount) AS dayDragCount,SUM(scrollCount) AS dayScrollCount, SUM(cursorDistance) AS dayCursorDistance FROM mouse WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
         while ([rs3 next]) {
@@ -1555,7 +1559,7 @@
         
         // TODO: Report hours that user was working (productive vs passive?)
         
-        reportText = [NSString stringWithFormat:@"Words:%d Keys:%d Clicks:%d Distance:%d", yesterdayWordCount, yesterdayKeyCount, yesterdayClickCount, yesterdayCursorDistance];
+        reportText = [NSString stringWithFormat:@"Hours: %.2f Words:%d Keys:%d Clicks:%d Distance:%d", yesterdayMinuteCount / 60.0,  yesterdayWordCount, yesterdayKeyCount, yesterdayClickCount, yesterdayCursorDistance];
     }
     
     NSUserNotification *notification = [[NSUserNotification alloc] init];
