@@ -670,9 +670,6 @@
 
         [ImageSnap saveSingleSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname withWarmup:@1.0 withTimelapse:nil];
         
-//        [AVImageSnap captureNowToFile:@"\tmp\test.jpg"];
-        
-        
         // save for csv output
         [logColumnValues setObject: webcamShotFilename  forKey: @"webcamShotFilename"];
         [logColumnValues setObject: [NSString stringWithFormat:@"%u",webcamIntervalMins] forKey: @"webcamIntervalMins"];
@@ -1333,8 +1330,11 @@
 }
 
 - (IBAction)showAboutWindow:(id)pId {
-    NSLog(@"Showing about window!");
     
+#ifdef RELEASE_TEST_BUILD
+
+    NSLog(@"Showing about window!");
+
     [versionLabel setStringValue: [NSString stringWithFormat:@"Version %@ (%@)",
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]
@@ -1345,8 +1345,18 @@
     [aboutWindow setLevel:NSFloatingWindowLevel]; // keep it on top
     [NSApp activateIgnoringOtherApps:YES];
     
-#ifndef RELEASE_TEST_BUILD
-    [self showYesterdaySummaryNotification];
+#else
+    
+//    [self showYesterdaySummaryNotification];
+    
+    AVImageSnap *snap = [[AVImageSnap alloc] init];
+    
+    [snap setupCamera];
+    
+    [snap takePictureInstance:@"/tmp/test.jpg"];
+    
+//    [AVImageSnap takePictureToFile:@"/tmp/test.jpg"];
+
 #endif
     
 }
@@ -1467,7 +1477,7 @@
     NSDate* yesterday = [[NSDate date] dateByAddingTimeInterval:(24*60*60*-1)];
 
     NSDateFormatter *f1 = [[NSDateFormatter alloc] init];
-    [f1 setDateStyle:NSDateFormatterLongStyle];
+    [f1 setDateStyle:kCFDateFormatterFullStyle];
     NSString *yesterdayPrettyDateString = [f1 stringFromDate:yesterday];
 
     NSString* reportText;

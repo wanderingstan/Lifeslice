@@ -9,6 +9,10 @@
 
 @interface AVImageSnap : NSObject 
 
+- (void) setupCamera;
+- (void) takePictureInstance:(NSString*)filepath;
+
++ (void) takePictureToFile:(NSString*)filepath;
 + (void) captureNowToFile:(NSString*)filepath;
 
 @end
