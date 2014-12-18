@@ -9,7 +9,7 @@
 #define DEBUG
 
 #import "MouseTracksAppDelegate.h"
-#import "AVImageSnap.h"
+#import "ImageSnap.h"
 
 @implementation MouseTracksAppDelegate
 
@@ -667,8 +667,8 @@
         // get shot from webcam using imagesnap 
         NSString *webcamShotFilename = [NSString stringWithFormat:@"face_%@.jpg", s];
         NSString *webcamShotPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam"] stringByAppendingPathComponent:webcamShotFilename];
-
-        [ImageSnap saveSingleSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname withWarmup:@1.0 withTimelapse:nil];
+        
+        [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname withWarmup:@1.0];
         
         // save for csv output
         [logColumnValues setObject: webcamShotFilename  forKey: @"webcamShotFilename"];
@@ -1348,14 +1348,9 @@
 #else
     
 //    [self showYesterdaySummaryNotification];
-    
-    AVImageSnap *snap = [[AVImageSnap alloc] init];
-    
-    [snap setupCamera];
-    
-    [snap takePictureInstance:@"/tmp/test.jpg"];
-    
-//    [AVImageSnap takePictureToFile:@"/tmp/test.jpg"];
+
+    [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:@"/tmp/image.jpg" withWarmup:@1.0];
+
 
 #endif
     

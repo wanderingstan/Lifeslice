@@ -11,14 +11,14 @@
 #import <WebKit/WebKit.h>
 #import "NSFileManager+DirectoryLocations.h"
 
-BOOL g_verbose = NO;
-BOOL g_quiet = NO;
+//BOOL g_verbose = NO;
+//BOOL g_quiet = NO;
 #define error(...) fprintf(stderr, __VA_ARGS__)
 #define console(...) (!g_quiet && printf(__VA_ARGS__))
 #define verbose(...) (g_verbose && !g_quiet && fprintf(stderr, __VA_ARGS__))
 
 // ImageSnap for Webcam use
-#import "ImageSnap.h"
+//#import "ImageSnap.h"
 
 // SQLite stuff
 #import "FMDatabase.h"

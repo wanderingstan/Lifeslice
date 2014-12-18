@@ -15,7 +15,6 @@
 		F614B5F817DE280D00A83FF8 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F614B5F617DE280D00A83FF8 /* LaunchAtLoginController.m */; };
 		F61F3DEC176FC71C00776CED /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
 		F61F3DEF176FC76500776CED /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
-		F63A30E91A361E1B003F9988 /* AVImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F63A30E81A361E1B003F9988 /* AVImageSnap.m */; };
 		F63A30EB1A3621DF003F9988 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30EA1A3621DF003F9988 /* AVFoundation.framework */; };
 		F63A30ED1A362212003F9988 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30EC1A362212003F9988 /* CoreMedia.framework */; };
 		F63A30EF1A36229B003F9988 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30EE1A36229B003F9988 /* CoreLocation.framework */; };
@@ -30,7 +29,6 @@
 		F65CB37218158AA00095BA84 /* reports.sql in Resources */ = {isa = PBXBuildFile; fileRef = F65CB37118158AA00095BA84 /* reports.sql */; };
 		F65CB3771815B7D90095BA84 /* lifeslice_package.command in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3751815B7D90095BA84 /* lifeslice_package.command */; };
 		F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */; };
-		F66235C7172A047800CFAFBF /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F66235C6172A047800CFAFBF /* ImageSnap.m */; };
 		F68F53AF16AA4450008A37DC /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */; };
 		F69F826E17D8E47A00A8AD03 /* moment.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F826C17D8E44600A8AD03 /* moment.min.js */; };
 		F69F827817D8E4FE00A8AD03 /* jquery-2.0.3.min.map in Resources */ = {isa = PBXBuildFile; fileRef = F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */; };
@@ -56,6 +54,7 @@
 		F6A0151716B1048D001CCC5F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FB16B1048D001CCC5F /* FMDatabaseQueue.m */; };
 		F6A0151916B1048D001CCC5F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FE16B1048D001CCC5F /* FMResultSet.m */; };
 		F6E3EA951A2EC95900DBDA46 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E3EA941A2EC95900DBDA46 /* Media.xcassets */; };
+		F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EAC5C51A435F7800B16F08 /* ImageSnap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,8 +105,6 @@
 		F614B5F717DE280D00A83FF8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F61F3DEB176FC71C00776CED /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Helpers/Sparkle.framework; sourceTree = "<group>"; };
 		F629A6481726016100094B10 /* Project Next Steps.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Project Next Steps.rtf"; sourceTree = "<group>"; };
-		F63A30E71A361E1B003F9988 /* AVImageSnap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVImageSnap.h; sourceTree = "<group>"; };
-		F63A30E81A361E1B003F9988 /* AVImageSnap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVImageSnap.m; sourceTree = "<group>"; };
 		F63A30EA1A3621DF003F9988 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		F63A30EC1A362212003F9988 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
 		F63A30EE1A36229B003F9988 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
@@ -120,8 +117,6 @@
 		F65CB37118158AA00095BA84 /* reports.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reports.sql; sourceTree = "<group>"; };
 		F65CB3751815B7D90095BA84 /* lifeslice_package.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = lifeslice_package.command; path = distribution/lifeslice_package.command; sourceTree = "<group>"; };
 		F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = lifeslice_appcast.xml; path = distribution/lifeslice_appcast.xml; sourceTree = "<group>"; };
-		F66235C5172A047800CFAFBF /* ImageSnap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSnap.h; path = Helpers/ImageSnap.h; sourceTree = "<group>"; };
-		F66235C6172A047800CFAFBF /* ImageSnap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageSnap.m; path = Helpers/ImageSnap.m; sourceTree = "<group>"; };
 		F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Helpers/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Helpers/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		F69F826C17D8E44600A8AD03 /* moment.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = moment.min.js; path = html/moment.min.js; sourceTree = "<group>"; };
@@ -164,6 +159,8 @@
 		F6A014FE16B1048D001CCC5F /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
 		F6C82B7F16CB2DB90009E9D3 /* LifeSlice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LifeSlice.entitlements; sourceTree = "<group>"; };
 		F6E3EA941A2EC95900DBDA46 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Media.xcassets; path = Artwork/Media.xcassets; sourceTree = "<group>"; };
+		F6EAC5C41A435F7800B16F08 /* ImageSnap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageSnap.h; path = Helpers/ImageSnapMavericks/ImageSnap.h; sourceTree = "<group>"; };
+		F6EAC5C51A435F7800B16F08 /* ImageSnap.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageSnap.m; path = Helpers/ImageSnapMavericks/ImageSnap.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,8 +189,6 @@
 			children = (
 				256AC3D80F4B6AC300CF3369 /* MouseTracksAppDelegate.h */,
 				256AC3D90F4B6AC300CF3369 /* MouseTracksAppDelegate.m */,
-				F63A30E71A361E1B003F9988 /* AVImageSnap.h */,
-				F63A30E81A361E1B003F9988 /* AVImageSnap.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -310,8 +305,8 @@
 		F63A30FC1A363AAB003F9988 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				F66235C5172A047800CFAFBF /* ImageSnap.h */,
-				F66235C6172A047800CFAFBF /* ImageSnap.m */,
+				F6EAC5C41A435F7800B16F08 /* ImageSnap.h */,
+				F6EAC5C51A435F7800B16F08 /* ImageSnap.m */,
 				F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */,
 				F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */,
 				F614B5F417DE280D00A83FF8 /* LaunchAtLoginController--with-ARC- */,
@@ -548,15 +543,14 @@
 			files = (
 				8D11072D0486CEB800E47090 /* main.m in Sources */,
 				F614B5F817DE280D00A83FF8 /* LaunchAtLoginController.m in Sources */,
-				F63A30E91A361E1B003F9988 /* AVImageSnap.m in Sources */,
 				256AC3DA0F4B6AC300CF3369 /* MouseTracksAppDelegate.m in Sources */,
 				F68F53AF16AA4450008A37DC /* NSFileManager+DirectoryLocations.m in Sources */,
 				F6A0151416B1048D001CCC5F /* FMDatabase.m in Sources */,
 				F6A0151516B1048D001CCC5F /* FMDatabaseAdditions.m in Sources */,
 				F6A0151616B1048D001CCC5F /* FMDatabasePool.m in Sources */,
+				F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */,
 				F6A0151716B1048D001CCC5F /* FMDatabaseQueue.m in Sources */,
 				F6A0151916B1048D001CCC5F /* FMResultSet.m in Sources */,
-				F66235C7172A047800CFAFBF /* ImageSnap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
