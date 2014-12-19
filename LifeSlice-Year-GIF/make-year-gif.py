@@ -1,4 +1,9 @@
 # Basically this script is for making a "year as animated gif" from LifeSlice images
+# It geneerates 24 images, one for each hour in the day.
+# Requires gifsicle 
+# Requires imagemagick (convert)
+# Requires progressbar
+# Optionally can use find-face to determine if faces are present in image
 
 import os
 import sys
@@ -8,19 +13,19 @@ import logging
 import subprocess
 import tempfile
 import datetime
-from progressbar import AnimatedMarker, Bar, BouncingBar, Counter, ETA, \
-                        FileTransferSpeed, FormatLabel, Percentage, \
-                        ProgressBar, ReverseBar, RotatingMarker, \
-                        SimpleProgress, Timer
+# from progressbar import AnimatedMarker, Bar, BouncingBar, Counter, ETA, \
+#                         FileTransferSpeed, FormatLabel, Percentage, \
+#                         ProgressBar, ReverseBar, RotatingMarker, \
+#                         SimpleProgress, Timer
 
-final_animation_filename = '2012.gif'
-target_dir = "../animation"
-source_dir = "../all-faces"
+target_year = 2014
+final_animation_filename = '%04d.gif' % target_year
+target_dir = "./animation"
+source_dir = "/Users/stan/Library/Application Support/LifeSlice/webcam_thumbs"
 # temp_dir = tempfile.gettempdir()
 temp_dir = "/tmp"
 empty_gif = "blank.gif"
 find_faces = False
-
 
 def get_gif_from_original(original_jpg, do_hour_gif_cache=True, find_faces=False):
     """
@@ -35,7 +40,7 @@ def get_gif_from_original(original_jpg, do_hour_gif_cache=True, find_faces=False
         pass
     else:
         if find_faces:
-            command = ("./find-face --cascade=haarcascade_frontalface_default.xml --magickcenter %s" % source_jpg_file)
+            command = ("./find-face --cascade=haarcascade_frontalface_default.xml --magickcenter '%s'" % source_jpg_file)
             shift_amount = subprocess.check_output(command,shell=True).split('\n')[0].strip() # e.g. "+3-37"
             target_pathname = original_jpg
         else:
@@ -43,10 +48,12 @@ def get_gif_from_original(original_jpg, do_hour_gif_cache=True, find_faces=False
 
         if shift_amount:
             # found a face
-            command = "convert %s -page %s -background black -flatten -resize 60x45 -crop 60x45 -repage 60x45 %s" % (source_jpg_file, shift_amount, target_gif_file)
+            command = "convert '%s' -page %s -background black -flatten -resize 60x45 -crop 60x45 -repage 60x45 '%s'" % (source_jpg_file, shift_amount, target_gif_file)
         else:
-            command = "convert %s -resize 60x45 %s" % (source_jpg_file, target_gif_file)
+            command = "convert '%s' -resize 60x45 '%s'" % (source_jpg_file, target_gif_file)
         # print command
+
+        print("Command: %s", command)
 
         resize_output = subprocess.check_output(command,shell=True)
         # print resize_output
@@ -54,10 +61,12 @@ def get_gif_from_original(original_jpg, do_hour_gif_cache=True, find_faces=False
     return target_gif_file
 
 
-def make_time_animation(target_time, target_animation_file, do_hour_gif_cache):
+def make_time_animation(year, target_time, target_animation_file, do_hour_gif_cache):
     """
-    Create a GIF of all days in the year, with a given time slice rendered. E.g. all days at 6pm. 
+    Create a GIF of all days in the year for a given time slice (hour) rendered. E.g. all days at 6pm. 
     """
+
+    print "Creating GIF for %04d at %s" % (year, target_time)
 
     # delete existing animation, if there (gifsicle chokes otherwise)
     try:
@@ -69,17 +78,18 @@ def make_time_animation(target_time, target_animation_file, do_hour_gif_cache):
     subprocess.check_output("convert -size 60x45 xc:black %s" % (empty_gif),shell=True)
 
     animation_gifs={}
-    base = datetime.date(2012,1,1)
+    base=datetime.date(year,1,1)
     numdays=366
 
-    pbar = ProgressBar(widgets=[ETA(),' Processed:',Counter(), ' ',Timer(),' ', Percentage(), Bar('#'), ' ', ], maxval=numdays).start()
+    # pbar = ProgressBar(widgets=[ETA(),' Processed:',Counter(), ' ',Timer(),' ', Percentage(), Bar('#'), ' ', ], maxval=numdays).start()
     day_gifs={}
     montage_command="montage "
     for (counter, date) in enumerate([ base + datetime.timedelta(days=x) for x in range(0,numdays) ]):
-        pbar.update(counter+1)
+        # pbar.update(counter+1)
+        print "Day: %s" % date
 
         # try to load image for this date at the given time
-        frame_files=fnmatch.filter(os.listdir(source_dir),"face_2012-%02d-%02dT%s-??Z-????.jpg" % (date.month,date.day,target_time) )
+        frame_files=fnmatch.filter(os.listdir(source_dir),"face_%04d-%02d-%02dT%s-??Z-????.jpg" % (year, date.month,date.day,target_time) )
             # % (date.month,date.day,target_time))
         if len(frame_files)==0: 
             frame_file = empty_gif
@@ -104,13 +114,13 @@ def make_time_animation(target_time, target_animation_file, do_hour_gif_cache):
 gifsicle_files=[]
 for hour in range(0,24):
     time_file = os.path.join(temp_dir,'%02d-00.gif'%hour)
-    make_time_animation('%02d-00'%hour,time_file,False)
+    make_time_animation(target_year,'%02d-00'%hour,time_file,False)
     gifsicle_files.append(time_file)
 
     time_file = os.path.join(temp_dir,'%02d-30.gif'%hour)
-    make_time_animation('%02d-30'%hour,time_file,False)
+    make_time_animation(target_year,'%02d-30'%hour,time_file,False)
     gifsicle_files.append(time_file)
 
-target_animation_file=os.path.join(target_dir, final_animation_filename)
-gifsicle_command = "gifsicle --loopcount=forever -d25 --colors 256 -S 60x45 " + " ".join(gifsicle_files) + " > " +target_animation_file
-make_gif_output = subprocess.check_output(gifsicle_command,shell=True)
+# target_animation_file=os.path.join(target_dir, final_animation_filename)
+# gifsicle_command = "gifsicle --loopcount=forever -d25 --colors 256 -S 60x45 " + " ".join(gifsicle_files) + " > " +target_animation_file
+# make_gif_output = subprocess.check_output(gifsicle_command,shell=True)
