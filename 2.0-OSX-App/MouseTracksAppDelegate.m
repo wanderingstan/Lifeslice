@@ -10,6 +10,7 @@
 
 #import "MouseTracksAppDelegate.h"
 #import "ImageSnap.h"
+#import <ApplicationServices/ApplicationServices.h>
 
 @implementation MouseTracksAppDelegate
 
@@ -158,19 +159,51 @@
     
     NSLog(@"applicationDidFinishLaunching start");
     
-//#ifdef RELEASE_TEST_BUILD
-//    NSLog(@"Redirecting log to file.");
-//    // Log Redirect log to local file
-//    // http://stackoverflow.com/questions/429205/is-there-a-way-to-capture-the-ouput-of-nslog-on-an-iphone-when-not-connected-to
-////    NSString *logPath = [[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
-////    NSString *logPath = [[[[NSFileManager defaultManager] applicationSupportDirectory] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
-//    NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
-//    freopen([logPath cStringUsingEncoding:NSASCIIStringEncoding],"w",stderr);
-//#else
-//    NSLog(@"Not RELEASE_TEST_BUILD, so normal logging.");
-//#endif
+#ifdef RELEASE_TEST_BUILD
+    NSLog(@"Redirecting log to file.");
+    // Log Redirect log to local file
+    // http://stackoverflow.com/questions/429205/is-there-a-way-to-capture-the-ouput-of-nslog-on-an-iphone-when-not-connected-to
+//    NSString *logPath = [[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
+//    NSString *logPath = [[[[NSFileManager defaultManager] applicationSupportDirectory] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
+    NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
+    freopen([logPath cStringUsingEncoding:NSASCIIStringEncoding],"w",stderr);
+#else
+    NSLog(@"Not RELEASE_TEST_BUILD, so normal logging.");
+#endif
 
+    // Is the first time we're running?
+    if (! [[NSUserDefaults standardUserDefaults] boolForKey:@"AlreadyBeenLaunched"]) {
+        // This is our very first launch - Setting userDefaults for next time
+        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"AlreadyBeenLaunched"];
+        
+#ifdef RELEASE_TEST_BUILD
+        // Are we not set to auto-launch? Ask them about it.
+        LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
+        if (! [launchController launchAtLogin]) {
+            NSAlert *alert = [[NSAlert alloc] init];
+            [alert addButtonWithTitle:@"OK"];
+            [alert addButtonWithTitle:@"No thanks"];
+            [alert setMessageText:@"Would you like to start LifeSlice automatically when you log in?"];
+            [alert setInformativeText: [NSString stringWithFormat:@"This is reccomended to get a complete record of your computer usage. This can be changed at any time in the Preferences window.%@", @""]];
+            [alert setAlertStyle:NSInformationalAlertStyle];
+            if ([alert runModal] == NSAlertFirstButtonReturn) {
+                [launchController setLaunchAtLogin:YES];
+            }
+        }
+#endif
+    }
 
+    // Check our permissions
+    // See: http://stackoverflow.com/a/18121292/59913
+    {
+        NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
+        BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
+        
+        if (!accessibilityEnabled) {
+            
+        }
+    }
+    
     // Register for notifications
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
 
@@ -320,28 +353,6 @@
                                       notificationCenter];
     [center addObserver:self selector:@selector(applicationActivatedCallback:)
                    name:NSWorkspaceDidActivateApplicationNotification object:nil ];
-    
-    // Is the first time we're running?
-    if (! [[NSUserDefaults standardUserDefaults] boolForKey:@"AlreadyBeenLaunched"]) {
-        // This is our very first launch - Setting userDefaults for next time
-        [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"AlreadyBeenLaunched"];
-        
-        #ifdef RELEASE_TEST_BUILD
-            // Are we not set to auto-launch? Ask them about it.
-            LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
-            if (! [launchController launchAtLogin]) {
-                NSAlert *alert = [[NSAlert alloc] init];
-                [alert addButtonWithTitle:@"OK"];
-                [alert addButtonWithTitle:@"No thanks"];
-                [alert setMessageText:@"Would you like to start LifeSlice automatically when you log in?"];
-                [alert setInformativeText: [NSString stringWithFormat:@"This is reccomended to get a complete record of your computer usage. This can be changed at any time in the Preferences window.%@", @""]];
-                [alert setAlertStyle:NSInformationalAlertStyle];
-                if ([alert runModal] == NSAlertFirstButtonReturn) {
-                    [launchController setLaunchAtLogin:YES];
-                }
-            }
-        #endif
-    }
     
     // For testing, always show about window on startup
 //    [aboutWindow setLevel:NSFloatingWindowLevel]; // keep it on top

@@ -30,6 +30,7 @@
 		F65CB3771815B7D90095BA84 /* lifeslice_package.command in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3751815B7D90095BA84 /* lifeslice_package.command */; };
 		F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */; };
 		F680E4BA1A4A6DC500F309AB /* singlesliceviewer.html in Resources */ = {isa = PBXBuildFile; fileRef = F680E4B91A4A6DC500F309AB /* singlesliceviewer.html */; };
+		F680E4BC1A4B76F700F309AB /* ApplicationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F680E4BB1A4B76F700F309AB /* ApplicationServices.framework */; };
 		F68F53AF16AA4450008A37DC /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */; };
 		F69F826E17D8E47A00A8AD03 /* moment.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F826C17D8E44600A8AD03 /* moment.min.js */; };
 		F69F827817D8E4FE00A8AD03 /* jquery-2.0.3.min.map in Resources */ = {isa = PBXBuildFile; fileRef = F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */; };
@@ -119,6 +120,7 @@
 		F65CB3751815B7D90095BA84 /* lifeslice_package.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = lifeslice_package.command; path = distribution/lifeslice_package.command; sourceTree = "<group>"; };
 		F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = lifeslice_appcast.xml; path = distribution/lifeslice_appcast.xml; sourceTree = "<group>"; };
 		F680E4B91A4A6DC500F309AB /* singlesliceviewer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = singlesliceviewer.html; path = html/singlesliceviewer.html; sourceTree = "<group>"; };
+		F680E4BB1A4B76F700F309AB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
 		F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Helpers/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Helpers/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		F69F826C17D8E44600A8AD03 /* moment.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = moment.min.js; path = html/moment.min.js; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F680E4BC1A4B76F700F309AB /* ApplicationServices.framework in Frameworks */,
 				F63A30F91A3622D2003F9988 /* IOKit.framework in Frameworks */,
 				F63A30F71A3622CB003F9988 /* QTKit.framework in Frameworks */,
 				F63A30F51A3622C4003F9988 /* Quartz.framework in Frameworks */,
@@ -263,6 +266,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F680E4BB1A4B76F700F309AB /* ApplicationServices.framework */,
 				F63A30F81A3622D2003F9988 /* IOKit.framework */,
 				F63A30F61A3622CB003F9988 /* QTKit.framework */,
 				F63A30F41A3622C4003F9988 /* Quartz.framework */,
