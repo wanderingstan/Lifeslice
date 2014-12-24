@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
+
         <title>LifeSlice Changelog</title>
         <link>http://www.wanderingstan.com/apps/lifeslicelifeslice_appcast.xml</link>
         <description>Most recent changes with links to updates.</description>
@@ -15,6 +16,17 @@
                 sparkle:version="680"
                 type="application/octet-stream"
                 length="1798686"
+            />
+        </item>
+        <item>
+            <title>LifeSlice Version 2.1 (686)</title>
+            <sparkle:releaseNotesLink>http://www.wanderingstan.com/apps/lifeslice/.html</sparkle:releaseNotesLink>
+            <pubDate>Fri, 19 Dec 2014 09:14:19 -0800</pubDate>
+            <enclosure
+                url="http://www.wanderingstan.com/apps/lifeslice/LifeSlice_686.zip"
+                sparkle:version="686"
+                type="application/octet-stream"
+                length="1690423"
             />
         </item>
 

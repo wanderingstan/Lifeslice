@@ -230,10 +230,14 @@ TODO: use jqueryUI do show images
                 tableName:"app",
                 columnName:"appSwitchCount",
                 displayName:"App switch count",
-                color:"green",
+                color:"#00FF00",
                 scaleFactor:50,                
             },
         ];
+
+        // These fields will default to being checked (displayed) when we start
+        var COLUMNS_TO_CHART_CHECKED_START = ["wordCount", "clickCount"];
+
 
         // move to today's date, or one requested in query string
         function getParameterByName(name) {
@@ -321,17 +325,17 @@ TODO: use jqueryUI do show images
             .enter()
             .append("label")
                 .attr("class","chartLabel")
-                .attr("style",function(d) {return ("color:"+d.color)}
-        );
+                .attr("style",function(d) {return ("color:"+d.color)})
+        ;
         chartLabels.append("input")
                 .attr("type", "checkbox")
-                //.attr("checked", "1")
+                .property("checked", function(d) {return (COLUMNS_TO_CHART_CHECKED_START.indexOf(d.columnName) > -1)})
                 .attr("id",function(d) {return d.columnName})
-                .on("click",function(){draw();}
-        );
+                .on("click",function(){draw();})
+        ;
         chartLabels.append("span")
-                .text(function(d) {return d.displayName + " /" + d.scaleFactor }
-        );
+                .text(function(d) {return d.displayName + " /" + d.scaleFactor })
+        ;
 
         //
         // draw our data!
@@ -412,7 +416,7 @@ TODO: use jqueryUI do show images
                         // .on("mouseover", function(){return tooltip.style("visibility", "visible");})
                         // .on("mousemove", function(d){return tooltip.style("top",(gridY(d))+"px").style("left",(gridX(d))+"px");})
                         // .on("mouseout", function(){return tooltip.style("visibility", "hidden");})                    
-                        .on("click", function(d){document.location="../webcam/"+d.filename;})                    
+                        .on("click", function(d){document.location="singlesliceviewer.html#../webcam/"+d.filename;})                    
                             .append("svg:title")
                             .text(function(d) { return d.datetime; })
                 ;
@@ -439,7 +443,7 @@ TODO: use jqueryUI do show images
                         .attr("height", gridSizeY)
                         .attr("datetime",function(d) {return d.datetime;})
                         .attr("class", "screenshot gridBackground")
-                        .on("click", function(d){document.location="../screenshot/"+d.filename;})
+                        .on("click", function(d){document.location="singlesliceviewer.html#../screenshot/"+d.filename;})
                             .append("svg:title")
                             .text(function(d) { return d.datetime; });
                     ;

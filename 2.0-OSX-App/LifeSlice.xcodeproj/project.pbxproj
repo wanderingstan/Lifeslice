@@ -29,6 +29,7 @@
 		F65CB37218158AA00095BA84 /* reports.sql in Resources */ = {isa = PBXBuildFile; fileRef = F65CB37118158AA00095BA84 /* reports.sql */; };
 		F65CB3771815B7D90095BA84 /* lifeslice_package.command in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3751815B7D90095BA84 /* lifeslice_package.command */; };
 		F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */ = {isa = PBXBuildFile; fileRef = F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */; };
+		F680E4BA1A4A6DC500F309AB /* singlesliceviewer.html in Resources */ = {isa = PBXBuildFile; fileRef = F680E4B91A4A6DC500F309AB /* singlesliceviewer.html */; };
 		F68F53AF16AA4450008A37DC /* NSFileManager+DirectoryLocations.m in Sources */ = {isa = PBXBuildFile; fileRef = F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */; };
 		F69F826E17D8E47A00A8AD03 /* moment.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F826C17D8E44600A8AD03 /* moment.min.js */; };
 		F69F827817D8E4FE00A8AD03 /* jquery-2.0.3.min.map in Resources */ = {isa = PBXBuildFile; fileRef = F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */; };
@@ -117,6 +118,7 @@
 		F65CB37118158AA00095BA84 /* reports.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reports.sql; sourceTree = "<group>"; };
 		F65CB3751815B7D90095BA84 /* lifeslice_package.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = lifeslice_package.command; path = distribution/lifeslice_package.command; sourceTree = "<group>"; };
 		F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = lifeslice_appcast.xml; path = distribution/lifeslice_appcast.xml; sourceTree = "<group>"; };
+		F680E4B91A4A6DC500F309AB /* singlesliceviewer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = singlesliceviewer.html; path = html/singlesliceviewer.html; sourceTree = "<group>"; };
 		F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Helpers/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Helpers/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		F69F826C17D8E44600A8AD03 /* moment.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = moment.min.js; path = html/moment.min.js; sourceTree = "<group>"; };
@@ -291,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				F69F826F17D8E4FE00A8AD03 /* d3.v3.min.js */,
+				F680E4B91A4A6DC500F309AB /* singlesliceviewer.html */,
 				F69F827017D8E4FE00A8AD03 /* jquery-2.0.3.min.js */,
 				F69F827117D8E4FE00A8AD03 /* jquery-2.0.3.min.map */,
 				F69F827217D8E4FE00A8AD03 /* moment.min.js */,
@@ -529,6 +532,7 @@
 				F6A0150E16B1048D001CCC5F /* symbols0.pbxsymbols in Resources */,
 				F6A0151116B1048D001CCC5F /* fmdb.1 in Resources */,
 				F69F827B17D8E4FE00A8AD03 /* slicebrowser-day-d3.html in Resources */,
+				F680E4BA1A4A6DC500F309AB /* singlesliceviewer.html in Resources */,
 				F69F827C17D8E4FE00A8AD03 /* slicebrowser.html in Resources */,
 				F657518917B1E5F200A3CA8D /* old_import.py in Resources */,
 			);
@@ -548,9 +552,9 @@
 				F6A0151416B1048D001CCC5F /* FMDatabase.m in Sources */,
 				F6A0151516B1048D001CCC5F /* FMDatabaseAdditions.m in Sources */,
 				F6A0151616B1048D001CCC5F /* FMDatabasePool.m in Sources */,
-				F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */,
 				F6A0151716B1048D001CCC5F /* FMDatabaseQueue.m in Sources */,
 				F6A0151916B1048D001CCC5F /* FMResultSet.m in Sources */,
+				F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +598,7 @@
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = LifeSlice_Prefix.pch;
+				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				INFOPLIST_FILE = "LifeSlice-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;

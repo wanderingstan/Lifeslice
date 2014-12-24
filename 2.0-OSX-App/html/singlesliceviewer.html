@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>LifeSlice Day</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            
+            <style>
+                body {background-color:#000;color:white;font-family:helvetica,arial,sans-serif;text-shadow: black 1px 1px 1px}
+                .hour {width:50px;height:40px;min-width:50px;min-height:40px;color:white;overflow:hidden;margin:0 0 0 0;padding 0 0 0 0;background-size:50px 40px;background-repeat:no-repeat;}
+                .hour img {width:50px;height:40px;/* position:absolute; */ }
+                .heading {background-color:#000;height:60px;text-align:center;font-size:xx-large;}
+                .total-hours {background-color:#000;width:50px; height: 60px;text-align:center; font-size:xx-large;}
+                #face-table   {position:absolute;top:100px;z-index:1;}
+                #screen-table {position:absolute;top:100px;z-index:2;display:none;}
+                .screen-thumb {display:none;}
+                table {border-collapse: collapse;}
+                td {padding: 0 0 0 0; margin: 0 0 0 0;}
+
+                #day_image {
+                    max-width: 90%;
+                    max-height: 90%;
+                    bottom: 0;
+                    left: 0;
+                    margin: auto;
+                    overflow: auto;
+                    position: fixed;
+                    right: 0;
+                    top: 0;
+                }
+
+                a:link, a:visited, a:hover, a:active { color:#FFFFFF; }
+            </style>
+            
+            <script src="jquery-2.0.3.min.js"></script>
+            </head>
+    <body>
+        <h1><a href="javascript:history.back()">Back</a></h1>
+        <div><img id="day_image"/></div>
+        <script>
+            image_url = window.location.hash.substring(1);
+            day_image = $("#day_image")[0];
+            day_image.src = image_url;
+        </script>
+    </body>
+</html>

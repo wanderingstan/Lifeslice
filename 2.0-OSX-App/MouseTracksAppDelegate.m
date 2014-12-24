@@ -109,6 +109,12 @@
         NSLog(@"Could not copy slicebrowser-day-d3.html: %@", error);
     }
     
+    [[NSFileManager defaultManager] removeItemAtPath:[[self.appDirectory stringByAppendingPathComponent:@"html"] stringByAppendingPathComponent:@"singlesliceviewer.html"] error:nil];
+    [[NSFileManager defaultManager] copyItemAtPath:[bundle pathForResource:@"singlesliceviewer" ofType:@"html"] toPath: [[self.appDirectory stringByAppendingPathComponent:@"html"] stringByAppendingPathComponent:@"singlesliceviewer.html"] error:&error];
+    if (error != nil) {
+        NSLog(@"Could not copy singlesliceviewer.html: %@", error);
+    }
+    
     // Copy our jquery (see http://stackoverflow.com/a/4543314/59913 )
     [[NSFileManager defaultManager] removeItemAtPath:[[self.appDirectory stringByAppendingPathComponent:@"html"] stringByAppendingPathComponent:@"jquery-2.0.3.min.js"] error:nil];
     [[NSFileManager defaultManager] copyItemAtPath:[bundle pathForResource:@"jquery-2.0.3.min" ofType:@"js"] toPath: [[self.appDirectory stringByAppendingPathComponent:@"html"] stringByAppendingPathComponent:@"jquery-2.0.3.min.js"] error:&error];
@@ -152,17 +158,18 @@
     
     NSLog(@"applicationDidFinishLaunching start");
     
-#ifdef RELEASE_TEST_BUILD
-    NSLog(@"Redirecting log to file.");
-    // Log Redirect log to local file
-    // http://stackoverflow.com/questions/429205/is-there-a-way-to-capture-the-ouput-of-nslog-on-an-iphone-when-not-connected-to
-//    NSString *logPath = [[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
-//    NSString *logPath = [[[[NSFileManager defaultManager] applicationSupportDirectory] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
-    NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
-    freopen([logPath cStringUsingEncoding:NSASCIIStringEncoding],"w",stderr);
-#else
-    NSLog(@"Not RELEASE_TEST_BUILD, so normal logging.");
-#endif
+//#ifdef RELEASE_TEST_BUILD
+//    NSLog(@"Redirecting log to file.");
+//    // Log Redirect log to local file
+//    // http://stackoverflow.com/questions/429205/is-there-a-way-to-capture-the-ouput-of-nslog-on-an-iphone-when-not-connected-to
+////    NSString *logPath = [[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
+////    NSString *logPath = [[[[NSFileManager defaultManager] applicationSupportDirectory] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
+//    NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
+//    freopen([logPath cStringUsingEncoding:NSASCIIStringEncoding],"w",stderr);
+//#else
+//    NSLog(@"Not RELEASE_TEST_BUILD, so normal logging.");
+//#endif
+
 
     // Register for notifications
     [[NSUserNotificationCenter defaultUserNotificationCenter] setDelegate:self];
@@ -1033,7 +1040,6 @@
 	}
 
 	if ([incomingEvent type] == NSKeyDown) {
-        //		NSLog(@"Key!");
         
         // Constants for weird keys declared here: https://developer.apple.com/library/mac/#documentation/Cocoa/Reference/ApplicationKit/Classes/NSEvent_Class/Reference/Reference.html#//apple_ref/occ/instm/NSEvent/modifierFlags
         //        NSLog(@"NSCommandKeyMask %u",NSCommandKeyMask);
@@ -1124,7 +1130,7 @@
 - (void)locationManager:(CLLocationManager *)manager
 	   didFailWithError:(NSError *)error
 {
-    NSLog(@"locationManager didFailWithError");
+    NSLog(@"locationManager didFailWithError. Error: %@", error);
 }
 
 #pragma mark -
@@ -1331,7 +1337,6 @@
 
 - (IBAction)showAboutWindow:(id)pId {
     
-#ifdef RELEASE_TEST_BUILD
 
     NSLog(@"Showing about window!");
 
@@ -1344,12 +1349,14 @@
     [aboutWindow makeKeyAndOrderFront:pId];
     [aboutWindow setLevel:NSFloatingWindowLevel]; // keep it on top
     [NSApp activateIgnoringOtherApps:YES];
-    
+
+#ifdef RELEASE_TEST_BUILD
+
 #else
     
 //    [self showYesterdaySummaryNotification];
 
-    [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:@"/tmp/image.jpg" withWarmup:@1.0];
+//    [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:@"/tmp/image.jpg" withWarmup:@1.0];
 
 
 #endif

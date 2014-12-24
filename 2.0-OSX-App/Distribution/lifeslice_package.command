@@ -21,11 +21,16 @@ DMG_FILENAME="${PRODUCT_NAME}.dmg"
 ZIP_FILENAME="${PRODUCT_NAME}_${VERSION}.zip"
 
 # Create the DMG
+rm "${DMG_FILENAME}"
+echo "Creating DMG file: ${DMG_FILENAME}"
 hdiutil create "${DMG_FILENAME}" -srcfolder ./LifeSlice/ -ov
+
 # Create the ZIP
+echo "Creating ZIP file: ${ZIP_FILENAME}"
 ditto -ck --rsrc --sequesterRsrc "${DMG_FILENAME}" "${ZIP_FILENAME}"
 
 DOWNLOAD_URL="$DOWNLOAD_BASE_URL/$ZIP_FILENAME"
+echo "Download URL: ${DOWNLOAD_URL}"
  
 SIZE=$(stat -f %z "$ZIP_FILENAME")
 PUBDATE=$(LC_TIME=en_US date +"%a, %d %b %G %T %z")
@@ -42,6 +47,7 @@ cat > update_$VERSION.xml <<EOF
                 length="$SIZE"
             />
         </item>
+
 EOF
 
 # re-create our master XML 
@@ -51,6 +57,7 @@ cat > "${APPCAST_FILENAME}" <<EOF
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle"  xmlns:dc="http://purl.org/dc/elements/1.1/">
     <channel>
+
         <title>${PRODUCT_NAME} Changelog</title>
         <link>${DOWNLOAD_BASE_URL}${APPCAST_FILENAME}</link>
         <description>Most recent changes with links to updates.</description>
@@ -62,7 +69,6 @@ EOF
 cat update*.xml >> "${APPCAST_FILENAME}"
 
 cat >> "${APPCAST_FILENAME}" <<EOF 
-
     </channel>
 </rss>
 EOF

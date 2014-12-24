@@ -22,7 +22,7 @@
 		<key>347F1718B26E2A105A5060E425D35C284D73607B</key>
 		<string>../../..</string>
 		<key>4FDC632B17E41ED2784CBF1BD409F7B6A9B5F6CA</key>
-		<string>../../../2.0-OSX-App/Helpers/ImageSnapMavericks/</string>
+		<string>../../../2.0-OSX-App/Helpers/ImageSnapMavericks</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>https://github.com/wanderingstan/Lifeslice.git</string>
