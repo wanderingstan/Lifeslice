@@ -309,7 +309,7 @@
         </window>
         <menu id="548">
             <items>
-                <menuItem title="Life Reports" id="642">
+                <menuItem title="Slice Browser" id="642">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="showBrowseSliceWindow:" target="494" id="700"/>
@@ -383,8 +383,9 @@
             </connections>
         </customObject>
         <customObject id="420" customClass="NSFontManager"/>
-        <window title="LifeSlice  Life Reports" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="663">
+        <window title="Slice Browser" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="663">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+            <windowCollectionBehavior key="collectionBehavior" participatesInCycle="YES"/>
             <windowPositionMask key="initialPositionMask" topStrut="YES"/>
             <rect key="contentRect" x="10" y="77" width="1270" height="692"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
@@ -655,7 +656,7 @@
                     <button verticalHuggingPriority="750" id="mRk-Qs-4wc" userLabel="Life Browser Button">
                         <rect key="frame" x="-3" y="-2" width="142" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Life Browser" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="h1a-48-bAD">
+                        <buttonCell key="cell" type="push" title="Slice Browser" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="h1a-48-bAD">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                             <font key="font" size="13" name="HelveticaNeue-UltraLight"/>
                         </buttonCell>
@@ -664,14 +665,14 @@
                         </connections>
                     </button>
                     <imageView id="760">
-                        <rect key="frame" x="3" y="43" width="134" height="90"/>
+                        <rect key="frame" x="6" y="46" width="128" height="84"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="761"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="761"/>
                     </imageView>
                     <imageView id="757">
-                        <rect key="frame" x="3" y="135" width="134" height="90"/>
+                        <rect key="frame" x="6" y="138" width="128" height="84"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="758"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="758"/>
                     </imageView>
                 </subviews>
             </view>
