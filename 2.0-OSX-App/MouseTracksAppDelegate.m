@@ -1254,20 +1254,10 @@
 
     [self exportReportData];
     
-    // Give time for our report files to write. .75 seconds // TODO: Make this smarter
-    // TODO: Better solution!
+    // Give time for our report files to write. 0.75 seconds // TODO: Make this smarter. This is a hack.
     [NSThread sleepForTimeInterval:0.75];
 
-    NSString *sliceBrowserHtmlFilename;
-    if (isoDate == nil) {
-        //    NSString *sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-d3.html", self.appDirectory];
-        // Use random number to defeat safari caching
-        sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-day-d3.html?rand=%d", self.appDirectory, (arc4random() % 65536)];
-    }
-    else {
-        // actual date
-        sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-day-d3.html?date=%@", self.appDirectory, isoDate];
-    }
+    NSString *sliceBrowserHtmlFilename = sliceBrowserHtmlFilename = [NSString stringWithFormat:@"%@/html/slicebrowser-day-d3.html?date=%@&rand=%d", self.appDirectory, (isoDate ? isoDate : @"") , (arc4random() % 65536)];
     
     // Load webpage from file
     // file:///Users/stan/Lifeslice/reports/lifeslice-report-2012-06.html
@@ -1491,7 +1481,7 @@
 
     NSDateFormatter *f1 = [[NSDateFormatter alloc] init];
     [f1 setDateStyle:kCFDateFormatterFullStyle];
-    NSString *yesterdayPrettyDateString = [f1 stringFromDate:yesterday];
+    NSString *yesterdayPrettyDateString = [f1 stringFromDate:yesterday]; // E.g. "Thursday, December 25, 2014" (In USA)
 
     NSString* reportText;
     {
