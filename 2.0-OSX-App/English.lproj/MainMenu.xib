@@ -231,7 +231,7 @@
                                         <button id="645">
                                             <rect key="frame" x="15" y="15" width="464" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Start LifeSlice automatically on start. (Required to get true statistics.)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="646">
+                                            <buttonCell key="cell" type="check" title="Start LifeSlice automatically on start. (Reccomended for true statistics.)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="646">
                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -247,42 +247,10 @@
                                     <rect key="frame" x="10" y="33" width="496" height="248"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" id="675">
-                                            <rect key="frame" x="14" y="201" width="527" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" title="appDirectory" usesSingleLineMode="YES" id="676">
-                                                <font key="font" metaFont="fixedUser" size="11"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                            <connections>
-                                                <binding destination="494" name="value" keyPath="appDirectory" id="678"/>
-                                            </connections>
-                                        </textField>
-                                        <textField verticalHuggingPriority="750" id="679">
-                                            <rect key="frame" x="14" y="221" width="194" height="17"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="LifeSlice files are written here:" id="680">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <button verticalHuggingPriority="750" id="681">
-                                            <rect key="frame" x="11" y="165" width="133" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Show in Finder" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="682" customClass="DoButton">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="revealFilesInFinder:" target="494" id="801"/>
-                                            </connections>
-                                        </button>
                                         <button verticalHuggingPriority="750" id="aTi-3e-wiA">
                                             <rect key="frame" x="11" y="10" width="200" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Import old LifeSlice Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iiA-yh-Huk" customClass="DoButton">
+                                            <buttonCell key="cell" type="push" title="Import LifeSlice 1.0 Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iiA-yh-Huk" customClass="DoButton">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -290,15 +258,67 @@
                                                 <action selector="importOldLifeSlice:" target="494" id="mHN-YH-GXa"/>
                                             </connections>
                                         </button>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="Oah-Q5-mlV">
-                                            <rect key="frame" x="14" y="105" width="341" height="59"/>
+                                        <segmentedControl verticalHuggingPriority="750" id="Iil-Dg-JGf">
+                                            <rect key="frame" x="175" y="216" width="221" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="This includes the webcam pictures, screenshots, SQLite database, CSV files, and generated HTML reports." id="jcz-fz-kzd">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="Qsx-oy-nYV">
+                                                <font key="font" metaFont="system"/>
+                                                <segments>
+                                                    <segment label="Highest"/>
+                                                    <segment label="1280" tag="1"/>
+                                                    <segment label="1024" selected="YES"/>
+                                                    <segment label="640"/>
+                                                </segments>
+                                            </segmentedCell>
+                                            <connections>
+                                                <binding destination="650" name="selectedIndex" keyPath="values.webcamMaxSize" id="Uov-Jh-bMj"/>
+                                            </connections>
+                                        </segmentedControl>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fJt-pL-yX6">
+                                            <rect key="frame" x="15" y="220" width="156" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Webcam Image Size" id="Abh-H6-ZiK">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="3mi-P9-aOC">
+                                            <rect key="frame" x="15" y="195" width="156" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Screenshot Image Size" id="fQT-4s-bIe">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <segmentedControl verticalHuggingPriority="750" id="xLa-kF-1av">
+                                            <rect key="frame" x="175" y="187" width="221" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="mHl-dm-plX">
+                                                <font key="font" metaFont="system"/>
+                                                <segments>
+                                                    <segment label="Highest"/>
+                                                    <segment label="1440" tag="1"/>
+                                                    <segment label="1280" selected="YES"/>
+                                                    <segment label="640"/>
+                                                </segments>
+                                            </segmentedCell>
+                                            <connections>
+                                                <binding destination="650" name="selectedIndex" keyPath="values.screenShotMaxSize" id="O1h-Go-WMw"/>
+                                            </connections>
+                                        </segmentedControl>
+                                        <button verticalHuggingPriority="750" id="681">
+                                            <rect key="frame" x="11" y="146" width="221" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Show LifeSlice Files in Finder" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="682" customClass="DoButton">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="revealFilesInFinder:" target="494" id="801"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -309,6 +329,19 @@
         </window>
         <menu id="548">
             <items>
+                <menuItem title="About LifeSlice" id="764">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showAboutWindow:" target="494" id="774"/>
+                    </connections>
+                </menuItem>
+                <menuItem title="Preferences..." id="551">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showPreferencesWindow:" target="494" id="699"/>
+                    </connections>
+                </menuItem>
+                <menuItem isSeparatorItem="YES" id="639"/>
                 <menuItem title="Slice Browser" id="642">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -321,7 +354,7 @@
                         <action selector="showLiveStatsWindow:" target="494" id="756"/>
                     </connections>
                 </menuItem>
-                <menuItem isSeparatorItem="YES" id="639"/>
+                <menuItem isSeparatorItem="YES" id="bid-a6-mQU"/>
                 <menuItem title="Record Slice Now" id="670">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
@@ -332,31 +365,6 @@
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="deleteLatestSlice:" target="494" id="paa-XD-Ic9"/>
-                    </connections>
-                </menuItem>
-                <menuItem isSeparatorItem="YES" id="641"/>
-                <menuItem title="Preferences..." id="551">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showPreferencesWindow:" target="494" id="699"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Updates..." id="823">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="checkForUpdates:" target="822" id="824"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="Feedback..." id="806">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showFeedbackWindow:" target="494" id="807"/>
-                    </connections>
-                </menuItem>
-                <menuItem title="About" id="764">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="showAboutWindow:" target="494" id="774"/>
                     </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="674"/>
@@ -407,6 +415,7 @@
                     </webView>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="1005" y="828"/>
         </window>
         <userDefaultsController id="650"/>
         <window title="LifeSlice" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="708" customClass="NSPanel">
@@ -730,6 +739,17 @@
                             <action selector="showHomepage:" target="494" id="2d8-E2-zW0"/>
                         </connections>
                     </button>
+                    <button verticalHuggingPriority="750" id="TFb-XD-xaV">
+                        <rect key="frame" x="186" y="13" width="163" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Check for Updates" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c0a-G6-KX6">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="checkForUpdates:" target="822" id="hek-31-WYO"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <userDefinedRuntimeAttributes>
@@ -738,7 +758,7 @@
                 </userDefinedRuntimeAttribute>
                 <userDefinedRuntimeAttribute type="boolean" keyPath="titlebarAppearsTransparent" value="YES"/>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="423.5" y="805.5"/>
+            <point key="canvasLocation" x="184.5" y="686.5"/>
         </window>
         <customObject id="822" customClass="SUUpdater"/>
         <userDefaultsController id="YFG-3T-i6O"/>

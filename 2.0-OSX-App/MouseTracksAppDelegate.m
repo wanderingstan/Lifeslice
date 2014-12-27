@@ -223,6 +223,8 @@
                           [NSNumber numberWithInt:1], @"appStatsInterval",
                           [NSNumber numberWithInt:1], @"webStatsInterval",
                           [NSNumber numberWithInt:0], @"promptInterval",
+                          [NSNumber numberWithInt:2], @"webcamMaxSize",
+                          [NSNumber numberWithInt:2], @"screenShotMaxSize",
                           nil
                           ];
 	[preferences registerDefaults:dict];
@@ -687,32 +689,46 @@
         NSString *webcamShotPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam"] stringByAppendingPathComponent:webcamShotFilename];
         
         [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:webcamShotPathname withWarmup:@1.0];
+
+        int webcamMaxSize = [[@[@0,@1280,@1024,@640] objectAtIndex:[[[NSUserDefaults standardUserDefaults] objectForKey:@"webcamMaxSize"] integerValue]] integerValue]; //webcamSizeOptions[selectedIndex];
+        if (webcamMaxSize > 0)
+        {
+            // Resize image TODO: Should be done in native code
+            NSString *command = [NSString stringWithFormat:@"/usr/bin/sips -Z %d '%@'", webcamMaxSize, webcamShotPathname];
+            system([command cStringUsingEncoding:NSUTF8StringEncoding]);
+        }
         
         // save for csv output
-        [logColumnValues setObject: webcamShotFilename  forKey: @"webcamShotFilename"];
-        [logColumnValues setObject: [NSString stringWithFormat:@"%u",webcamIntervalMins] forKey: @"webcamIntervalMins"];
-        // write to sql
-        if (![self.db executeUpdate:@"INSERT INTO webcam (timestamp,datetime,filename,interval) VALUES (?, ?, ?, ?)" ,
-            [NSNumber numberWithInt:0],
-            nowIsoString,
-            webcamShotFilename,
-            [NSNumber numberWithInt:webcamIntervalMins]
-        ]) {
-            NSLog(@"ERROR: webcam: Database Error %d: %@", [self.db lastErrorCode], [self.db lastErrorMessage]);
-        };
+        {
+            [logColumnValues setObject: webcamShotFilename  forKey: @"webcamShotFilename"];
+            [logColumnValues setObject: [NSString stringWithFormat:@"%u",webcamIntervalMins] forKey: @"webcamIntervalMins"];
+            // write to sql
+            if (![self.db executeUpdate:@"INSERT INTO webcam (timestamp,datetime,filename,interval) VALUES (?, ?, ?, ?)" ,
+                  [NSNumber numberWithInt:0],
+                  nowIsoString,
+                  webcamShotFilename,
+                  [NSNumber numberWithInt:webcamIntervalMins]
+                  ]) {
+                NSLog(@"ERROR: webcam: Database Error %d: %@", [self.db lastErrorCode], [self.db lastErrorMessage]);
+            };
+        }
         
         // Create thumbnail version
-        NSString *webcamShotThumbFilename = [NSString stringWithFormat:@"face_%@.jpg", s];
-        NSString *webcamShotThumbPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam_thumbs"] stringByAppendingPathComponent:webcamShotThumbFilename];
-        NSString *webcamMakeThumbCmd = [NSString stringWithFormat:@"/usr/bin/sips --resampleWidth 120 '%@' --out '%@'", webcamShotPathname, webcamShotThumbPathname];
-        NSLog(@"ss %@",webcamShotThumbPathname);
-        NSLog(@"ss %@",webcamMakeThumbCmd);
-        system([webcamMakeThumbCmd cStringUsingEncoding:NSUTF8StringEncoding]);
+        {
+            NSString *webcamShotThumbFilename = [NSString stringWithFormat:@"face_%@.jpg", s];
+            NSString *webcamShotThumbPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam_thumbs"] stringByAppendingPathComponent:webcamShotThumbFilename];
+            NSString *webcamMakeThumbCmd = [NSString stringWithFormat:@"/usr/bin/sips --resampleWidth 120 '%@' --out '%@'", webcamShotPathname, webcamShotThumbPathname];
+            NSLog(@"ss %@",webcamShotThumbPathname);
+            NSLog(@"ss %@",webcamMakeThumbCmd);
+            system([webcamMakeThumbCmd cStringUsingEncoding:NSUTF8StringEncoding]);
+        }
         
         // show in live stats
-        NSString *inFilePath = [NSString stringWithFormat:@"%@/%@/%@", self.appDirectory, @"webcam", webcamShotFilename];
-        NSImage *webcamImage = [[NSImage alloc] initWithContentsOfFile:inFilePath];
-        [webcamPreview setImage:webcamImage];
+        {
+            NSString *inFilePath = [NSString stringWithFormat:@"%@/%@/%@", self.appDirectory, @"webcam", webcamShotFilename];
+            NSImage *webcamImage = [[NSImage alloc] initWithContentsOfFile:inFilePath];
+            [webcamPreview setImage:webcamImage];
+        }
         
         lastSliceIsoDate = [f3 stringFromDate:now];
         lastSliceDate = now;
@@ -724,6 +740,8 @@
 	int screenshotIntervalMins = [[minuteMapping objectForKey:[[NSUserDefaults standardUserDefaults] objectForKey:@"screenshotInterval"]] integerValue];
 	BOOL doScreenshot = (!(min % screenshotIntervalMins));
 	if ((doScreenshot && !userIsIdle) || doAll) {
+        
+        // Get the screenshot
         // TODO: Use "real" method to get screenshot, no helper app
         NSString *screenShotFilename = [NSString stringWithFormat:@"screen_%@.png", s];
         NSString *screenShotPathname = [[self.appDirectory stringByAppendingPathComponent:@"screenshot"] stringByAppendingPathComponent:screenShotFilename];
@@ -735,6 +753,15 @@
         if(![[NSFileManager defaultManager] fileExistsAtPath:screenShot2Pathname]) {
             screenShot2Filename = nil;
         }
+        
+        int screenShotMaxSize = [[@[@0, @1440 , @1280, @640] objectAtIndex: [[[NSUserDefaults standardUserDefaults] objectForKey:@"screenShotMaxSize"] integerValue]] integerValue];
+        if (screenShotMaxSize > 0)
+        {
+            // Resize image TODO: Should be done in native code
+            NSString *command = [NSString stringWithFormat:@"/usr/bin/sips -Z %d '%@'", screenShotMaxSize, screenShotPathname];
+            system([command cStringUsingEncoding:NSUTF8StringEncoding]);
+        }
+
         // save for csv output
         [logColumnValues setObject: screenShotFilename  forKey: @"screenShotFilename"];
         [logColumnValues setObject: [NSString stringWithFormat:@"%u",screenshotIntervalMins] forKey: @"screenshotIntervalMins"];
@@ -748,6 +775,7 @@
         ]) {
             NSLog(@"ERROR:screenshot: Database Error %d: %@", [self.db lastErrorCode], [self.db lastErrorMessage]);
         };
+        
         // Create thumbnail version
         NSString *screenShotThumbFilename = [NSString stringWithFormat:@"screen_%@.png", s];
         NSString *screenShotThumbPathname = [[self.appDirectory stringByAppendingPathComponent:@"screenshot_thumbs"] stringByAppendingPathComponent:screenShotThumbFilename];
