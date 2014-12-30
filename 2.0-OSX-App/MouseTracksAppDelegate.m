@@ -92,8 +92,9 @@
         NSLog(@"error creating directory: %@", error);
     }
     
-    // TODO: Instead of copying each html resource, get the path and do an rsync or other bulk copy...or use these files directly IN the bundle, with no copying
-//    NSString *bundlePath = [bundle bundlePath];
+    // TODO: Instead of copying each html resource, get the path and do an rsync or other bulk copy...or use these files directly IN the bundle, with no copying.
+    
+    //    NSString *bundlePath = [bundle bundlePath];
     
     //    NSDate *result = [[[NSFileManager defaultManager] attributesOfItemAtPath:[[self.appDirectory stringByAppendingPathComponent:@"html"] stringByAppendingPathComponent:@"slicebrowser-d3.html"] error:nil] fileCreationDate];
     
@@ -1405,7 +1406,7 @@
     [alert addButtonWithTitle:@"OK"];
     [alert addButtonWithTitle:@"Cancel"];
     [alert setMessageText:@"Delete the last slice?"];
-    [alert setInformativeText: [NSString stringWithFormat:@"The will record all images and data for the last slice, %@", lastSliceIsoDate]];
+    [alert setInformativeText: [NSString stringWithFormat:@"This will delete all images and data for the last slice, %@. Are you sure?", lastSliceIsoDate]];
     [alert setAlertStyle:NSWarningAlertStyle];
     
     if ([alert runModal] == NSAlertFirstButtonReturn) {
