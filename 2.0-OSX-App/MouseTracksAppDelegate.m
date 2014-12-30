@@ -1496,7 +1496,7 @@
  * Show our homepage
  */
 - (IBAction)showHomepage:(id)pId {
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wanderingstan.com/lifeslice"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wanderingstan.github.io/Lifeslice/"]];
     [aboutWindow close];
 }
 
