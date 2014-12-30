@@ -42,6 +42,8 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
 	CLLocationManager *locationManager; // lat/lon
 	IBOutlet NSMenu *statusMenu; // menu
     NSStatusItem * statusItem; // menulet thing (i think)
+    IBOutlet NSMenuItem * webcamMenuItem;
+    IBOutlet NSMenuItem * screenshotMenuItem;
     
     NSWindow *window;
     NSString *appDirectory;
@@ -84,10 +86,10 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
     
     FMDatabase *db; // our SQLite database
 
-    IBOutlet id preferencesWindow;
-    IBOutlet id browseSliceWindow;
-    IBOutlet id liveStatsWindow;
-    IBOutlet id aboutWindow;
+    IBOutlet NSWindow *aboutWindow;
+    IBOutlet NSWindow *preferencesWindow;
+    IBOutlet NSWindow *browseSliceWindow;
+    IBOutlet NSPanel *liveStatsWindow;
     
     IBOutlet NSTextField *versionLabel;
     IBOutlet NSButton *myLaunchAtStartupCheckbox;

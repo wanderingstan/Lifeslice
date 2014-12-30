@@ -10,6 +10,7 @@
 
 #import "MouseTracksAppDelegate.h"
 #import "ImageSnap.h"
+#import <AppKit/AppKit.h>
 #import <ApplicationServices/ApplicationServices.h>
 
 @implementation MouseTracksAppDelegate
@@ -196,11 +197,11 @@
     // Check our permissions
     // See: http://stackoverflow.com/a/18121292/59913
     {
-        NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES};
+        NSDictionary *options = @{(__bridge id)kAXTrustedCheckOptionPrompt: @YES}; // This will automatically prompt for permissions if we don't have them.
         BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef)options);
         
         if (!accessibilityEnabled) {
-            
+            // Do something to ask them again? Gray out elements on live view?
         }
     }
     
@@ -721,14 +722,14 @@
             NSLog(@"ss %@",webcamShotThumbPathname);
             NSLog(@"ss %@",webcamMakeThumbCmd);
             system([webcamMakeThumbCmd cStringUsingEncoding:NSUTF8StringEncoding]);
+        
+            // show in live stats & menubar
+            NSImage *webcamImage = [[NSImage alloc] initWithContentsOfFile:webcamShotThumbPathname];
+            [webcamPreview setImage:webcamImage];
+            [webcamMenuItem setImage:webcamImage];
+            [webcamMenuItem setHidden:NO];
         }
         
-        // show in live stats
-        {
-            NSString *inFilePath = [NSString stringWithFormat:@"%@/%@/%@", self.appDirectory, @"webcam", webcamShotFilename];
-            NSImage *webcamImage = [[NSImage alloc] initWithContentsOfFile:inFilePath];
-            [webcamPreview setImage:webcamImage];
-        }
         
         lastSliceIsoDate = [f3 stringFromDate:now];
         lastSliceDate = now;
@@ -779,21 +780,22 @@
         // Create thumbnail version
         NSString *screenShotThumbFilename = [NSString stringWithFormat:@"screen_%@.png", s];
         NSString *screenShotThumbPathname = [[self.appDirectory stringByAppendingPathComponent:@"screenshot_thumbs"] stringByAppendingPathComponent:screenShotThumbFilename];
-        NSString *screenShotMakeThumbCmd = [NSString stringWithFormat:@"/usr/bin/sips --resampleWidth 120 '%@' --out '%@'",screenShotPathname, screenShotThumbPathname];
+        NSString *screenShotMakeThumbCmd = [NSString stringWithFormat:@"/usr/bin/sips --resampleWidth 240 '%@' --out '%@'",screenShotPathname, screenShotThumbPathname];
         system([screenShotMakeThumbCmd cStringUsingEncoding:NSUTF8StringEncoding]);
         if([[NSFileManager defaultManager] fileExistsAtPath:screenShot2Pathname]) {
             // thumbnail of second screen, if needed
             NSString *screenShot2ThumbFilename = [NSString stringWithFormat:@"screen_2_%@.png", s];
             NSString *screenShot2ThumbPathname = [[self.appDirectory stringByAppendingPathComponent:@"screenshot_thumbs"] stringByAppendingPathComponent:screenShot2ThumbFilename];
-            NSString *screenShot2MakeThumbCmd = [NSString stringWithFormat:@"/usr/bin/sips --resampleWidth 120 '%@' --out '%@'",screenShot2Pathname, screenShot2ThumbPathname];
+            NSString *screenShot2MakeThumbCmd = [NSString stringWithFormat:@"/usr/bin/sips --resampleWidth 240 '%@' --out '%@'",screenShot2Pathname, screenShot2ThumbPathname];
             system([screenShot2MakeThumbCmd cStringUsingEncoding:NSUTF8StringEncoding]);
         }
         
         // show in live stats
-        if ([[NSFileManager defaultManager] fileExistsAtPath:screenShotPathname]) {
-            NSString *inFilePath = [NSString stringWithFormat:@"%@/%@/%@", self.appDirectory, @"screenshot", screenShotFilename];
-            NSImage *screenshotImage = [[NSImage alloc] initWithContentsOfFile:inFilePath] ;
+        if ([[NSFileManager defaultManager] fileExistsAtPath:screenShotThumbPathname]) {
+            NSImage *screenshotImage = [[NSImage alloc] initWithContentsOfFile:screenShotThumbPathname] ;
             [screenshotPreview setImage:screenshotImage];
+            [screenshotMenuItem setImage:screenshotImage];
+            [screenshotMenuItem setHidden:NO];
         }
     
     }
@@ -1310,7 +1312,6 @@
  * Use this: http://blog.grio.com/2012/07/uiwebview-javascript-to-objective-c-communication.html
  */
 - (IBAction)showBrowseSliceWindow:(id)pId {
-    
     [self showBrowseSliceWindowForDate:nil];
 }
 
@@ -1495,6 +1496,7 @@
  */
 - (IBAction)showHomepage:(id)pId {
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://wanderingstan.com/lifeslice"]];
+    [aboutWindow close];
 }
 
 #pragma mark -

@@ -374,6 +374,19 @@
                         <action selector="quitApplication:" target="494" id="KzW-K5-HoE"/>
                     </connections>
                 </menuItem>
+                <menuItem isSeparatorItem="YES" id="9Is-cA-O91"/>
+                <menuItem hidden="YES" id="XDt-6S-AHM" userLabel="Webcam Image MenuItem">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showBrowseSliceWindow:" target="494" id="Krq-Gp-AzD"/>
+                    </connections>
+                </menuItem>
+                <menuItem hidden="YES" id="2fK-J8-zXn" userLabel="Screenshot Image MenuItem">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="showBrowseSliceWindow:" target="494" id="8tk-mb-d8n"/>
+                    </connections>
+                </menuItem>
             </items>
         </menu>
         <customObject id="494" customClass="MouseTracksAppDelegate">
@@ -383,10 +396,12 @@
                 <outlet property="liveStatsWindow" destination="708" id="755"/>
                 <outlet property="myLaunchAtStartupCheckbox" destination="645" id="cfo-t0-GhK"/>
                 <outlet property="preferencesWindow" destination="552" id="697"/>
+                <outlet property="screenshotMenuItem" destination="2fK-J8-zXn" id="YuJ-nE-S1u"/>
                 <outlet property="screenshotPreview" destination="760" id="762"/>
                 <outlet property="statusMenu" destination="548" id="630"/>
                 <outlet property="theWebView" destination="669" id="687"/>
                 <outlet property="versionLabel" destination="Xy0-Qv-26o" id="vGw-vA-BI7"/>
+                <outlet property="webcamMenuItem" destination="XDt-6S-AHM" id="Pph-xJ-FzE"/>
                 <outlet property="webcamPreview" destination="757" id="759"/>
             </connections>
         </customObject>
@@ -713,7 +728,7 @@
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="Gpn-oA-GNA">
                         <rect key="frame" x="190" y="49" width="295" height="34"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Copyright 2015 by Stan James. Contact stan@wanderingstan.com with questions or feedback." id="6PV-iw-Kxj">
+                        <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" title="Copyright 2015 by Stan James. Contact stan@wanderingstan.com with questions or feedback." id="6PV-iw-Kxj">
                             <font key="font" size="10" name="HelveticaNeue-Light"/>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
