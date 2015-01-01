@@ -433,7 +433,7 @@
             <point key="canvasLocation" x="1005" y="828"/>
         </window>
         <userDefaultsController id="650"/>
-        <window title="LifeSlice" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="708" customClass="NSPanel">
+        <window title="LifeSlice" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="708" userLabel="Live Stats" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="1127" y="440" width="140" height="402"/>
@@ -702,7 +702,7 @@
             </view>
             <point key="canvasLocation" x="-146" y="265"/>
         </window>
-        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="766">
+        <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="766" userLabel="About WIndow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
             <rect key="contentRect" x="196" y="240" width="552" height="270"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
@@ -769,12 +769,6 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                     </button>
                 </subviews>
             </view>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
-                    <color key="value" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                </userDefinedRuntimeAttribute>
-                <userDefinedRuntimeAttribute type="boolean" keyPath="titlebarAppearsTransparent" value="YES"/>
-            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="199" y="736"/>
         </window>
         <customObject id="822" customClass="SUUpdater"/>

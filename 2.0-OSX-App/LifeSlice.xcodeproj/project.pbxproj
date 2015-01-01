@@ -445,6 +445,7 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				F61F3DED176FC74700776CED /* CopyFiles */,
+				F635B1DB1A55FC9A00C889D6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -548,6 +549,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F635B1DB1A55FC9A00C889D6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# Increment build number\nCFBundleVersion=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"$SRCROOT/$INFOPLIST_FILE\")\n\n#CFBundleVersion=$(($CFBundleVersion + 1))\nCFBundleVersion=$(echo \"$CFBundleVersion+1\"|bc)\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $CFBundleVersion\" \"$SRCROOT/$INFOPLIST_FILE\"\n\necho \"Note: Incremented build number to $CFBundleVersion\"\n\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
