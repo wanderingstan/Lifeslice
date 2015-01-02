@@ -228,8 +228,19 @@
                                                 <binding destination="650" name="selectedIndex" keyPath="values.appStatsInterval" id="778"/>
                                             </connections>
                                         </segmentedControl>
+                                        <button id="oH0-KG-ULZ">
+                                            <rect key="frame" x="15" y="9" width="234" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Send anonomous usage statistics." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qSD-x1-fuV">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="dM1-Uw-E0Z" name="value" keyPath="values.logUsage" id="fl3-bY-eep"/>
+                                            </connections>
+                                        </button>
                                         <button id="645">
-                                            <rect key="frame" x="15" y="15" width="464" height="18"/>
+                                            <rect key="frame" x="15" y="29" width="464" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Start LifeSlice automatically on start. (Reccomended for true statistics.)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="646">
                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -775,6 +786,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
         <userDefaultsController id="YFG-3T-i6O"/>
         <userDefaultsController id="Qx1-9w-1Zk"/>
         <userDefaultsController id="hxd-KL-97j"/>
+        <userDefaultsController representsSharedInstance="YES" id="dM1-Uw-E0Z"/>
     </objects>
     <resources>
         <image name="LifeSliceIcon" width="256" height="256"/>

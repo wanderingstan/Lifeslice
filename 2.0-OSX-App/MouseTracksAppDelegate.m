@@ -161,7 +161,6 @@
     
     NSLog(@"applicationDidFinishLaunching start");
 
-    
 #ifdef RELEASE_TEST_BUILD
     NSLog(@"Redirecting log to file.");
     // Log Redirect log to local file
@@ -201,6 +200,9 @@
                      NSLog(@"Received response. %@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
                  }
              }];
+            
+            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"logUsage"];
+            
         }
         
         // Are we not set to auto-launch? Ask them about it.
@@ -251,6 +253,7 @@
                           [NSNumber numberWithInt:0], @"promptInterval",
                           [NSNumber numberWithInt:2], @"webcamMaxSize",
                           [NSNumber numberWithInt:2], @"screenShotMaxSize",
+                          [NSNumber numberWithInt:1], @"logUsage",
                           nil
                           ];
 	[preferences registerDefaults:dict];
@@ -681,6 +684,8 @@
         self.dayAppSwitchCount = 0;
         
         [self showYesterdaySummaryNotification];
+        
+        [self logUsageToServer];
     }
     lastSliceDay = [[now dateWithCalendarFormat:nil timeZone:nil] dayOfMonth];
 
@@ -1409,6 +1414,8 @@
 
 #else
     
+    [self logUsageToServer];
+    
 //    [self showYesterdaySummaryNotification];
 
 //    [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:@"/tmp/image.jpg" withWarmup:@1.0];
@@ -1618,6 +1625,31 @@
 
         [self showBrowseSliceWindowForDate:yesterdayDateIsoString];
     }
+}
+
+- (void) logUsageToServer
+{
+    
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"logUsage"] boolValue]) {
+        // User opted not to send usage
+        return;
+    }
+    
+    // Create guid for this installation
+    NSString *guid = [[NSUserDefaults standardUserDefaults] objectForKey:@"InstallationGuid"];
+    NSString* version = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+    NSString* build = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+    NSInteger* day =[[[NSDate date] dateWithCalendarFormat:nil timeZone:nil] dayOfMonth];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://wanderingstan.com/apps/lifeslice/daily.php?InstallationGuid=%@&build=%@&version=%@&day=%ld", guid, build, version, (long)day]];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+     {
+         if ([data length] > 0 && error == nil) {
+             //[delegate receivedData:data];
+             NSLog(@"Received response. %@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+         }
+     }];
 }
 
 #pragma mark -
