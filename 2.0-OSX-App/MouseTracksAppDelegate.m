@@ -1413,13 +1413,9 @@
 #ifdef RELEASE_TEST_BUILD
 
 #else
-    
-    [self logUsageToServer];
-    
+
+    // Testing area
 //    [self showYesterdaySummaryNotification];
-
-//    [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:@"/tmp/image.jpg" withWarmup:@1.0];
-
 
 #endif
     
