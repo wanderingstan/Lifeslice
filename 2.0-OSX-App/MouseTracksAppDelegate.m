@@ -160,6 +160,7 @@
 -(void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
     NSLog(@"applicationDidFinishLaunching start");
+
     
 #ifdef RELEASE_TEST_BUILD
     NSLog(@"Redirecting log to file.");
@@ -175,10 +176,33 @@
 
     // Is the first time we're running?
     if (! [[NSUserDefaults standardUserDefaults] boolForKey:@"AlreadyBeenLaunched"]) {
+        
         // This is our very first launch - Setting userDefaults for next time
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"AlreadyBeenLaunched"];
         
 #ifdef RELEASE_TEST_BUILD
+        // Ping home to record install for stats
+        {
+            // Create guid for this installation
+            NSString *guid = [[NSProcessInfo processInfo] globallyUniqueString];
+            [[NSUserDefaults standardUserDefaults] setValue:guid forKey:@"InstallationGuid"];
+            
+            NSString* version= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"];
+            NSString* build= [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"];
+            
+            NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://wanderingstan.com/apps/lifeslice/install.php?InstallationGuid=%@&build=%@&version=%@", guid, build, version]];
+            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+            NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+            
+            [NSURLConnection sendAsynchronousRequest:request queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
+             {
+                 if ([data length] > 0 && error == nil) {
+                     //[delegate receivedData:data];
+                     NSLog(@"Received response. %@", [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding]);
+                 }
+             }];
+        }
+        
         // Are we not set to auto-launch? Ask them about it.
         LaunchAtLoginController *launchController = [[LaunchAtLoginController alloc] init];
         if (! [launchController launchAtLogin]) {
