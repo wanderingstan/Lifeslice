@@ -228,19 +228,8 @@
                                                 <binding destination="650" name="selectedIndex" keyPath="values.appStatsInterval" id="778"/>
                                             </connections>
                                         </segmentedControl>
-                                        <button id="oH0-KG-ULZ">
-                                            <rect key="frame" x="15" y="9" width="234" height="18"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Send anonomous usage statistics." bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="qSD-x1-fuV">
-                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <binding destination="dM1-Uw-E0Z" name="value" keyPath="values.logUsage" id="fl3-bY-eep"/>
-                                            </connections>
-                                        </button>
                                         <button id="645">
-                                            <rect key="frame" x="15" y="29" width="464" height="18"/>
+                                            <rect key="frame" x="15" y="15" width="464" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Start LifeSlice automatically on start. (Reccomended for true statistics.)" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="646">
                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
@@ -337,6 +326,7 @@
                     </tabView>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="660" y="225"/>
         </window>
         <menu id="548">
             <items>
@@ -448,7 +438,7 @@
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
             <rect key="contentRect" x="1127" y="440" width="140" height="402"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1280" height="778"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="709">
                 <rect key="frame" x="0.0" y="0.0" width="140" height="402"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -787,6 +777,281 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
         <userDefaultsController id="Qx1-9w-1Zk"/>
         <userDefaultsController id="hxd-KL-97j"/>
         <userDefaultsController representsSharedInstance="YES" id="dM1-Uw-E0Z"/>
+        <window title="LifeSlice" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="TbK-x1-LnV" userLabel="Live Stats - New" customClass="NSPanel">
+            <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" unifiedTitleAndToolbar="YES"/>
+            <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
+            <rect key="contentRect" x="1127" y="440" width="150" height="478"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
+            <view key="contentView" id="nG2-oF-i9c">
+                <rect key="frame" x="0.0" y="0.0" width="150" height="478"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8Rk-Ei-e5M">
+                        <rect key="frame" x="8" y="276" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Scrolls" usesSingleLineMode="YES" id="qzd-sf-iQq">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Fxo-n9-ZLV">
+                        <rect key="frame" x="8" y="451" width="48" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Words" usesSingleLineMode="YES" id="Jwb-zD-WuY">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="axR-zq-bti">
+                        <rect key="frame" x="8" y="426" width="32" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Keys" usesSingleLineMode="YES" id="65y-Ya-yPa">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="niD-ZW-RDa">
+                        <rect key="frame" x="7" y="326" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Clicks" usesSingleLineMode="YES" id="UmT-Bg-iaB">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="l5X-bX-9cE">
+                        <rect key="frame" x="8" y="376" width="80" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Shortcuts" usesSingleLineMode="YES" id="8cB-ZI-5Qm">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MgI-j3-nFH">
+                        <rect key="frame" x="8" y="252" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Distance" usesSingleLineMode="YES" id="41a-v5-MH9">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XGc-Pa-XkB">
+                        <rect key="frame" x="8" y="223" width="66" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Location" usesSingleLineMode="YES" id="7nP-XF-egC">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="q8M-G3-8d9">
+                        <rect key="frame" x="8" y="401" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Deletes" usesSingleLineMode="YES" id="ot4-Tz-zkF">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="o4p-n6-iFt">
+                        <rect key="frame" x="8" y="301" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Drags" usesSingleLineMode="YES" id="MPd-Xx-ZYd">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="CYa-eV-vjL">
+                        <rect key="frame" x="8" y="351" width="80" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Switches" usesSingleLineMode="YES" id="eKB-JL-ysR">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="7sl-Zf-5bO" userLabel="Words Field">
+                        <rect key="frame" x="66" y="451" width="133" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="54,321" usesSingleLineMode="YES" id="YD8-xN-3ed">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Qth-pe-2Op"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayWordCount" id="vGQ-xO-KzB"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="T3g-3g-Iqa">
+                        <rect key="frame" x="66" y="326" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="Z9L-Wr-R43">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="bOq-uU-eii"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayClickCount" id="5ay-b9-sXa"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="eeo-79-RJI">
+                        <rect key="frame" x="66" y="376" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="hSp-yb-5sJ">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="pSy-sV-OaD"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayKeyZXCVCount" id="jGP-hE-FCQ"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="ci1-AF-ke9">
+                        <rect key="frame" x="66" y="426" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="54321" usesSingleLineMode="YES" id="oA3-fQ-CFI">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Tby-yW-sNT"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayKeyCount" id="Lzx-tp-kcC"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="Uin-MX-60D">
+                        <rect key="frame" x="66" y="276" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="9dL-5c-EHY">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Zb0-Kt-qcX"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayScrollCount" id="teV-oN-JVG"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="GTE-bS-XWA">
+                        <rect key="frame" x="58" y="227" width="42" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="[lat]" usesSingleLineMode="YES" id="SAF-Ff-Ey6">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="showLocationInMaps:" target="494" id="XxT-73-vTU"/>
+                            <binding destination="494" name="displayPatternValue1" keyPath="self.lat" id="DNr-SV-bh1">
+                                <dictionary key="options">
+                                    <string key="NSDisplayPattern">%{value1}@</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="hpq-BJ-Gvl">
+                        <rect key="frame" x="66" y="252" width="70" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="POs-q2-8aK">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="XIF-va-97R"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayCursorDistance" id="Dr0-IN-6Sk"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="f2W-1e-306">
+                        <rect key="frame" x="66" y="301" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="QQX-ir-bKF">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="sbA-wN-tKw"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayDragCount" id="JKV-Wm-3V3"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="9Qf-Nn-t0R">
+                        <rect key="frame" x="66" y="351" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="qDf-03-eGW">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="69M-L3-mMc"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayAppSwitchCount" id="Sgy-zk-FRa"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <textField verticalHuggingPriority="750" id="RUE-8k-jWa">
+                        <rect key="frame" x="66" y="401" width="66" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="x4Q-Q3-LLh">
+                            <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="t4M-RR-8qU"/>
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <binding destination="494" name="value" keyPath="self.dayKeyDeleteCount" id="8mV-DX-QES"/>
+                            </connections>
+                        </textFieldCell>
+                    </textField>
+                    <button verticalHuggingPriority="750" id="VT9-zT-dVY" userLabel="Life Browser Button">
+                        <rect key="frame" x="-2" y="7" width="142" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Slice Browser" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="ffU-mq-rXc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HelveticaNeue-UltraLight"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showBrowseSliceWindow:" target="494" id="Au4-GY-x5P"/>
+                        </connections>
+                    </button>
+                    <imageView id="Gnq-mg-QX8">
+                        <rect key="frame" x="7" y="132" width="134" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="0g6-dX-of8"/>
+                    </imageView>
+                    <imageView id="Vxa-50-n6f">
+                        <rect key="frame" x="7" y="40" width="134" height="90"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="qru-P7-iEJ"/>
+                    </imageView>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="V7k-zd-hhi">
+                        <rect key="frame" x="109" y="227" width="32" height="17"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="[lon]" usesSingleLineMode="YES" id="NjY-18-jNX">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                        <connections>
+                            <action selector="showLocationInMaps:" target="494" id="pnU-UB-3tP"/>
+                            <binding destination="494" name="displayPatternValue1" keyPath="self.lon" id="cii-6Y-xLi">
+                                <dictionary key="options">
+                                    <string key="NSDisplayPattern">%{value1}@</string>
+                                </dictionary>
+                            </binding>
+                        </connections>
+                    </textField>
+                </subviews>
+            </view>
+            <point key="canvasLocation" x="100" y="271"/>
+        </window>
     </objects>
     <resources>
         <image name="LifeSliceIcon" width="256" height="256"/>

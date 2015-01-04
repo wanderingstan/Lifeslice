@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>690</string>
+	<string>691</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -34,9 +34,15 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUAllowsAutomaticUpdates</key>
+	<true/>
+	<key>SUEnableAutomaticChecks</key>
+	<true/>
+	<key>SUEnableSystemProfiling</key>
+	<true/>
 	<key>SUFeedURL</key>
-	<string>http://wanderingstan.com/apps/lifeslice/lifeslice_HEAD_appcast.xml</string>
-	<key>SUFeedURL-off</key>
-	<string>http://wanderingstan.com/apps/lifeslice/lifeslice_appcast.xml</string>
+	<string>http://wanderingstan.com/apps/lifeslice/sparkle-lifeslice-appcast-xml.php</string>
+	<key>SUScheduledCheckInterval</key>
+	<integer>86400</integer>
 </dict>
 </plist>

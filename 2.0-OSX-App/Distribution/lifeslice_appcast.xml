@@ -56,5 +56,18 @@
             />
         </item>
 
+        <item>
+            <title>LifeSlice Version 2.2 (691)</title>
+            <sparkle:releaseNotesLink>http://www.wanderingstan.com/apps/lifeslice/691.html</sparkle:releaseNotesLink>
+            <pubDate>Sat, 03 Jan 2015 17:46:49 -0600</pubDate>
+            <enclosure
+                url="http://www.wanderingstan.com/apps/lifeslice/LifeSlice.dmg"
+                sparkle:version="691"
+                sparkle:shortVersionString="2.2"
+                type="application/octet-stream"
+                length="3205844"
+            />
+        </item>
+
     </channel>
 </rss>
