@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# For debugging
+set -o verbose
+
 # TODO: New sparkle requires that we just zip the app, and nothing more.
 
 # Command to take signed app, put it in a zip, create Sparkle appcast XML, and (optionally) upload to server
@@ -29,12 +32,16 @@ rm "${DMG_FILENAME}"
 echo "Creating DMG file: ${DMG_FILENAME}"
 hdiutil create "${DMG_FILENAME}" -srcfolder ./LifeSlice/ -ov
 
-# Create the ZIP
+# Create the ZIPn
+
 ZIP_FILENAME="${PRODUCT_NAME}_${VERSION}.zip"
 echo "Creating ZIP file: ${ZIP_FILENAME}"
-ditto -ck --rsrc --sequesterRsrc "./${PRODUCT_NAME}/${PRODUCT_NAME}.app" "${ZIP_FILENAME}"
+# ditto -ck --rsrc --sequesterRsrc "./${PRODUCT_NAME}/${PRODUCT_NAME}.app" "${ZIP_FILENAME}"
+rm "${ZIP_FILENAME}"
+# zip --quiet -r  "../${ZIP_FILENAME}" "${PRODUCT_NAME}.app" 
+ditto -ck --rsrc --sequesterRsrc "${PRODUCT_NAME}/" "${ZIP_FILENAME}"
 
-DISTRIBUTION_FILENAME="${DMG_FILENAME}"
+DISTRIBUTION_FILENAME="${ZIP_FILENAME}"
 
 DOWNLOAD_URL="$DOWNLOAD_BASE_URL/$DISTRIBUTION_FILENAME"
 echo "Download URL: ${DOWNLOAD_URL}"
@@ -88,17 +95,20 @@ cat > "${NOTES_FILENAME}" <<EOF
 <html lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8">
-    <title>LifeSlice Update</title>
+    <title>LifeSlice Update : ${VERSION}</title>
 </head>
 <body>
 
+<!-- Put update info here -->
+
+<!--
 <ul>
 <li></li>
-<li></li>
-<li></li>
-<li></li>
+<li>BLAH BLAH BLAH</li>
 </ul>
+-->
 
+<p><small>Build: ${VERSION}</small></p>
 </body>
 </html>
 EOF
@@ -116,9 +126,11 @@ then
     ftp -n $FTP_HOST <<END_SCRIPT
     quote USER $FTP_USER
     quote PASS $FTP_PASSWORD
+    binary
     put $DISTRIBUTION_FILENAME
     put $DMG_FILENAME
     put $APPCAST_FILENAME
+    put $NOTES_FILENAME
     quit
 END_SCRIPT
     exit 0

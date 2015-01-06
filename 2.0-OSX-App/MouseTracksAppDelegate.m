@@ -168,7 +168,7 @@
 //    NSString *logPath = [[[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
 //    NSString *logPath = [[[[NSFileManager defaultManager] applicationSupportDirectory] stringByDeletingLastPathComponent] stringByAppendingPathComponent:[NSString stringWithFormat:@"LifeSlice_%@.log", NSFullUserName()]];
     NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
-    freopen([logPath cStringUsingEncoding:NSASCIIStringEncoding],"w",stderr);
+    freopen([logPath cStringUsingEncoding:NSASCIIStringEncoding],"a",stderr);
 #else
     NSLog(@"Not RELEASE_TEST_BUILD, so normal logging.");
 #endif
@@ -523,7 +523,7 @@
     [alert addButtonWithTitle:@"Send Error Report"];
     [alert addButtonWithTitle:@"Skip"];
     [alert setMessageText:message];
-    [alert setInformativeText: @"Sending an error report will help fix this problem in future versions. However, it will send some basic information about your computer usage during while LifeSlice ran. No webcams, screenshots, or location data are sent."];
+    [alert setInformativeText: @"Sending an error report will help fix this problem in future versions. However, it will send some basic information about your computer usage while LifeSlice ran. No webcam images, screenshots, or location data are sent."];
     [alert setAlertStyle:NSWarningAlertStyle];
     if ([alert runModal] == NSAlertFirstButtonReturn) {
         [self uploadLogFile];
@@ -562,7 +562,7 @@
         
         NSMutableData *body = [NSMutableData data];
         [body appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n",boundary]   dataUsingEncoding:NSUTF8StringEncoding]];
-        [body appendData:[[NSString stringWithString:[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"file\"; filename=\"%@.html\"\r\n", @"LifeSlice_error_log.txt"]] dataUsingEncoding:NSUTF8StringEncoding]];
+        [body appendData:[[NSString stringWithString:[NSString stringWithFormat: @"Content-Disposition: form-data; name=\"file\"; filename=\"%@\"\r\n", @"LifeSlice_error_log.txt"]] dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
         [body appendData:[NSData dataWithData:theData]];
         [body appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n",boundary] dataUsingEncoding:NSUTF8StringEncoding]];
@@ -680,7 +680,12 @@
         self.dayCurrentScrollEventCount = 0;
         self.dayAppSwitchCount = 0;
         
+        
         [self showYesterdaySummaryNotification];
+        
+        // Reset log file (so it doesn't get too big)
+        NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
+        [[NSFileManager defaultManager] removeItemAtPath:logPath error:nil];
         
     }
     lastSliceDay = [[now dateWithCalendarFormat:nil timeZone:nil] dayOfMonth];
@@ -1173,8 +1178,13 @@
 		   fromLocation:(CLLocation *)oldLocation
 {
     NSLog(@"didUpdateToLocation start");
+
+#ifdef RELEASE_TEST_BUILD
+    NSLog(@"Got lat/lon location. ");
+#else
+	NSLog(@"Got lat/lon location. We're at %f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
+#endif
     
-	NSLog(@"We're at %f,%f",newLocation.coordinate.latitude,newLocation.coordinate.longitude);
 	self.lat = newLocation.coordinate.latitude;
 	self.lon = newLocation.coordinate.longitude;
 	
@@ -1393,7 +1403,6 @@
 
 - (IBAction)showAboutWindow:(id)pId {
     
-
     NSLog(@"Showing about window!");
 
     [versionLabel setStringValue: [NSString stringWithFormat:@"Version %@ (%@)",
@@ -1410,6 +1419,7 @@
 
 #else
 
+    
     // Testing area
 //    [self showYesterdaySummaryNotification];
 

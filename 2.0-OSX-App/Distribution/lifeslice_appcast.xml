@@ -69,5 +69,31 @@
             />
         </item>
 
+        <item>
+            <title>LifeSlice Version 2.2 (692)</title>
+            <sparkle:releaseNotesLink>http://www.wanderingstan.com/apps/lifeslice/692.html</sparkle:releaseNotesLink>
+            <pubDate>Sun, 04 Jan 2015 14:16:48 -0800</pubDate>
+            <enclosure
+                url="http://www.wanderingstan.com/apps/lifeslice/LifeSlice_692.zip"
+                sparkle:version="692"
+                sparkle:shortVersionString="2.2"
+                type="application/octet-stream"
+                length="1805351"
+            />
+        </item>
+
+        <item>
+            <title>LifeSlice Version 2.2 (693)</title>
+            <sparkle:releaseNotesLink>http://www.wanderingstan.com/apps/lifeslice/693.html</sparkle:releaseNotesLink>
+            <pubDate>Sun, 04 Jan 2015 15:37:07 -0800</pubDate>
+            <enclosure
+                url="http://www.wanderingstan.com/apps/lifeslice/LifeSlice_693.zip"
+                sparkle:version="693"
+                sparkle:shortVersionString="2.2"
+                type="application/octet-stream"
+                length="3210425"
+            />
+        </item>
+
     </channel>
 </rss>
