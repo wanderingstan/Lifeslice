@@ -1180,6 +1180,7 @@
     NSLog(@"didUpdateToLocation start");
 
 #ifdef RELEASE_TEST_BUILD
+    // Don't report lat/lon on production builds, as this could end up in submitted error log.
     NSLog(@"Got lat/lon location. ");
 #else
 	NSLog(@"Got lat/lon location. We're at %f,%f", newLocation.coordinate.latitude, newLocation.coordinate.longitude);
@@ -1188,13 +1189,13 @@
 	self.lat = newLocation.coordinate.latitude;
 	self.lon = newLocation.coordinate.longitude;
 	
-	// Ignore updates where nothing we care about changed
-	if (newLocation.coordinate.longitude == oldLocation.coordinate.longitude &&
-		newLocation.coordinate.latitude == oldLocation.coordinate.latitude &&
-		newLocation.horizontalAccuracy == oldLocation.horizontalAccuracy)
-	{
-		return;
-	}
+//	// Ignore updates where nothing we care about changed
+//	if (newLocation.coordinate.longitude == oldLocation.coordinate.longitude &&
+//		newLocation.coordinate.latitude == oldLocation.coordinate.latitude &&
+//		newLocation.horizontalAccuracy == oldLocation.horizontalAccuracy)
+//	{
+//		return;
+//	}
     
     NSLog(@"didUpdateToLocation done, so closing down locationmanager");
     [locationManager stopUpdatingLocation];
