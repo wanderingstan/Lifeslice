@@ -247,17 +247,6 @@
                                     <rect key="frame" x="10" y="33" width="496" height="248"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <button verticalHuggingPriority="750" id="aTi-3e-wiA">
-                                            <rect key="frame" x="11" y="10" width="200" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Import LifeSlice 1.0 Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iiA-yh-Huk" customClass="DoButton">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="importOldLifeSlice:" target="494" id="mHN-YH-GXa"/>
-                                            </connections>
-                                        </button>
                                         <segmentedControl verticalHuggingPriority="750" id="Iil-Dg-JGf">
                                             <rect key="frame" x="175" y="216" width="221" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -308,8 +297,19 @@
                                                 <binding destination="650" name="selectedIndex" keyPath="values.screenShotMaxSize" id="O1h-Go-WMw"/>
                                             </connections>
                                         </segmentedControl>
+                                        <button verticalHuggingPriority="750" id="aTi-3e-wiA">
+                                            <rect key="frame" x="138" y="92" width="221" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Import LifeSlice 1.0 Files" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="iiA-yh-Huk" customClass="DoButton">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="importOldLifeSlice:" target="494" id="mHN-YH-GXa"/>
+                                            </connections>
+                                        </button>
                                         <button verticalHuggingPriority="750" id="681">
-                                            <rect key="frame" x="11" y="146" width="221" height="32"/>
+                                            <rect key="frame" x="138" y="124" width="221" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Show LifeSlice Files in Finder" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="682" customClass="DoButton">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -317,6 +317,17 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="revealFilesInFinder:" target="494" id="801"/>
+                                            </connections>
+                                        </button>
+                                        <button verticalHuggingPriority="750" id="DBF-eT-enk">
+                                            <rect key="frame" x="137" y="59" width="223" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Send Error Log to Developers" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="txP-c5-cRD">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="sendErrorLogAction:" target="494" id="VCZ-t9-H1E"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -437,17 +448,17 @@
         <window title="LifeSlice" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="708" userLabel="Live Stats" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="1127" y="440" width="140" height="402"/>
+            <rect key="contentRect" x="1127" y="440" width="140" height="409"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="709">
-                <rect key="frame" x="0.0" y="0.0" width="140" height="402"/>
+                <rect key="frame" x="0.0" y="-1" width="140" height="409"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <userGuides>
-                    <userLayoutGuide location="70" affinity="minX"/>
+                    <userLayoutGuide location="69" affinity="minX"/>
                 </userGuides>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Frf-0W-h9k">
-                        <rect key="frame" x="4" y="226" width="66" height="17"/>
+                        <rect key="frame" x="4" y="233" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Scrolls" usesSingleLineMode="YES" id="cHT-w8-I3H">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -456,7 +467,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="UZ1-ul-NqI">
-                        <rect key="frame" x="3" y="361" width="133" height="15"/>
+                        <rect key="frame" x="3" y="368" width="133" height="15"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Words" usesSingleLineMode="YES" id="SGx-Td-Cs8">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -465,7 +476,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="ilV-JO-aZS">
-                        <rect key="frame" x="4" y="330" width="66" height="17"/>
+                        <rect key="frame" x="4" y="337" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Keys" usesSingleLineMode="YES" id="cmy-g3-Oqa">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -474,7 +485,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="R9b-lG-F8I">
-                        <rect key="frame" x="4" y="261" width="66" height="17"/>
+                        <rect key="frame" x="4" y="268" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Clicks" usesSingleLineMode="YES" id="qDH-FW-ZMM">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -483,7 +494,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="09L-t6-AMz">
-                        <rect key="frame" x="4" y="296" width="66" height="17"/>
+                        <rect key="frame" x="4" y="303" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Shortcuts" usesSingleLineMode="YES" id="gex-2i-8Qn">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -492,7 +503,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="gim-eX-pag">
-                        <rect key="frame" x="70" y="226" width="66" height="17"/>
+                        <rect key="frame" x="70" y="233" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Distance" usesSingleLineMode="YES" id="V6v-pa-Uo3">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -501,7 +512,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="f5W-6P-del">
-                        <rect key="frame" x="70" y="330" width="66" height="17"/>
+                        <rect key="frame" x="70" y="337" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Deletes" usesSingleLineMode="YES" id="LFO-Zb-AkE">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -510,7 +521,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pWV-3R-tLh">
-                        <rect key="frame" x="70" y="261" width="66" height="17"/>
+                        <rect key="frame" x="70" y="268" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Drags" usesSingleLineMode="YES" id="uz3-gI-0Ij">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -519,7 +530,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="CaL-cu-2JD">
-                        <rect key="frame" x="70" y="296" width="66" height="17"/>
+                        <rect key="frame" x="70" y="303" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Switches" usesSingleLineMode="YES" id="DKk-kG-l4c">
                             <font key="font" size="11" name="HelveticaNeue-UltraLight"/>
@@ -528,7 +539,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="kJO-oK-qHe" userLabel="Words Field">
-                        <rect key="frame" x="3" y="366" width="133" height="40"/>
+                        <rect key="frame" x="3" y="373" width="133" height="40"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="54,321" id="94V-Od-vFA">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="28C-Sc-6Qd"/>
@@ -541,7 +552,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="KQQ-wS-ESK">
-                        <rect key="frame" x="4" y="275" width="66" height="22"/>
+                        <rect key="frame" x="4" y="282" width="66" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="123456" id="yqZ-Xj-Yy0">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="7vW-ho-GeF"/>
@@ -554,7 +565,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="pJj-Bw-mCc">
-                        <rect key="frame" x="4" y="310" width="66" height="22"/>
+                        <rect key="frame" x="4" y="317" width="66" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="123456" id="9RG-GJ-OWf">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="bsd-Il-hIg"/>
@@ -567,7 +578,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="B7N-M4-IFl">
-                        <rect key="frame" x="4" y="343" width="66" height="22"/>
+                        <rect key="frame" x="4" y="350" width="66" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="54321" id="NrV-PC-Ben">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="ECF-Lt-Uyv"/>
@@ -580,7 +591,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="Mnb-w2-rpY">
-                        <rect key="frame" x="4" y="240" width="66" height="22"/>
+                        <rect key="frame" x="4" y="247" width="66" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="123456" id="002-sB-IEr">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Iqb-zc-qKs"/>
@@ -593,7 +604,7 @@
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="t4V-P1-sDV">
-                        <rect key="frame" x="3" y="29" width="70" height="17"/>
+                        <rect key="frame" x="3" y="36" width="70" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="[lat]" usesSingleLineMode="YES" id="hTV-AA-cJj">
                             <font key="font" size="11" name="HelveticaNeue-CondensedBold"/>
@@ -610,7 +621,7 @@
                         </connections>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="86k-3f-H1T">
-                        <rect key="frame" x="70" y="29" width="70" height="17"/>
+                        <rect key="frame" x="70" y="36" width="70" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="[lon]" usesSingleLineMode="YES" id="z0p-SL-HgM">
                             <font key="font" size="11" name="HelveticaNeue-CondensedBold"/>
@@ -626,8 +637,8 @@
                             </binding>
                         </connections>
                     </textField>
-                    <textField verticalHuggingPriority="750" id="yC7-pt-V1g">
-                        <rect key="frame" x="68" y="240" width="70" height="22"/>
+                    <textField verticalHuggingPriority="750" id="yC7-pt-V1g" userLabel="_Distance">
+                        <rect key="frame" x="68" y="247" width="70" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="123456" id="l2O-X5-EdX">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="stW-DC-6Nq"/>
@@ -640,7 +651,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="i02-Zp-CIh">
-                        <rect key="frame" x="70" y="275" width="66" height="22"/>
+                        <rect key="frame" x="70" y="282" width="66" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="123456" id="WqV-sB-39p">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Ivv-Yx-fWL"/>
@@ -653,7 +664,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="kwa-DH-TzY">
-                        <rect key="frame" x="70" y="310" width="66" height="22"/>
+                        <rect key="frame" x="70" y="317" width="66" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="123456" id="fPk-US-BAz">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="YTn-nk-SGh"/>
@@ -666,7 +677,7 @@
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="DzN-V9-NbB">
-                        <rect key="frame" x="70" y="343" width="66" height="22"/>
+                        <rect key="frame" x="70" y="350" width="66" height="22"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="center" placeholderString="123456" id="lyU-8S-kxV">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="CRM-sj-rRf"/>
@@ -678,8 +689,18 @@
                             </connections>
                         </textFieldCell>
                     </textField>
+                    <imageView id="760">
+                        <rect key="frame" x="6" y="53" width="128" height="84"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="761"/>
+                    </imageView>
+                    <imageView id="757">
+                        <rect key="frame" x="6" y="145" width="128" height="84"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="758"/>
+                    </imageView>
                     <button verticalHuggingPriority="750" id="mRk-Qs-4wc" userLabel="Life Browser Button">
-                        <rect key="frame" x="-3" y="-2" width="142" height="32"/>
+                        <rect key="frame" x="-1" y="0.0" width="142" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <buttonCell key="cell" type="push" title="Slice Browser" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="h1a-48-bAD">
                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -689,19 +710,9 @@
                             <action selector="showBrowseSliceWindow:" target="494" id="Veq-eP-FRB"/>
                         </connections>
                     </button>
-                    <imageView id="760">
-                        <rect key="frame" x="6" y="46" width="128" height="84"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="761"/>
-                    </imageView>
-                    <imageView id="757">
-                        <rect key="frame" x="6" y="138" width="128" height="84"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="758"/>
-                    </imageView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-146" y="265"/>
+            <point key="canvasLocation" x="-142" y="304.5"/>
         </window>
         <window allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="766" userLabel="About WIndow">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
@@ -780,14 +791,14 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
         <window title="LifeSlice" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="TbK-x1-LnV" userLabel="Live Stats - New" customClass="NSPanel">
             <windowStyleMask key="styleMask" titled="YES" closable="YES" utility="YES" unifiedTitleAndToolbar="YES"/>
             <windowPositionMask key="initialPositionMask" rightStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="1127" y="440" width="150" height="478"/>
+            <rect key="contentRect" x="1127" y="440" width="150" height="493"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
             <view key="contentView" id="nG2-oF-i9c">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="478"/>
+                <rect key="frame" x="0.0" y="-1" width="150" height="493"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8Rk-Ei-e5M">
-                        <rect key="frame" x="8" y="276" width="66" height="17"/>
+                        <rect key="frame" x="8" y="291" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Scrolls" usesSingleLineMode="YES" id="qzd-sf-iQq">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -796,7 +807,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Fxo-n9-ZLV">
-                        <rect key="frame" x="8" y="451" width="48" height="17"/>
+                        <rect key="frame" x="8" y="466" width="48" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Words" usesSingleLineMode="YES" id="Jwb-zD-WuY">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -805,7 +816,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="axR-zq-bti">
-                        <rect key="frame" x="8" y="426" width="32" height="17"/>
+                        <rect key="frame" x="8" y="441" width="32" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Keys" usesSingleLineMode="YES" id="65y-Ya-yPa">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -814,7 +825,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="niD-ZW-RDa">
-                        <rect key="frame" x="7" y="326" width="66" height="17"/>
+                        <rect key="frame" x="7" y="341" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Clicks" usesSingleLineMode="YES" id="UmT-Bg-iaB">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -823,7 +834,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="l5X-bX-9cE">
-                        <rect key="frame" x="8" y="376" width="80" height="17"/>
+                        <rect key="frame" x="8" y="391" width="80" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Shortcuts" usesSingleLineMode="YES" id="8cB-ZI-5Qm">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -832,7 +843,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MgI-j3-nFH">
-                        <rect key="frame" x="8" y="252" width="66" height="17"/>
+                        <rect key="frame" x="8" y="267" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Distance" usesSingleLineMode="YES" id="41a-v5-MH9">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -841,7 +852,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="XGc-Pa-XkB">
-                        <rect key="frame" x="8" y="223" width="66" height="21"/>
+                        <rect key="frame" x="8" y="238" width="66" height="21"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Location" usesSingleLineMode="YES" id="7nP-XF-egC">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -849,8 +860,17 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
+                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="pS0-4m-bz3">
+                        <rect key="frame" x="7" y="29" width="134" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" placeholderString="[Slice Datetime]" usesSingleLineMode="YES" id="pNM-xo-piZ">
+                            <font key="font" size="14" name="HelveticaNeue-Thin"/>
+                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                        </textFieldCell>
+                    </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="q8M-G3-8d9">
-                        <rect key="frame" x="8" y="401" width="66" height="17"/>
+                        <rect key="frame" x="8" y="416" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Deletes" usesSingleLineMode="YES" id="ot4-Tz-zkF">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -859,7 +879,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="o4p-n6-iFt">
-                        <rect key="frame" x="8" y="301" width="66" height="17"/>
+                        <rect key="frame" x="8" y="316" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Drags" usesSingleLineMode="YES" id="MPd-Xx-ZYd">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -868,7 +888,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="CYa-eV-vjL">
-                        <rect key="frame" x="8" y="351" width="80" height="17"/>
+                        <rect key="frame" x="8" y="366" width="80" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Switches" usesSingleLineMode="YES" id="eKB-JL-ysR">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -877,7 +897,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="7sl-Zf-5bO" userLabel="Words Field">
-                        <rect key="frame" x="66" y="451" width="133" height="17"/>
+                        <rect key="frame" x="66" y="466" width="133" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="54,321" usesSingleLineMode="YES" id="YD8-xN-3ed">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Qth-pe-2Op"/>
@@ -890,7 +910,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="T3g-3g-Iqa">
-                        <rect key="frame" x="66" y="326" width="66" height="17"/>
+                        <rect key="frame" x="66" y="341" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="Z9L-Wr-R43">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="bOq-uU-eii"/>
@@ -903,7 +923,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="eeo-79-RJI">
-                        <rect key="frame" x="66" y="376" width="66" height="17"/>
+                        <rect key="frame" x="66" y="391" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="hSp-yb-5sJ">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="pSy-sV-OaD"/>
@@ -916,7 +936,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="ci1-AF-ke9">
-                        <rect key="frame" x="66" y="426" width="66" height="17"/>
+                        <rect key="frame" x="66" y="441" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="54321" usesSingleLineMode="YES" id="oA3-fQ-CFI">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Tby-yW-sNT"/>
@@ -929,7 +949,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="Uin-MX-60D">
-                        <rect key="frame" x="66" y="276" width="66" height="17"/>
+                        <rect key="frame" x="66" y="291" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="9dL-5c-EHY">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="Zb0-Kt-qcX"/>
@@ -942,7 +962,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="GTE-bS-XWA">
-                        <rect key="frame" x="58" y="227" width="42" height="17"/>
+                        <rect key="frame" x="58" y="242" width="42" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="[lat]" usesSingleLineMode="YES" id="SAF-Ff-Ey6">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -959,7 +979,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </connections>
                     </textField>
                     <textField verticalHuggingPriority="750" id="hpq-BJ-Gvl">
-                        <rect key="frame" x="66" y="252" width="70" height="17"/>
+                        <rect key="frame" x="66" y="267" width="70" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="POs-q2-8aK">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="XIF-va-97R"/>
@@ -972,7 +992,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="f2W-1e-306">
-                        <rect key="frame" x="66" y="301" width="66" height="17"/>
+                        <rect key="frame" x="66" y="316" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="QQX-ir-bKF">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="sbA-wN-tKw"/>
@@ -985,7 +1005,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="9Qf-Nn-t0R">
-                        <rect key="frame" x="66" y="351" width="66" height="17"/>
+                        <rect key="frame" x="66" y="366" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="qDf-03-eGW">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="69M-L3-mMc"/>
@@ -998,7 +1018,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                         </textFieldCell>
                     </textField>
                     <textField verticalHuggingPriority="750" id="RUE-8k-jWa">
-                        <rect key="frame" x="66" y="401" width="66" height="17"/>
+                        <rect key="frame" x="66" y="416" width="66" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" state="on" alignment="left" placeholderString="123456" usesSingleLineMode="YES" id="x4Q-Q3-LLh">
                             <numberFormatter key="formatter" formatterBehavior="default10_4" positiveFormat="#,##0.###" negativeFormat="#,##0.###" numberStyle="decimal" paddingCharacter="*" minimumIntegerDigits="1" maximumIntegerDigits="309" maximumFractionDigits="3" decimalSeparator="." groupingSeparator="," currencyDecimalSeparator="." plusSign="+" minusSign="-" notANumberSymbol="NaN" perMillSymbol="‰" percentSymbol="%" exponentSymbol="E" positivePrefix="" positiveSuffix="" negativePrefix="-" negativeSuffix="" id="t4M-RR-8qU"/>
@@ -1010,29 +1030,18 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                             </connections>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" id="VT9-zT-dVY" userLabel="Life Browser Button">
-                        <rect key="frame" x="-2" y="7" width="142" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <buttonCell key="cell" type="push" title="Slice Browser" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="ffU-mq-rXc">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" size="13" name="HelveticaNeue-UltraLight"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="showBrowseSliceWindow:" target="494" id="Au4-GY-x5P"/>
-                        </connections>
-                    </button>
                     <imageView id="Gnq-mg-QX8">
-                        <rect key="frame" x="7" y="132" width="134" height="90"/>
+                        <rect key="frame" x="7" y="147" width="134" height="90"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="0g6-dX-of8"/>
                     </imageView>
                     <imageView id="Vxa-50-n6f">
-                        <rect key="frame" x="7" y="40" width="134" height="90"/>
+                        <rect key="frame" x="7" y="55" width="134" height="90"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="photo" id="qru-P7-iEJ"/>
                     </imageView>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="V7k-zd-hhi">
-                        <rect key="frame" x="109" y="227" width="32" height="17"/>
+                        <rect key="frame" x="109" y="242" width="32" height="17"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" placeholderString="[lon]" usesSingleLineMode="YES" id="NjY-18-jNX">
                             <font key="font" size="14" name="HelveticaNeue-Thin"/>
@@ -1048,9 +1057,20 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
                             </binding>
                         </connections>
                     </textField>
+                    <button verticalHuggingPriority="750" id="VT9-zT-dVY" userLabel="Life Browser Button">
+                        <rect key="frame" x="-2" y="2" width="142" height="32"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <buttonCell key="cell" type="push" title="Slice Browser" bezelStyle="rounded" alignment="center" borderStyle="border" inset="2" id="ffU-mq-rXc">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" size="13" name="HelveticaNeue-UltraLight"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="showBrowseSliceWindow:" target="494" id="Au4-GY-x5P"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="100" y="271"/>
+            <point key="canvasLocation" x="100" y="278.5"/>
         </window>
     </objects>
     <resources>

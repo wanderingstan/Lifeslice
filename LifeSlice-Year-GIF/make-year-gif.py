@@ -25,9 +25,10 @@ class LifeSliceYearMovie:
         self.source_dir = os.path.join(self.lifeslice_dir, "webcam_thumbs")
         self.blank_image_name = "blank.png"
         self.empty_image_name = "empty.png"
-        self.thumbnail_size = "60x45"
+        self.thumbnail_size = "23x17" # 60x45"
         self.find_faces = False
         self.use_existing = False
+        self.title_font_size = 60
 
         if not os.path.exists(self.year_times_dir):
             os.makedirs(self.year_times_dir)
@@ -147,7 +148,7 @@ class LifeSliceYearMovie:
         # Overlay time info
         hour = int(target_time[0:2])
         pretty_hour = "%d%s" % (hour % 12, "am" if (hour < 12 ) else "pm")
-        label_command = "convert '%s' -font '/Library/Fonts/Arial.ttf' -background Black -fill '#eee' -pointsize 64 label:'%04d %s ' -gravity West  -append  -gravity southeast -pointsize 24 -annotate 0 'lifeslice.wanderingstan.com'  '%s' " % (temp_file, year, pretty_hour, target_animation_file)
+        label_command = "convert '%s' -font '/Library/Fonts/Arial.ttf' -background Black -fill '#eee' -pointsize %d label:'%04d %s ' -gravity West  -append  -gravity southeast -pointsize %d -annotate 0 'lifeslice.wanderingstan.com'  '%s' " % (temp_file, self.title_font_size, year, pretty_hour, int(self.title_font_size/2), target_animation_file)
         subprocess.check_output(label_command, shell=True)
 
         # Debug stuff

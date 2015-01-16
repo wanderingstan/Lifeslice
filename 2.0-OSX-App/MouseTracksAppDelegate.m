@@ -179,6 +179,11 @@
         // This is our very first launch - Setting userDefaults for next time
         [[NSUserDefaults standardUserDefaults] setValue:[NSNumber numberWithBool:YES] forKey:@"AlreadyBeenLaunched"];
         
+        // Set our logging
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUEnableSystemProfiling"];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUSendProfileInfo"];
+        [[NSUserDefaults standardUserDefaults] setInteger:86400 forKey:@"SUScheduledCheckInterval"];
+        
 #ifdef RELEASE_TEST_BUILD
         // Ping home to record install for stats
         {
@@ -251,9 +256,13 @@
                           [NSNumber numberWithInt:0], @"promptInterval",
                           [NSNumber numberWithInt:2], @"webcamMaxSize",
                           [NSNumber numberWithInt:2], @"screenShotMaxSize",
+                          [NSNumber numberWithBool:YES], @"SUEnableSystemProfiling",
+                          [NSNumber numberWithInt:86400], @"SUScheduledCheckInterval",
+                          [NSNumber numberWithBool:YES], @"SUSendProfileInfo",
                           nil
                           ];
 	[preferences registerDefaults:dict];
+    
     
     // Set up our webcam directories if needed
     NSError * webcamError = nil;
@@ -588,6 +597,10 @@
     [launchController setLaunchAtLogin:([myLaunchAtStartupCheckbox state] == NSOnState)];
 }
 
+- (IBAction)sendErrorLogAction:(id)sender {
+    [self reportErrorAndUploadLog:@"User selected to upload log"];
+}
+
 #pragma mark -
 #pragma mark Log our data
 #pragma mark -
@@ -614,7 +627,7 @@
     int doAll = (myTimer == nil);
     
     // Set up SQLite
-    NSLog(@"Connecting to Sqlite database");
+    NSLog(@"Minute Callback. Connecting to Sqlite database");
     self.db = [FMDatabase databaseWithPath:[self.appDirectory stringByAppendingPathComponent:@"lifeslice.sqlite"]];
     if (![self.db open]) {
         NSLog(@"ERROR: Could not open db.");
@@ -686,6 +699,7 @@
         // Reset log file (so it doesn't get too big)
         NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
         [[NSFileManager defaultManager] removeItemAtPath:logPath error:nil];
+        NSLog(@"Daily reset. Cleared log file");
         
     }
     lastSliceDay = [[now dateWithCalendarFormat:nil timeZone:nil] dayOfMonth];

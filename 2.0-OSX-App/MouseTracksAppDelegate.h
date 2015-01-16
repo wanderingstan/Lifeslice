@@ -97,6 +97,7 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
     IBOutlet NSImageView* webcamPreview;
     IBOutlet NSImageView* screenshotPreview;
     
+
 }
 
 @property NSEventType lastEventType;
@@ -114,7 +115,7 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
 @property int keyDeleteRunCount;
 @property int keyZXCVCount;
 @property int wordCount;
-@property int wordKeyCount; 
+@property int wordKeyCount;
 @property float lat; // our lat/lon coords
 @property float lon; // our lat/lon coords
 @property (retain) FMDatabase *db; // our SQLite database - Why can't I refer to this in more than one place without crashing?
@@ -153,10 +154,12 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
 - (IBAction)showFeedbackWindow:(id)pId;
 - (IBAction)showHomepage:(id)pId;
 
+- (IBAction)toggleLaunchAtStartup:(id)sender;
 - (IBAction)deleteLatestSlice:(id)pId;
+
 - (IBAction)revealFilesInFinder:(id)pId;
 - (IBAction)importOldLifeSlice:(id)pId;
-- (IBAction)toggleLaunchAtStartup:(id)sender;
+- (IBAction)sendErrorLogAction:(id)sender;
 
 - (IBAction)showLocationInMaps:(id)sender;
 @end
