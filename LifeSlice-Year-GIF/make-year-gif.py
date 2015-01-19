@@ -25,7 +25,7 @@ class LifeSliceYearMovie:
         self.source_dir = os.path.join(self.lifeslice_dir, "webcam_thumbs")
         self.blank_image_name = "blank.png"
         self.empty_image_name = "empty.png"
-        self.thumbnail_size = "23x17" # 60x45"
+        self.thumbnail_size = "60x45" # "23x17" 
         self.find_faces = False
         self.use_existing = False
         self.title_font_size = 60

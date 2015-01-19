@@ -184,6 +184,9 @@
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"SUSendProfileInfo"];
         [[NSUserDefaults standardUserDefaults] setInteger:86400 forKey:@"SUScheduledCheckInterval"];
         
+        // TODO: If they have old version, ask them again if we can do updates
+        // 
+        
 #ifdef RELEASE_TEST_BUILD
         // Ping home to record install for stats
         {
@@ -598,7 +601,7 @@
 }
 
 - (IBAction)sendErrorLogAction:(id)sender {
-    [self reportErrorAndUploadLog:@"User selected to upload log"];
+    [self reportErrorAndUploadLog:@"Send Error Log"];
 }
 
 #pragma mark -
@@ -715,7 +718,7 @@
     // MAYBE: we could/should also check if the screen has changed (much) since last time. no change = we're probably idle (but clock will change..)
     BOOL isFullScreen = ([[[NSApplication sharedApplication] keyWindow] styleMask] & NSFullScreenWindowMask);
     if (isFullScreen){
-        NSLog(@"We are fullscreen, so assuming that user is there watching a movie or something.");
+        NSLog(@"We are fullscreen, so assuming that user is there watching a movie or something and thus active.");
     }
     BOOL userIsIdle = ((SystemIdleTime() > (60 * 5))) && (!isFullScreen); // for now we hardcode idle to mean "nothing for 5 minutes"
     
@@ -1346,7 +1349,7 @@
     //    NSURLRequest* request = [NSURLRequest requestWithURL:fileURL];
     //    [[theWebView mainFrame] loadRequest:request];
     
-    NSLog(@"Showing BrowseSliceWindow window!");
+    NSLog(@"Showing BrowseSliceWindow window");
     [browseSliceWindow makeKeyAndOrderFront:self];
     [browseSliceWindow setDelegate:self];
     [(NSWindow*)browseSliceWindow center];
@@ -1396,7 +1399,7 @@
 #pragma mark -
 
 - (IBAction)showPreferencesWindow:(id)pId {
-    NSLog(@"Showing preferences window!");
+    NSLog(@"Showing preferences window");
     
     // Set the "launch at startup" checkbox to reflect current state
     // (May have changed while program running)
@@ -1409,7 +1412,7 @@
 }
 
 - (IBAction)showLiveStatsWindow:(id)pId {
-    NSLog(@"Showing live stats window!");
+    NSLog(@"Showing live stats window");
     [liveStatsWindow setBackgroundColor: NSColor.whiteColor];
     [liveStatsWindow makeKeyAndOrderFront:pId];
     [liveStatsWindow setLevel:NSFloatingWindowLevel]; // keep it on top
@@ -1418,7 +1421,7 @@
 
 - (IBAction)showAboutWindow:(id)pId {
     
-    NSLog(@"Showing about window!");
+    NSLog(@"Showing about window");
 
     [versionLabel setStringValue: [NSString stringWithFormat:@"Version %@ (%@)",
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
