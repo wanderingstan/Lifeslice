@@ -1566,6 +1566,7 @@
     NSString *yesterdayPrettyDateString = [f1 stringFromDate:yesterday]; // E.g. "Thursday, December 25, 2014" (In USA)
 
     NSString* reportText;
+    NSImage* webcamImage;
     {
         FMDatabase *yesterdayDb = [FMDatabase databaseWithPath:[self.appDirectory stringByAppendingPathComponent:@"lifeslice.sqlite"]];
         if (![yesterdayDb open]) {
@@ -1588,30 +1589,45 @@
         int yesterdayDragCount = 0;
         int yesterdayScrollCount = 0;
         int yesterdayCursorDistance = 0;
-
-        FMResultSet *rs1 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(keyCount) AS dayKeyCount, SUM(keyDeleteCount) AS dayKeyDeleteCount, SUM(keyZXCVCount) AS dayKeyZXCVCount, SUM(wordCount) AS dayWordCount FROM keyboard WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
-        while ([rs1 next]) {
-            yesterdayKeyCount = [rs1 intForColumn:@"dayKeyCount"];
-            yesterdayKeyDeleteCount = [rs1 intForColumn:@"dayKeyDeleteCount"];
-            yesterdayKeyZXCVCount = [rs1 intForColumn:@"dayKeyZXCVCount"];
-            yesterdayWordCount = [rs1 intForColumn:@"dayWordCount"];
-        }
-        FMResultSet *rs2 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(interval) AS dayMinuteCount, SUM(appSwitchCount) AS dayAppSwitchCount FROM app WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
-        while ([rs2 next]) {
-            yesterdayAppSwitchCount = [rs2 intForColumn:@"dayAppSwitchCount"];
-            yesterdayMinuteCount = [rs2 intForColumn:@"dayMinuteCount"];
-        }
-        FMResultSet *rs3 = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(clickCount) AS dayClickCount,SUM(dragCount) AS dayDragCount,SUM(scrollCount) AS dayScrollCount, SUM(cursorDistance) AS dayCursorDistance FROM mouse WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
-        while ([rs3 next]) {
-            yesterdayClickCount = [rs3 intForColumn:@"dayClickCount"];
-            yesterdayDragCount = [rs3 intForColumn:@"dayDragCount"];
-            yesterdayScrollCount = [rs3 intForColumn:@"dayScrollCount"];
-            yesterdayCursorDistance = [rs3 intForColumn:@"dayCursorDistance"];
-        }
+        NSString* webcamFileName;
         
-        [rs1 close];
-        [rs2 close];
-        [rs3 close];
+        {
+            FMResultSet *rs = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(keyCount) AS dayKeyCount, SUM(keyDeleteCount) AS dayKeyDeleteCount, SUM(keyZXCVCount) AS dayKeyZXCVCount, SUM(wordCount) AS dayWordCount FROM keyboard WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
+            while ([rs next]) {
+                yesterdayKeyCount = [rs intForColumn:@"dayKeyCount"];
+                yesterdayKeyDeleteCount = [rs intForColumn:@"dayKeyDeleteCount"];
+                yesterdayKeyZXCVCount = [rs intForColumn:@"dayKeyZXCVCount"];
+                yesterdayWordCount = [rs intForColumn:@"dayWordCount"];
+            }
+            [rs close];
+        }
+        {
+            FMResultSet *rs = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(interval) AS dayMinuteCount, SUM(appSwitchCount) AS dayAppSwitchCount FROM app WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
+            while ([rs next]) {
+                yesterdayAppSwitchCount = [rs intForColumn:@"dayAppSwitchCount"];
+                yesterdayMinuteCount = [rs intForColumn:@"dayMinuteCount"];
+            }
+            [rs close];
+        }
+        {
+            FMResultSet *rs = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT SUM(clickCount) AS dayClickCount,SUM(dragCount) AS dayDragCount,SUM(scrollCount) AS dayScrollCount, SUM(cursorDistance) AS dayCursorDistance FROM mouse WHERE datetime LIKE '%@';", yesterdayDateIsoString]];
+            while ([rs next]) {
+                yesterdayClickCount = [rs intForColumn:@"dayClickCount"];
+                yesterdayDragCount = [rs intForColumn:@"dayDragCount"];
+                yesterdayScrollCount = [rs intForColumn:@"dayScrollCount"];
+                yesterdayCursorDistance = [rs intForColumn:@"dayCursorDistance"];
+            }
+            [rs close];
+        }
+        {
+            FMResultSet *rs = [yesterdayDb executeQuery:[NSString stringWithFormat:@"SELECT filename FROM webcam WHERE datetime LIKE '%@' ORDER BY RANDOM() LIMIT 1;", yesterdayDateIsoString]];
+            while ([rs next]) {
+                webcamFileName = [rs stringForColumn:@"filename"];
+                NSString *webcamShotThumbPathname = [[self.appDirectory stringByAppendingPathComponent:@"webcam_thumbs"] stringByAppendingPathComponent:webcamFileName];
+                webcamImage = [[NSImage alloc]initWithContentsOfFile:webcamShotThumbPathname];
+            }
+            [rs close];
+        }
         [yesterdayDb close];
         
         // TODO: Report hours that user was working (productive vs passive?)
@@ -1623,6 +1639,7 @@
     notification.subtitle = [NSString stringWithFormat:@"Yesterday, %@", yesterdayPrettyDateString];
     notification.informativeText = reportText;
     notification.soundName = nil;
+    notification.contentImage = webcamImage;
     
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 

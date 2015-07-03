@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # For debugging
-set -o verbose
+# set -o verbose
 
 # TODO: New sparkle requires that we just zip the app, and nothing more.
 
@@ -90,6 +90,7 @@ cat >> "${APPCAST_FILENAME}" <<EOF
 EOF
 
 # Create release notes stub
+if [[ ! -f x.txt ]] ; then
 cat > "${NOTES_FILENAME}" <<EOF
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="en">
@@ -99,20 +100,20 @@ cat > "${NOTES_FILENAME}" <<EOF
 </head>
 <body>
 
-<!-- Put update info here -->
-
-<!--
 <ul>
-<li></li>
-<li>BLAH BLAH BLAH</li>
+<li><!-- Put update info here --></li>
+<li><!-- Put update info here --></li>
 </ul>
--->
 
 <p><small>Build: ${VERSION}</small></p>
 </body>
 </html>
 EOF
 echo "Created notes html file: ${ZIP_FILENAME}"
+fi
+
+# Launch editor with notes
+"${EDITOR:-vi}" "${NOTES_FILENAME}"
 
 
 # Upload and update XML
