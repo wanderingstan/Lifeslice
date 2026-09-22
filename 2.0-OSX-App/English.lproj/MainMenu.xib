@@ -783,7 +783,7 @@ LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite,
             </view>
             <point key="canvasLocation" x="199" y="736"/>
         </window>
-        <customObject id="822" customClass="SUUpdater"/>
+        <customObject id="822" customClass="SPUStandardUpdaterController"/>
         <userDefaultsController id="YFG-3T-i6O"/>
         <userDefaultsController id="Qx1-9w-1Zk"/>
         <userDefaultsController id="hxd-KL-97j"/>

@@ -12,6 +12,9 @@
 #import "ImageSnap.h"
 #import <AppKit/AppKit.h>
 #import <ApplicationServices/ApplicationServices.h>
+#import <AVFoundation/AVFoundation.h>
+#import <CoreGraphics/CoreGraphics.h>
+#import <IOKit/hidsystem/IOHIDLib.h>
 
 @implementation MouseTracksAppDelegate
 
@@ -384,6 +387,10 @@
 		[self handleEvent:incomingEvent];
         return incomingEvent;
 	}];
+    // Since 10.15 the global monitor below silently reports nothing unless the
+    // user has granted Input Monitoring, so ask before we start listening.
+    [self requestInputMonitoringPermission];
+
     // Monitor global events (in other apps)
 	[NSEvent addGlobalMonitorForEventsMatchingMask:(NSMouseMovedMask|NSLeftMouseDraggedMask|NSLeftMouseUpMask|NSKeyDownMask|NSScrollWheelMask) handler:^(NSEvent *incomingEvent) {
 		[self handleEvent:incomingEvent];
@@ -449,6 +456,11 @@
             encoding:NSStringEncodingConversionAllowLossy
                error:nil];
     
+    // Camera and screen recording are gated by TCC on modern macOS. Ask now so the
+    // user sees the prompts at launch rather than losing the first slice silently.
+    [self requestCameraPermission];
+    [self requestScreenRecordingPermission];
+
     // Set up location monitoring
     locationManager = [[CLLocationManager alloc] init];
     locationManager.delegate = self;
@@ -590,6 +602,48 @@
 
 #pragma mark -
 #pragma mark Auto-start on Login
+
+/**
+ * Webcam access. Without an authorization request the first ImageSnap call
+ * would trigger the prompt mid-capture and lose that slice's photo.
+ */
+- (void)requestCameraPermission {
+    AVAuthorizationStatus status = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+    if (status == AVAuthorizationStatusNotDetermined) {
+        [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
+            NSLog(@"Camera access granted: %@", granted ? @"YES" : @"NO");
+        }];
+    } else if (status != AVAuthorizationStatusAuthorized) {
+        NSLog(@"Camera access denied. Webcam slices will be empty until it is enabled in System Settings > Privacy & Security > Camera.");
+    }
+}
+
+/**
+ * Screen recording. screencapture writes a blank or desktop-only image without
+ * this, and there is no API to request it directly: the preflight call is what
+ * makes macOS show the prompt.
+ */
+- (void)requestScreenRecordingPermission {
+    if (!CGPreflightScreenCaptureAccess()) {
+        if (!CGRequestScreenCaptureAccess()) {
+            NSLog(@"Screen recording access denied. Screenshots will be blank until it is enabled in System Settings > Privacy & Security > Screen Recording.");
+        }
+    }
+}
+
+/**
+ * Input monitoring, needed for the global keyboard and mouse event monitor.
+ * Denial is not fatal: we simply stop seeing events from other apps.
+ */
+- (void)requestInputMonitoringPermission {
+    if (@available(macOS 10.15, *)) {
+        if (IOHIDCheckAccess(kIOHIDRequestTypeListenEvent) != kIOHIDAccessTypeGranted) {
+            if (!IOHIDRequestAccess(kIOHIDRequestTypeListenEvent)) {
+                NSLog(@"Input monitoring access denied. Keystroke and mouse stats from other apps will not be recorded until it is enabled in System Settings > Privacy & Security > Input Monitoring.");
+            }
+        }
+    }
+}
 
 /**
  * Toggle the application launching at startup

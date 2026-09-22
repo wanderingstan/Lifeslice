@@ -21,15 +21,19 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>699</string>
+	<string>700</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>LSUIElement</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Takes a webcam picture of you at each time slice. Photos are only ever stored locally on your computer.</string>
 	<key>NSLocationUsageDescription</key>
 	<string>Used to record your lattitude and longitude. This is only stored locally on your computer.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Used to record your latitude and longitude. This is only stored locally on your computer.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
@@ -41,7 +45,9 @@
 	<key>SUEnableSystemProfiling</key>
 	<true/>
 	<key>SUFeedURL</key>
-	<string>http://wanderingstan.com/apps/lifeslice/sparkle-lifeslice-appcast-xml.php</string>
+	<string>https://wanderingstan.com/apps/lifeslice/sparkle-lifeslice-appcast-xml.php</string>
+	<key>SUPublicEDKey</key>
+	<string>REPLACE_WITH_EDDSA_PUBLIC_KEY</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
 </dict>

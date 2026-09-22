@@ -14,14 +14,13 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		F614B5F817DE280D00A83FF8 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = F614B5F617DE280D00A83FF8 /* LaunchAtLoginController.m */; };
 		F61F3DEC176FC71C00776CED /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
-		F61F3DEF176FC76500776CED /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; };
+		F61F3DEF176FC76500776CED /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = F61F3DEB176FC71C00776CED /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F63A30EB1A3621DF003F9988 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30EA1A3621DF003F9988 /* AVFoundation.framework */; };
 		F63A30ED1A362212003F9988 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30EC1A362212003F9988 /* CoreMedia.framework */; };
 		F63A30EF1A36229B003F9988 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30EE1A36229B003F9988 /* CoreLocation.framework */; };
 		F63A30F11A3622B2003F9988 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30F01A3622B2003F9988 /* libsqlite3.0.dylib */; };
 		F63A30F31A3622BD003F9988 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30F21A3622BD003F9988 /* WebKit.framework */; };
 		F63A30F51A3622C4003F9988 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30F41A3622C4003F9988 /* Quartz.framework */; };
-		F63A30F71A3622CB003F9988 /* QTKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30F61A3622CB003F9988 /* QTKit.framework */; };
 		F63A30F91A3622D2003F9988 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F63A30F81A3622D2003F9988 /* IOKit.framework */; };
 		F652998A17D9427E00BF088C /* jquery-2.0.3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F827017D8E4FE00A8AD03 /* jquery-2.0.3.min.js */; };
 		F652998B17D9428500BF088C /* d3.v3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = F69F826F17D8E4FE00A8AD03 /* d3.v3.min.js */; };
@@ -37,18 +36,6 @@
 		F69F827A17D8E4FE00A8AD03 /* slicebrowser-d3.html in Resources */ = {isa = PBXBuildFile; fileRef = F69F827317D8E4FE00A8AD03 /* slicebrowser-d3.html */; };
 		F69F827B17D8E4FE00A8AD03 /* slicebrowser-day-d3.html in Resources */ = {isa = PBXBuildFile; fileRef = F69F827417D8E4FE00A8AD03 /* slicebrowser-day-d3.html */; };
 		F69F827C17D8E4FE00A8AD03 /* slicebrowser.html in Resources */ = {isa = PBXBuildFile; fileRef = F69F827517D8E4FE00A8AD03 /* slicebrowser.html */; };
-		F6A0150316B1048D001CCC5F /* categories.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014DD16B1048D001CCC5F /* categories.pbxbtree */; };
-		F6A0150416B1048D001CCC5F /* cdecls.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014DE16B1048D001CCC5F /* cdecls.pbxbtree */; };
-		F6A0150516B1048D001CCC5F /* decls.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014DF16B1048D001CCC5F /* decls.pbxbtree */; };
-		F6A0150616B1048D001CCC5F /* files.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E016B1048D001CCC5F /* files.pbxbtree */; };
-		F6A0150716B1048D001CCC5F /* imports.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E116B1048D001CCC5F /* imports.pbxbtree */; };
-		F6A0150816B1048D001CCC5F /* pbxindex.header in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E216B1048D001CCC5F /* pbxindex.header */; };
-		F6A0150916B1048D001CCC5F /* protocols.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E316B1048D001CCC5F /* protocols.pbxbtree */; };
-		F6A0150A16B1048D001CCC5F /* refs.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E416B1048D001CCC5F /* refs.pbxbtree */; };
-		F6A0150B16B1048D001CCC5F /* control in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E616B1048D001CCC5F /* control */; };
-		F6A0150C16B1048D001CCC5F /* strings in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E716B1048D001CCC5F /* strings */; };
-		F6A0150D16B1048D001CCC5F /* subclasses.pbxbtree in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E816B1048D001CCC5F /* subclasses.pbxbtree */; };
-		F6A0150E16B1048D001CCC5F /* symbols0.pbxsymbols in Resources */ = {isa = PBXBuildFile; fileRef = F6A014E916B1048D001CCC5F /* symbols0.pbxsymbols */; };
 		F6A0151116B1048D001CCC5F /* fmdb.1 in Resources */ = {isa = PBXBuildFile; fileRef = F6A014EC16B1048D001CCC5F /* fmdb.1 */; };
 		F6A0151416B1048D001CCC5F /* FMDatabase.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014F516B1048D001CCC5F /* FMDatabase.m */; };
 		F6A0151516B1048D001CCC5F /* FMDatabaseAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014F716B1048D001CCC5F /* FMDatabaseAdditions.m */; };
@@ -56,7 +43,7 @@
 		F6A0151716B1048D001CCC5F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FB16B1048D001CCC5F /* FMDatabaseQueue.m */; };
 		F6A0151916B1048D001CCC5F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FE16B1048D001CCC5F /* FMResultSet.m */; };
 		F6E3EA951A2EC95900DBDA46 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E3EA941A2EC95900DBDA46 /* Media.xcassets */; };
-		F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EAC5C51A435F7800B16F08 /* ImageSnap.m */; };
+		F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EAC5C51A435F7800B16F08 /* ImageSnap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -DIMAGESNAP_EMBEDDED"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,20 +94,19 @@
 		F614B5F717DE280D00A83FF8 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		F61F3DEB176FC71C00776CED /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Sparkle.framework; path = Helpers/Sparkle.framework; sourceTree = "<group>"; };
 		F629A6481726016100094B10 /* Project Next Steps.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "Project Next Steps.rtf"; sourceTree = "<group>"; };
-		F63A30EA1A3621DF003F9988 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
-		F63A30EC1A362212003F9988 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreMedia.framework; sourceTree = DEVELOPER_DIR; };
-		F63A30EE1A36229B003F9988 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/CoreLocation.framework; sourceTree = DEVELOPER_DIR; };
-		F63A30F01A3622B2003F9988 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/usr/lib/libsqlite3.0.dylib; sourceTree = DEVELOPER_DIR; };
-		F63A30F21A3622BD003F9988 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/WebKit.framework; sourceTree = DEVELOPER_DIR; };
-		F63A30F41A3622C4003F9988 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/Quartz.framework; sourceTree = DEVELOPER_DIR; };
-		F63A30F61A3622CB003F9988 /* QTKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QTKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/QTKit.framework; sourceTree = DEVELOPER_DIR; };
-		F63A30F81A3622D2003F9988 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/IOKit.framework; sourceTree = DEVELOPER_DIR; };
+		F63A30EA1A3621DF003F9988 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		F63A30EC1A362212003F9988 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		F63A30EE1A36229B003F9988 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		F63A30F01A3622B2003F9988 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		F63A30F21A3622BD003F9988 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F63A30F41A3622C4003F9988 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
+		F63A30F81A3622D2003F9988 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		F657518817B1E5F200A3CA8D /* old_import.py */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.python; name = old_import.py; path = old_import/old_import.py; sourceTree = "<group>"; };
 		F65CB37118158AA00095BA84 /* reports.sql */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = reports.sql; sourceTree = "<group>"; };
 		F65CB3751815B7D90095BA84 /* lifeslice_package.command */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = lifeslice_package.command; path = distribution/lifeslice_package.command; sourceTree = "<group>"; };
 		F65CB3761815B7D90095BA84 /* lifeslice_appcast.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = lifeslice_appcast.xml; path = distribution/lifeslice_appcast.xml; sourceTree = "<group>"; };
 		F680E4B91A4A6DC500F309AB /* singlesliceviewer.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = singlesliceviewer.html; path = html/singlesliceviewer.html; sourceTree = "<group>"; };
-		F680E4BB1A4B76F700F309AB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.9.sdk/System/Library/Frameworks/ApplicationServices.framework; sourceTree = DEVELOPER_DIR; };
+		F680E4BB1A4B76F700F309AB /* ApplicationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ApplicationServices.framework; path = System/Library/Frameworks/ApplicationServices.framework; sourceTree = SDKROOT; };
 		F68F53AD16AA4450008A37DC /* NSFileManager+DirectoryLocations.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSFileManager+DirectoryLocations.m"; path = "Helpers/NSFileManager+DirectoryLocations.m"; sourceTree = "<group>"; };
 		F68F53AE16AA4450008A37DC /* NSFileManager+DirectoryLocations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSFileManager+DirectoryLocations.h"; path = "Helpers/NSFileManager+DirectoryLocations.h"; sourceTree = "<group>"; };
 		F69F826C17D8E44600A8AD03 /* moment.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; name = moment.min.js; path = html/moment.min.js; sourceTree = "<group>"; };
@@ -132,18 +118,6 @@
 		F69F827417D8E4FE00A8AD03 /* slicebrowser-day-d3.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = "slicebrowser-day-d3.html"; path = "html/slicebrowser-day-d3.html"; sourceTree = "<group>"; };
 		F69F827517D8E4FE00A8AD03 /* slicebrowser.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = slicebrowser.html; path = html/slicebrowser.html; sourceTree = "<group>"; };
 		F6A014D916B1048D001CCC5F /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
-		F6A014DD16B1048D001CCC5F /* categories.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = categories.pbxbtree; sourceTree = "<group>"; };
-		F6A014DE16B1048D001CCC5F /* cdecls.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = cdecls.pbxbtree; sourceTree = "<group>"; };
-		F6A014DF16B1048D001CCC5F /* decls.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = decls.pbxbtree; sourceTree = "<group>"; };
-		F6A014E016B1048D001CCC5F /* files.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = files.pbxbtree; sourceTree = "<group>"; };
-		F6A014E116B1048D001CCC5F /* imports.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = imports.pbxbtree; sourceTree = "<group>"; };
-		F6A014E216B1048D001CCC5F /* pbxindex.header */ = {isa = PBXFileReference; lastKnownFileType = file; path = pbxindex.header; sourceTree = "<group>"; };
-		F6A014E316B1048D001CCC5F /* protocols.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = protocols.pbxbtree; sourceTree = "<group>"; };
-		F6A014E416B1048D001CCC5F /* refs.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = refs.pbxbtree; sourceTree = "<group>"; };
-		F6A014E616B1048D001CCC5F /* control */ = {isa = PBXFileReference; lastKnownFileType = file; path = control; sourceTree = "<group>"; };
-		F6A014E716B1048D001CCC5F /* strings */ = {isa = PBXFileReference; lastKnownFileType = file; path = strings; sourceTree = "<group>"; };
-		F6A014E816B1048D001CCC5F /* subclasses.pbxbtree */ = {isa = PBXFileReference; lastKnownFileType = file; path = subclasses.pbxbtree; sourceTree = "<group>"; };
-		F6A014E916B1048D001CCC5F /* symbols0.pbxsymbols */ = {isa = PBXFileReference; lastKnownFileType = file; path = symbols0.pbxsymbols; sourceTree = "<group>"; };
 		F6A014EA16B1048D001CCC5F /* CHANGES_AND_TODO_LIST.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CHANGES_AND_TODO_LIST.txt; sourceTree = "<group>"; };
 		F6A014EB16B1048D001CCC5F /* CONTRIBUTORS.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CONTRIBUTORS.txt; sourceTree = "<group>"; };
 		F6A014EC16B1048D001CCC5F /* fmdb.1 */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.man; path = fmdb.1; sourceTree = "<group>"; };
@@ -174,7 +148,6 @@
 			files = (
 				F680E4BC1A4B76F700F309AB /* ApplicationServices.framework in Frameworks */,
 				F63A30F91A3622D2003F9988 /* IOKit.framework in Frameworks */,
-				F63A30F71A3622CB003F9988 /* QTKit.framework in Frameworks */,
 				F63A30F51A3622C4003F9988 /* Quartz.framework in Frameworks */,
 				F63A30F31A3622BD003F9988 /* WebKit.framework in Frameworks */,
 				F63A30F11A3622B2003F9988 /* libsqlite3.0.dylib in Frameworks */,
@@ -268,7 +241,6 @@
 			children = (
 				F680E4BB1A4B76F700F309AB /* ApplicationServices.framework */,
 				F63A30F81A3622D2003F9988 /* IOKit.framework */,
-				F63A30F61A3622CB003F9988 /* QTKit.framework */,
 				F63A30F41A3622C4003F9988 /* Quartz.framework */,
 				F63A30F21A3622BD003F9988 /* WebKit.framework */,
 				F63A30F01A3622B2003F9988 /* libsqlite3.0.dylib */,
@@ -343,7 +315,6 @@
 			isa = PBXGroup;
 			children = (
 				F6A014D916B1048D001CCC5F /* .gitignore */,
-				F6A014DA16B1048D001CCC5F /* build */,
 				F6A014EA16B1048D001CCC5F /* CHANGES_AND_TODO_LIST.txt */,
 				F6A014EB16B1048D001CCC5F /* CONTRIBUTORS.txt */,
 				F6A014EC16B1048D001CCC5F /* fmdb.1 */,
@@ -356,49 +327,6 @@
 			name = fmdb;
 			path = Helpers/fmdb;
 			sourceTree = SOURCE_ROOT;
-		};
-		F6A014DA16B1048D001CCC5F /* build */ = {
-			isa = PBXGroup;
-			children = (
-				F6A014DB16B1048D001CCC5F /* fmdb.build */,
-			);
-			path = build;
-			sourceTree = "<group>";
-		};
-		F6A014DB16B1048D001CCC5F /* fmdb.build */ = {
-			isa = PBXGroup;
-			children = (
-				F6A014DC16B1048D001CCC5F /* fmdb.pbxindex */,
-			);
-			path = fmdb.build;
-			sourceTree = "<group>";
-		};
-		F6A014DC16B1048D001CCC5F /* fmdb.pbxindex */ = {
-			isa = PBXGroup;
-			children = (
-				F6A014DD16B1048D001CCC5F /* categories.pbxbtree */,
-				F6A014DE16B1048D001CCC5F /* cdecls.pbxbtree */,
-				F6A014DF16B1048D001CCC5F /* decls.pbxbtree */,
-				F6A014E016B1048D001CCC5F /* files.pbxbtree */,
-				F6A014E116B1048D001CCC5F /* imports.pbxbtree */,
-				F6A014E216B1048D001CCC5F /* pbxindex.header */,
-				F6A014E316B1048D001CCC5F /* protocols.pbxbtree */,
-				F6A014E416B1048D001CCC5F /* refs.pbxbtree */,
-				F6A014E516B1048D001CCC5F /* strings.pbxstrings */,
-				F6A014E816B1048D001CCC5F /* subclasses.pbxbtree */,
-				F6A014E916B1048D001CCC5F /* symbols0.pbxsymbols */,
-			);
-			path = fmdb.pbxindex;
-			sourceTree = "<group>";
-		};
-		F6A014E516B1048D001CCC5F /* strings.pbxstrings */ = {
-			isa = PBXGroup;
-			children = (
-				F6A014E616B1048D001CCC5F /* control */,
-				F6A014E716B1048D001CCC5F /* strings */,
-			);
-			path = strings.pbxstrings;
-			sourceTree = "<group>";
 		};
 		F6A014EE16B1048D001CCC5F /* Products */ = {
 			isa = PBXGroup;
@@ -523,23 +451,11 @@
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				F65CB3781815B7D90095BA84 /* lifeslice_appcast.xml in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				F6A0150316B1048D001CCC5F /* categories.pbxbtree in Resources */,
-				F6A0150416B1048D001CCC5F /* cdecls.pbxbtree in Resources */,
 				F65CB37218158AA00095BA84 /* reports.sql in Resources */,
 				F69F827817D8E4FE00A8AD03 /* jquery-2.0.3.min.map in Resources */,
 				F65CB3771815B7D90095BA84 /* lifeslice_package.command in Resources */,
-				F6A0150516B1048D001CCC5F /* decls.pbxbtree in Resources */,
-				F6A0150616B1048D001CCC5F /* files.pbxbtree in Resources */,
-				F6A0150716B1048D001CCC5F /* imports.pbxbtree in Resources */,
-				F6A0150816B1048D001CCC5F /* pbxindex.header in Resources */,
 				F6E3EA951A2EC95900DBDA46 /* Media.xcassets in Resources */,
-				F6A0150916B1048D001CCC5F /* protocols.pbxbtree in Resources */,
-				F6A0150A16B1048D001CCC5F /* refs.pbxbtree in Resources */,
-				F6A0150B16B1048D001CCC5F /* control in Resources */,
 				F69F827A17D8E4FE00A8AD03 /* slicebrowser-d3.html in Resources */,
-				F6A0150C16B1048D001CCC5F /* strings in Resources */,
-				F6A0150D16B1048D001CCC5F /* subclasses.pbxbtree in Resources */,
-				F6A0150E16B1048D001CCC5F /* symbols0.pbxsymbols in Resources */,
 				F6A0151116B1048D001CCC5F /* fmdb.1 in Resources */,
 				F69F827B17D8E4FE00A8AD03 /* slicebrowser-day-d3.html in Resources */,
 				F680E4BA1A4A6DC500F309AB /* singlesliceviewer.html in Resources */,
@@ -616,6 +532,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -629,10 +549,10 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = DEBUG;
 				INFOPLIST_FILE = "LifeSlice-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--deep";
 				PRODUCT_NAME = LifeSlice;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
@@ -646,6 +566,10 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)",
@@ -657,39 +581,39 @@
 				"GCC_PREPROCESSOR_DEFINITIONS[arch=*]" = RELEASE_TEST_BUILD;
 				INFOPLIST_FILE = "LifeSlice-Info.plist";
 				INSTALL_PATH = "$(HOME)/Applications";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				ONLY_ACTIVE_ARCH = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				ONLY_ACTIVE_ARCH = NO;
 				"OTHER_CODE_SIGN_FLAGS[sdk=*]" = "--deep";
 				PRODUCT_NAME = LifeSlice;
-				SDKROOT = macosx10.9;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
 		C01FCF4F08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx10.7;
+				SDKROOT = macosx;
 			};
 			name = Debug;
 		};
 		C01FCF5008A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
+				ARCHS = "$(ARCHS_STANDARD)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx10.7;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				SDKROOT = macosx;
 			};
 			name = Release;
 		};
