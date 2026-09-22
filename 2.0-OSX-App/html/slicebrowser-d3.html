@@ -61,7 +61,14 @@ TODO: use jqueryUI do show images
             }
             #lifeSliceLink:hover { text-decoration: underline; }
 
-            .toolbar input[type="button"] {
+            /* <button> rather than <input type="button"> so each one can hold an
+               icon. SF Symbols are a native API and unavailable to a web view,
+               so these are inline SVG drawn to match: they inherit currentColor
+               and stay crisp at any scale. */
+            .toolbar button {
+                display: inline-flex;
+                align-items: center;
+                gap: 5px;
                 font-family: var(--font);
                 font-size: 13px;
                 font-weight: 500;
@@ -69,15 +76,30 @@ TODO: use jqueryUI do show images
                 background: var(--surface);
                 border: 1px solid var(--border);
                 border-radius: 6px;
-                padding: 5px 12px;
-                min-width: 32px;
+                padding: 5px 11px;
                 cursor: pointer;
                 transition: background 0.12s ease;
                 -webkit-appearance: none;
                 appearance: none;
             }
-            .toolbar input[type="button"]:hover { background: var(--surface-hover); }
-            .toolbar input[type="button"]:active { background: rgba(255,255,255,0.18); }
+            .toolbar button:hover { background: var(--surface-hover); }
+            .toolbar button:active { background: rgba(255,255,255,0.18); }
+
+            .toolbar button svg {
+                width: 14px;
+                height: 14px;
+                flex: none;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 1.6;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+
+            /* The month steppers are icon-only, so they get a square-ish
+               footprint and carry their name in aria-label instead. */
+            .toolbar button.icon-only { padding: 5px 8px; }
+            .toolbar button.icon-only svg { width: 13px; height: 13px; }
 
             .toolbar label {
                 display: inline-flex;
@@ -163,23 +185,23 @@ TODO: use jqueryUI do show images
 
     <div class="toolbar">
         <a id="lifeSliceLink" href="http://wanderingstan.com/lifeslice" target="_new">LifeSlice</a>
-        <input type="button" value="Today" onclick="
+        <button type="button" title="Jump to today" onclick="
             document.getElementById('displayDate').value = moment().format('YYYY-MM-DD')
             draw();
-        ">
-        <input type="button" value="<" onClick="
+        "><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="3.25" width="12" height="10.5" rx="2.25"/><path d="M2 6.75h12M5.25 2v2.5M10.75 2v2.5"/></svg><span>Today</span></button>
+        <button type="button" class="icon-only" title="Previous month" aria-label="Previous month" onClick="
             document.getElementById('displayDate').value = moment(document.getElementById('displayDate').value).add('months', -1).startOf('month').format('YYYY-MM-DD');
             draw();
-        ">
-        <input type="button" value=">" onClick="
+        "><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M10 3.25 5.25 8 10 12.75"/></svg></button>
+        <button type="button" class="icon-only" title="Next month" aria-label="Next month" onClick="
             document.getElementById('displayDate').value = moment(document.getElementById('displayDate').value).add('months', +1).startOf('month').format('YYYY-MM-DD');
             draw();
-        ">
+        "><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3.25 10.75 8 6 12.75"/></svg></button>
 
         <input id="displayDate" value="" onChange="draw()" size="10"/>
 
-        <input type="button" value="Refresh" onClick="location.reload(true)"/>
-        <input type="button" value="Day View" onClick="window.location.href='slicebrowser-day-d3.html';"/>
+        <button type="button" title="Reload" onClick="location.reload(true)"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.25 8a5.25 5.25 0 1 1-1.6-3.78"/><path d="M13.4 2.4v3.1h-3.1"/></svg><span>Refresh</span></button>
+        <button type="button" onClick="window.location.href='slicebrowser-day-d3.html';"><svg viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="6"/><path d="M8 4.5V8l2.25 1.75"/></svg><span>Day View</span></button>
 
         <label><input type="checkbox" id="doShowWordCount" onChange="draw()"> Word Count</label>
         <label><input type="checkbox" id="doShowMouseCursorDistance" onChange="draw()"> Mouse Distance</label>
