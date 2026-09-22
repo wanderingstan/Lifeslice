@@ -1449,6 +1449,15 @@
     //    [[theWebView mainFrame] loadRequest:request];
     
     NSLog(@"Showing BrowseSliceWindow window");
+
+    // The report pages adapt down to a narrow window, but below this there is
+    // not enough room left for the hour grid to be worth looking at.
+    [browseSliceWindow setMinSize:NSMakeSize(720, 520)];
+    if (browseSliceWindow.frame.size.width < 720 || browseSliceWindow.frame.size.height < 520) {
+        [browseSliceWindow setContentSize:NSMakeSize(MAX(browseSliceWindow.frame.size.width, 1040),
+                                                     MAX(browseSliceWindow.frame.size.height, 680))];
+    }
+
     [browseSliceWindow makeKeyAndOrderFront:self];
     [browseSliceWindow setDelegate:self];
     [(NSWindow*)browseSliceWindow center];

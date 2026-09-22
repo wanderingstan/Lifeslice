@@ -213,6 +213,22 @@ TODO: use jqueryUI do show images
             }
 
             .webcam, .screenshot, .latlon { cursor: pointer; }
+
+            /* Too narrow to sit the grid beside the panel: put the panel above
+               it full width and lay its options out in rows, instead of letting
+               a tall floated panel push the grid off the bottom of the window. */
+            @media (max-width: 900px) {
+                #chartControls {
+                    float: none;
+                    min-width: 0;
+                    margin: 12px 0 16px;
+                }
+                #chartControls > div {
+                    display: flex;
+                    flex-wrap: wrap;
+                    gap: 2px 20px;
+                }
+            }
             </style>
         
         <script src="d3.v3.min.js"></script>
@@ -407,20 +423,69 @@ TODO: use jqueryUI do show images
         });
 
         // page setup
-        var margin = { top: 0, right: 0, bottom: 100, left: 50 },
-            width = 1024 - margin.left - margin.right,
-            gridSizeX = Math.floor(width / 6),
-            gridSizeY = Math.floor(gridSizeX * 0.75),
-            height = (5*gridSizeY) - margin.top - margin.bottom
-            minuteChartWidthX = Math.floor(gridSizeX / (60/5)) // width of bars in our 5-minute charts
-        ;
+        var margin = { top: 0, right: 0, bottom: 100, left: 50 };
+
+        // The grid used to be a flat 1024px wide. The controls panel floats to
+        // the right of it, so in any window narrower than the two combined the
+        // grid could not sit beside the panel and dropped below it, off the
+        // bottom of the window. Size it to whatever room is actually left.
+        var width, gridSizeX, gridSizeY, height, minuteChartWidthX;
+
+        function computeLayout() {
+            var controls = document.getElementById("chartControls");
+
+            // Above the media query's breakpoint the panel floats beside the grid
+            // and we have to leave room for it; below it the panel sits above the
+            // grid full width, so the grid gets everything.
+            var floated = controls &&
+                window.getComputedStyle(controls).cssFloat !== "none";
+
+            var controlsWidth = 0;
+            if (floated) {
+                // offsetWidth is 0 before first layout, so fall back to the CSS min-width
+                controlsWidth = (controls.offsetWidth ? controls.offsetWidth : 190) + 20;
+            }
+
+            var bodyPadding = 40;   // body has 20px either side
+
+            var available = document.documentElement.clientWidth
+                          - bodyPadding - controlsWidth
+                          - margin.left - margin.right;
+
+            // Never smaller than a readable grid, never wider than the old fixed size
+            width = Math.max(360, Math.min(1024 - margin.left - margin.right, available));
+
+            gridSizeX = Math.floor(width / 6);
+            gridSizeY = Math.floor(gridSizeX * 0.75);
+            height = (5 * gridSizeY) - margin.top - margin.bottom;
+            minuteChartWidthX = Math.floor(gridSizeX / (60/5)); // width of bars in our 5-minute charts
+        }
+
+        computeLayout();
+
         var chartKey = d3.select("#chartKey");
-        var svg = d3.select("#chart").append("svg")
+        var svgRoot = d3.select("#chart").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
+        ;
+        var svg = svgRoot
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         ;
+
+        // draw() clears and re-joins its data, so it is safe to call again on
+        // resize. Debounced so a drag does not redraw on every frame.
+        var resizeTimer = null;
+        window.addEventListener("resize", function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                computeLayout();
+                svgRoot
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom);
+                draw();
+            }, 150);
+        });
 
         // utility: is our data in the user-selected date range? 
         function inSelectedDateRange(d,i,self) {

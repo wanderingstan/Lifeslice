@@ -249,18 +249,49 @@ TODO: use jqueryUI do show images
         });
 
         // page setup
-        var margin = { top: 0, right: 0, bottom: 100, left: 50 },
-            width = 960 - margin.left - margin.right,
-            gridSizeX = Math.floor(width / 24),
-            gridSizeY = Math.floor(gridSizeX * 0.75),
-            height = (32*gridSizeY) - margin.top - margin.bottom
-        ;
-        var svg = d3.select("#chart").append("svg")
+        var margin = { top: 0, right: 0, bottom: 100, left: 50 };
+
+        // Was a flat 960px, which ran off the side of a narrower window. Fit the
+        // month grid to the window instead, same as the day view.
+        var width, gridSizeX, gridSizeY, height;
+
+        function computeLayout() {
+            var bodyPadding = 40;   // body has 20px either side
+            var available = document.documentElement.clientWidth
+                          - bodyPadding - margin.left - margin.right;
+
+            // 24 columns, so it needs a floor to stay legible
+            width = Math.max(480, Math.min(960 - margin.left - margin.right, available));
+
+            gridSizeX = Math.floor(width / 24);
+            gridSizeY = Math.floor(gridSizeX * 0.75);
+            height = (32 * gridSizeY) - margin.top - margin.bottom;
+        }
+
+        computeLayout();
+
+        var svgRoot = d3.select("#chart").append("svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
+        ;
+        var svg = svgRoot
             .append("g")
             .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
         ;
+
+        // draw() clears and re-joins its data, so it is safe to call again on
+        // resize. Debounced so a drag does not redraw on every frame.
+        var resizeTimer = null;
+        window.addEventListener("resize", function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                computeLayout();
+                svgRoot
+                    .attr("width", width + margin.left + margin.right)
+                    .attr("height", height + margin.top + margin.bottom);
+                draw();
+            }, 150);
+        });
 
         // utility: is our data in the user-selected date range? 
         function inSelectedDateRange(d,i,self) {
