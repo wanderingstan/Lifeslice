@@ -43,7 +43,7 @@
 		F6A0151716B1048D001CCC5F /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FB16B1048D001CCC5F /* FMDatabaseQueue.m */; };
 		F6A0151916B1048D001CCC5F /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = F6A014FE16B1048D001CCC5F /* FMResultSet.m */; };
 		F6E3EA951A2EC95900DBDA46 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E3EA941A2EC95900DBDA46 /* Media.xcassets */; };
-		F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EAC5C51A435F7800B16F08 /* ImageSnap.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -DIMAGESNAP_EMBEDDED"; }; };
+		F6EAC5C61A435F7800B16F08 /* ImageSnap.m in Sources */ = {isa = PBXBuildFile; fileRef = F6EAC5C51A435F7800B16F08 /* ImageSnap.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
