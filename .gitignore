@@ -118,3 +118,6 @@ xcuserdata
 # UNKNOWN: recommended by others, but I can't discover what these files are
 #
 # ...none. Everything is now explained.
+# Notarized release output (notarize.sh)
+2.0-OSX-App/Distribution/build/
+2.0-OSX-App/Distribution/releases/
