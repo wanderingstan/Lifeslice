@@ -1537,6 +1537,15 @@
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleShortVersionString"],
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]
     ];
+
+    // The credits text lives in the nib so it stays editable there, but it
+    // carries a {year} token so the copyright's end year is not frozen at
+    // whenever the nib was last touched.
+    NSInteger currentYear = [[NSCalendar currentCalendar] component:NSCalendarUnitYear
+                                                           fromDate:[NSDate date]];
+    [aboutCreditsLabel setStringValue:
+        [aboutCreditsLabel.stringValue stringByReplacingOccurrencesOfString:@"{year}"
+                                                                 withString:[@(currentYear) stringValue]]];
     
     // See showLiveStatsWindow: the forced white background was what made this
     // window white-on-white in dark mode. Every label in it already uses a

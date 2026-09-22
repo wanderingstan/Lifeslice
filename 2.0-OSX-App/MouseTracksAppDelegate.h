@@ -92,6 +92,7 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
     IBOutlet NSPanel *liveStatsWindow;
     
     IBOutlet NSTextField *versionLabel;
+    IBOutlet NSTextField *aboutCreditsLabel;
     IBOutlet NSButton *myLaunchAtStartupCheckbox;
     
     IBOutlet NSImageView* webcamPreview;

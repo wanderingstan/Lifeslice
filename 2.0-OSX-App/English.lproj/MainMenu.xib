@@ -403,6 +403,7 @@
         </menu>
         <customObject id="494" customClass="MouseTracksAppDelegate">
             <connections>
+                <outlet property="aboutCreditsLabel" destination="Gpn-oA-GNA" id="Lsx-cR-yr1"/>
                 <outlet property="aboutWindow" destination="766" id="773"/>
                 <outlet property="browseSliceWindow" destination="663" id="698"/>
                 <outlet property="liveStatsWindow" destination="708" id="755"/>
@@ -741,7 +742,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" id="6PV-iw-Kxj">
                             <font key="font" size="10" name="HelveticaNeue-Light"/>
-                            <string key="title">Copyright 2015 by Stan James. Contact stan@wanderingstan.com with questions or feedback, or submit issues GitHub.
+                            <string key="title">Copyright 2015-{year} by Stan James. Contact stan@wanderingstan.com with questions or feedback, or submit issues on GitHub.
 
 LifeSlice uses the following Open Source libraries: Sparkle Updater, d3, Sqlite, ImageSnap, fmdb, and LaunchAtLogin. Thanks to everyone who submits answers on StackOverflow. And an extra special thanks to the beta testers: Moritz Stefaner, Jason Lange, Joel Longtine, Manuel Ebert, Ernesto Ramirez, and Gary Wolf. </string>
                             <color key="textColor" name="disabledControlTextColor" catalog="System" colorSpace="catalog"/>
