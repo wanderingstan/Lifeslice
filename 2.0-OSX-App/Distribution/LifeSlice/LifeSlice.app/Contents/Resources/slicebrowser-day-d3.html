@@ -356,21 +356,21 @@ TODO: use jqueryUI do show images
 
             // filter data so we only have one picture per hour
             // doto: switch to D3 style filtering
-            webcamHourFilteredData = dataSources['webcam'].filter(
+            webcamHourFilteredData = dataSources['webcam'] ? dataSources['webcam'].filter(
                 function(value, index, self) {
                     return (index==0) || (isoDateHour(self[index].datetime)!=isoDateHour(self[index-1].datetime));
                 } 
-            );
-            screenshotHourFilteredData = dataSources['screenshot'].filter(
+            ) : [];
+            screenshotHourFilteredData = dataSources['screenshot'] ? dataSources['screenshot'].filter(
                 function(value, index, self) {
                     return (index==0) || (isoDateHour(self[index].datetime)!=isoDateHour(self[index-1].datetime));
                 } 
-            );
-            latlonHourFilteredData = dataSources['latlon'].filter(
+            ) : [];
+            latlonHourFilteredData = dataSources['latlon'] ? dataSources['latlon'].filter(
                 function(value, index, self) {
                     return (index==0) || (isoDateHour(self[index].datetime)!=isoDateHour(self[index-1].datetime));
                 } 
-            );
+            ) : [] ;
             latlonHourFilteredData.forEach(
                 function(value,index,self) {
                     if ( (index>0) &&  
