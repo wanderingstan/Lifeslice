@@ -1521,7 +1521,9 @@
 
 - (IBAction)showLiveStatsWindow:(id)pId {
     NSLog(@"Showing live stats window");
-    [liveStatsWindow setBackgroundColor: NSColor.whiteColor];
+    // Background left to the system. Forcing white here used to put the
+    // labels' dynamic controlTextColor, which is near-white in dark mode,
+    // onto a hardcoded white background.
     [liveStatsWindow makeKeyAndOrderFront:pId];
     [liveStatsWindow setLevel:NSFloatingWindowLevel]; // keep it on top
     [NSApp activateIgnoringOtherApps:YES];
@@ -1536,7 +1538,9 @@
                                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]]
     ];
     
-    [aboutWindow setBackgroundColor: NSColor.whiteColor];
+    // See showLiveStatsWindow: the forced white background was what made this
+    // window white-on-white in dark mode. Every label in it already uses a
+    // dynamic system colour, so the default background is all it needs.
     [aboutWindow makeKeyAndOrderFront:pId];
     [aboutWindow setLevel:NSFloatingWindowLevel]; // keep it on top
     [NSApp activateIgnoringOtherApps:YES];
