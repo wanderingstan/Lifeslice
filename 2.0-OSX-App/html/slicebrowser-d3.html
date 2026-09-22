@@ -10,75 +10,146 @@ TODO: use jqueryUI do show images
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <style>
+            /* Matches slicebrowser-day-d3.html. Kept inline because the app copies
+               each html resource individually; a shared stylesheet would need a
+               bundle resource and another copy step. */
+            :root {
+                --bg: #1a1a1c;
+                --surface: rgba(255,255,255,0.07);
+                --surface-hover: rgba(255,255,255,0.12);
+                --border: rgba(255,255,255,0.14);
+                --text: #f2f2f7;
+                --text-dim: #9b9ba1;
+                --accent: #6cc04a;
+                --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+
+            html { color-scheme: dark; }
+
             body {
-                background-color:#333;
-                color:white;
-                font-family:"Helvetica Neue",arial,sans-serif;
-                font-weight:100;
+                background-color: var(--bg);
+                color: var(--text);
+                font-family: var(--font);
+                font-size: 13px;
+                margin: 0;
+                padding: 0 20px 40px;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .toolbar {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+                padding: 12px 0;
+                position: sticky;
+                top: 0;
+                z-index: 500;
+                background: rgba(26,26,28,0.88);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                backdrop-filter: saturate(180%) blur(20px);
+                border-bottom: 1px solid var(--border);
             }
 
             #lifeSliceLink {
                 text-decoration: none;
-                color: green;
-                font-size: 23px;
-                margin-right: 1em;
+                color: var(--accent);
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: -0.01em;
+                margin-right: 8px;
             }
-            #lifeSliceLink:hover {
-                text-decoration: underline;
-            }
-            
-            h1 {
-                margin: 0px;
-                margin-right: 10px;
-                font-size:60px;
-                font-family: "Helvetica Neue", arial, sans-serif;
-                font-weight:100;         
-            }
+            #lifeSliceLink:hover { text-decoration: underline; }
 
-            input {
-                font-family:"Helvetica Neue",arial,sans-serif;
-                font-size: 30px;
+            .toolbar input[type="button"] {
+                font-family: var(--font);
+                font-size: 13px;
+                font-weight: 500;
+                color: var(--text);
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                padding: 5px 12px;
+                min-width: 32px;
+                cursor: pointer;
+                transition: background 0.12s ease;
+                -webkit-appearance: none;
+                appearance: none;
             }
-            #displayDate {
-                background-color:black;
-                color: white;
+            .toolbar input[type="button"]:hover { background: var(--surface-hover); }
+            .toolbar input[type="button"]:active { background: rgba(255,255,255,0.18); }
+
+            .toolbar label {
+                display: inline-flex;
+                align-items: center;
+                gap: 6px;
                 font-size: 12px;
+                color: var(--text);
+                cursor: pointer;
+                padding: 0 2px;
+            }
+            .toolbar label input { margin: 0; }
+
+            #displayDate {
+                font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+                font-size: 13px;
+                color: var(--text);
+                background: rgba(0,0,0,0.35);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                padding: 5px 8px;
+                width: 100px;
+                text-align: center;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+            #displayDate:focus { outline: none; border-color: var(--accent); }
+
+            h1 {
+                margin: 20px 0 16px;
+                font-size: 30px;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                font-family: var(--font);
             }
 
-
+            /* The day axis runs down the left edge, one label per row, so the
+               type has to be small enough that adjacent days do not collide. */
             text.axis-day {
-                fill: #FFF;
-                font-size: 36px;
+                fill: var(--text-dim);
+                font-size: 11px;
+                font-weight: 500;
+                font-family: var(--font);
             }
             text.axis-hour {
-                fill: #FFF;
-                font-size: 18px;
+                fill: var(--text-dim);
+                font-size: 11px;
+                font-weight: 500;
+                font-family: var(--font);
             }
 
-            #preview{
-                position:absolute;
-                border:1px solid #ccc;
-                background:#333;
-                padding:5px;
-                display:none;
-                color:#fff;
-                z-index:999;
-                border-radius: 5px;
+            #preview {
+                position: absolute;
+                border: 1px solid var(--border);
+                background: rgba(30,30,32,0.92);
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+                padding: 6px;
+                display: none;
+                color: var(--text);
+                z-index: 999;
+                border-radius: 10px;
+                box-shadow: 0 8px 28px rgba(0,0,0,0.55);
             }
             #preview img {
-                width:200px;
-                max-height:150px;
+                width: 200px;
+                max-height: 150px;
+                border-radius: 5px;
+                display: block;
             }
 
-            .wordCountLine{
-                fill: steelblue;
-                fill-opacity: 0.8;
-            }
-            .mouseCursorDistanceLine{
-                fill: green;
-                fill-opacity: 0.8;
-            }
-
+            .wordCountLine { fill: #5b9bd5; fill-opacity: 0.85; }
+            .mouseCursorDistanceLine { fill: #6cc04a; fill-opacity: 0.85; }
             </style>
         
         <script src="d3.v3.min.js"></script>
@@ -90,7 +161,7 @@ TODO: use jqueryUI do show images
 <body>
 
 
-    <div>
+    <div class="toolbar">
         <a id="lifeSliceLink" href="http://wanderingstan.com/lifeslice" target="_new">LifeSlice</a>
         <input type="button" value="Today" onclick="
             document.getElementById('displayDate').value = moment().format('YYYY-MM-DD')

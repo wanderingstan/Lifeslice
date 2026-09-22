@@ -1,41 +1,87 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>LifeSlice Day</title>
+        <title>LifeSlice Slice</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            
-            <style>
-                body {background-color:#000;color:white;font-family:helvetica,arial,sans-serif;text-shadow: black 1px 1px 1px}
-                .hour {width:50px;height:40px;min-width:50px;min-height:40px;color:white;overflow:hidden;margin:0 0 0 0;padding 0 0 0 0;background-size:50px 40px;background-repeat:no-repeat;}
-                .hour img {width:50px;height:40px;/* position:absolute; */ }
-                .heading {background-color:#000;height:60px;text-align:center;font-size:xx-large;}
-                .total-hours {background-color:#000;width:50px; height: 60px;text-align:center; font-size:xx-large;}
-                #face-table   {position:absolute;top:100px;z-index:1;}
-                #screen-table {position:absolute;top:100px;z-index:2;display:none;}
-                .screen-thumb {display:none;}
-                table {border-collapse: collapse;}
-                td {padding: 0 0 0 0; margin: 0 0 0 0;}
 
-                #day_image {
-                    max-width: 90%;
-                    max-height: 90%;
-                    bottom: 0;
-                    left: 0;
-                    margin: auto;
-                    overflow: auto;
-                    position: fixed;
-                    right: 0;
-                    top: 0;
+            <style>
+                /* Matches the browser pages. The rules for .hour, #face-table and
+                   friends that used to live here were left over from the old table
+                   layout and styled nothing on this page. */
+                :root {
+                    --bg: #121214;
+                    --surface: rgba(255,255,255,0.07);
+                    --surface-hover: rgba(255,255,255,0.12);
+                    --border: rgba(255,255,255,0.14);
+                    --text: #f2f2f7;
+                    --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
                 }
 
-                a:link, a:visited, a:hover, a:active { color:#FFFFFF; }
+                html { color-scheme: dark; }
+
+                body {
+                    background-color: var(--bg);
+                    color: var(--text);
+                    font-family: var(--font);
+                    margin: 0;
+                    height: 100vh;
+                    display: flex;
+                    flex-direction: column;
+                    -webkit-font-smoothing: antialiased;
+                }
+
+                .toolbar {
+                    flex: none;
+                    padding: 12px 20px;
+                    border-bottom: 1px solid var(--border);
+                    background: rgba(18,18,20,0.88);
+                    -webkit-backdrop-filter: saturate(180%) blur(20px);
+                    backdrop-filter: saturate(180%) blur(20px);
+                }
+
+                .back {
+                    display: inline-flex;
+                    align-items: center;
+                    gap: 6px;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: var(--text);
+                    text-decoration: none;
+                    background: var(--surface);
+                    border: 1px solid var(--border);
+                    border-radius: 6px;
+                    padding: 5px 12px;
+                    transition: background 0.12s ease;
+                }
+                .back:hover { background: var(--surface-hover); }
+
+                /* The image sizes itself to whatever space is left below the bar,
+                   rather than being pinned to the viewport as it was before. */
+                .stage {
+                    flex: 1;
+                    min-height: 0;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 24px;
+                }
+
+                #day_image {
+                    max-width: 100%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    border-radius: 10px;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+                }
             </style>
-            
+
             <script src="jquery-2.0.3.min.js"></script>
             </head>
     <body>
-        <h1><a href="javascript:history.back()">Back</a></h1>
-        <div><img id="day_image"/></div>
+        <div class="toolbar">
+            <a class="back" href="javascript:history.back()">&#8249;&nbsp; Back</a>
+        </div>
+        <div class="stage"><img id="day_image"/></div>
         <script>
             image_url = window.location.hash.substring(1);
             day_image = $("#day_image")[0];

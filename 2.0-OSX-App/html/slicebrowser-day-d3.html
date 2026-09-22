@@ -10,99 +10,209 @@ TODO: use jqueryUI do show images
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
         
         <style>
-            body {
-                background-color:#333;
-                color:white;
-                font-family:"Helvetica Neue",arial,sans-serif;
-                font-weight:100;
+            /* Dark on purpose: the grid is mostly webcam and screen thumbnails,
+               and they read far better against a dark surround than a light one. */
+            :root {
+                --bg: #1a1a1c;
+                --surface: rgba(255,255,255,0.07);
+                --surface-hover: rgba(255,255,255,0.12);
+                --border: rgba(255,255,255,0.14);
+                --text: #f2f2f7;
+                --text-dim: #9b9ba1;
+                --accent: #6cc04a;
+                --radius: 8px;
+                --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
             }
-            
+
+            html { color-scheme: dark; }
+
+            body {
+                background-color: var(--bg);
+                color: var(--text);
+                font-family: var(--font);
+                font-size: 13px;
+                margin: 0;
+                padding: 0 20px 40px;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            /* ---- toolbar ------------------------------------------------ */
+
+            .toolbar {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                flex-wrap: wrap;
+                padding: 12px 0;
+                position: sticky;
+                top: 0;
+                z-index: 500;
+                background: rgba(26,26,28,0.88);
+                -webkit-backdrop-filter: saturate(180%) blur(20px);
+                backdrop-filter: saturate(180%) blur(20px);
+                border-bottom: 1px solid var(--border);
+            }
+
             #lifeSliceLink {
                 text-decoration: none;
-                color: green;
-                font-size: 23px;
-                margin-right: 1em;
+                color: var(--accent);
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: -0.01em;
+                margin-right: 8px;
             }
-            #lifeSliceLink:hover {
-                text-decoration: underline;
+            #lifeSliceLink:hover { text-decoration: underline; }
+
+            /* The buttons are <input type="button">, so they are styled here
+               rather than in the markup, which keeps the inline handlers. */
+            .toolbar input[type="button"] {
+                font-family: var(--font);
+                font-size: 13px;
+                font-weight: 500;
+                color: var(--text);
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                padding: 5px 12px;
+                min-width: 32px;
+                cursor: pointer;
+                transition: background 0.12s ease;
+                -webkit-appearance: none;
+                appearance: none;
             }
+            .toolbar input[type="button"]:hover { background: var(--surface-hover); }
+            .toolbar input[type="button"]:active { background: rgba(255,255,255,0.18); }
+
+            #displayDate {
+                font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+                font-size: 13px;
+                color: var(--text);
+                background: rgba(0,0,0,0.35);
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                padding: 5px 8px;
+                width: 100px;
+                text-align: center;
+                -webkit-appearance: none;
+                appearance: none;
+            }
+            #displayDate:focus {
+                outline: none;
+                border-color: var(--accent);
+            }
+
+            /* ---- headline ----------------------------------------------- */
 
             h1 {
-                margin: 0px;
-                margin-right: 10px;
-                font-size:60px;
-                font-family: "Helvetica Neue", arial, sans-serif;
-                font-weight:100;                
-            }
-
-            input {
-                font-family:"Helvetica Neue",arial,sans-serif;
+                margin: 20px 0 16px;
                 font-size: 30px;
-            }
-            #displayDate {
-                background-color:black;
-                color: white;
-                font-size: 12px;
-            }
-            text.hourLabel {
-                fill: white;
-                font-family: "Helvetica Neue", arial, sans-serif;
-            }
-            text.axis-day {
-                fill: #FFF;
-                font-size: 36px;
-            }
-            text.axis-hour {
-                fill: #FFF;
-                font-size: 18px;
+                font-weight: 600;
+                letter-spacing: -0.02em;
+                font-family: var(--font);
             }
 
-            #preview{
-                position:absolute;
-                border:1px solid #ccc;
-                background:#333;
-                padding:5px;
-                display:none;
-                color:#fff;
-                z-index:999;
-                border-radius: 5px;
-                cursor:crosshair;
-            }
-            #preview img {
-                width:200px;
-                max-height:150px;
-            }
+            /* ---- data streams / background panel ------------------------ */
 
-            .chartLine{
-                fill-opacity: 0.6;
-            }
-            #chart {
-            }
             #chartControls {
-                float:right;
-                background-color: #666;
-                padding: .3em;
+                float: right;
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 12px;
+                padding: 14px 16px;
+                margin: 12px 0 12px 20px;
+                min-width: 190px;
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
             }
             #chartControls h2 {
-                margin: 0px;
-                margin-right: 10px;
-                font-size:30px;
-                font-family: "Helvetica Neue", arial, sans-serif;
-                font-weight:100;
+                margin: 0 0 8px;
+                font-size: 11px;
+                font-weight: 600;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                color: var(--text-dim);
+                font-family: var(--font);
             }
-            #chartControls h2:not(:first-child) {
-                margin-top: 0.5em;                
+            #chartControls h2:not(:first-child) { margin-top: 18px; }
+            #chartControls label {
+                display: flex;
+                align-items: center;
+                gap: 7px;
+                padding: 3px 0;
+                cursor: pointer;
+                font-size: 12px;
             }
-            #chartControls input {
-                margin-right: 0.3em;
-            }            
-            .chartLabel {
+            #chartControls input { margin: 0; flex: none; }
+
+            /* d3 writes the series colour into .chartLabel's inline style. Coloured
+               text on this panel was unreadable, so the colour becomes a swatch via
+               currentColor and the text itself uses the normal foreground. */
+            .chartLabel::before {
+                content: "";
+                order: 1;
+                flex: none;
+                width: 9px;
+                height: 9px;
+                border-radius: 50%;
+                background: currentColor;
+            }
+            .chartLabel input { order: 0; }
+            .chartLabel span {
+                order: 2;
+                color: var(--text);
+            }
+
+            /* ---- the hour grid ------------------------------------------ */
+
+            #chart { clear: none; }
+
+            text.hourLabel { fill: var(--text); font-family: var(--font); }
+
+            /* Hour and day labels sit on top of photos, so they carry a shadow
+               to stay legible over a bright thumbnail. */
+            text.axis-day {
+                fill: var(--text);
+                font-size: 28px;
+                font-weight: 600;
+                font-family: var(--font);
+            }
+            text.axis-hour {
+                fill: var(--text);
+                font-size: 12px;
+                font-weight: 500;
+                font-family: var(--font);
+                paint-order: stroke;
+                stroke: rgba(0,0,0,0.85);
+                stroke-width: 3px;
+                stroke-linejoin: round;
+            }
+
+            .chartLine { fill-opacity: 0.75; }
+
+            /* ---- hover preview ------------------------------------------ */
+
+            #preview {
+                position: absolute;
+                border: 1px solid var(--border);
+                background: rgba(30,30,32,0.92);
+                -webkit-backdrop-filter: blur(20px);
+                backdrop-filter: blur(20px);
+                padding: 6px;
+                display: none;
+                color: var(--text);
+                z-index: 999;
+                border-radius: 10px;
+                box-shadow: 0 8px 28px rgba(0,0,0,0.55);
+                cursor: crosshair;
+            }
+            #preview img {
+                width: 200px;
+                max-height: 150px;
+                border-radius: 5px;
                 display: block;
             }
 
-            .webcam,.screenshot,.latlon {
-                cursor:pointer;
-            }
+            .webcam, .screenshot, .latlon { cursor: pointer; }
             </style>
         
         <script src="d3.v3.min.js"></script>
@@ -112,7 +222,7 @@ TODO: use jqueryUI do show images
         </head>
 
 <body>
-    <div>
+    <div class="toolbar">
         <a id="lifeSliceLink" href="http://wanderingstan.com/lifeslice" target="_new">LifeSlice</a>
         
         <input type="button" value="Today" onclick="
