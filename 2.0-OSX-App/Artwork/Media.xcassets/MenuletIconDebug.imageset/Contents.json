@@ -1,23 +1,26 @@
 {
-  "images" : [
+  "images": [
     {
-      "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "menulet-pie-slice-icon-debug.png"
+      "idiom": "universal",
+      "scale": "1x",
+      "filename": "menulet-pie-slice-icon-debug.png"
     },
     {
-      "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "menulet-pie-slice-icon-debug@2x.png"
+      "idiom": "universal",
+      "scale": "2x",
+      "filename": "menulet-pie-slice-icon-debug@2x.png"
     },
     {
-      "idiom" : "universal",
-      "scale" : "3x",
-      "filename" : "menulet-pie-slice-icon-debug@3x.png"
+      "idiom": "universal",
+      "scale": "3x",
+      "filename": "menulet-pie-slice-icon-debug@3x.png"
     }
   ],
-  "info" : {
-    "version" : 1,
-    "author" : "xcode"
+  "info": {
+    "version": 1,
+    "author": "xcode"
+  },
+  "properties": {
+    "template-rendering-intent": "template"
   }
 }

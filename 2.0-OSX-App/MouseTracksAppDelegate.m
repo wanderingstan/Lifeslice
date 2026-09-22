@@ -65,7 +65,6 @@
     // Set up our menulet & icon
     statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSSquareStatusItemLength];
     [statusItem setMenu:statusMenu];
-    [statusItem setHighlightMode:YES];
     [statusItem setToolTip:@"LifeSlice"];
     
     NSBundle *bundle = [NSBundle bundleForClass:[self class]];
@@ -80,9 +79,19 @@
 #endif
     
 //    menuIcon = [[NSImage alloc] initWithContentsOfFile:path];
-    
-    [statusItem setImage:menuIcon];
-    [statusItem setTitle:@""];
+
+    // Draw as a template image so the menu bar tints it to match the current
+    // appearance. Without this the icon stays literal black and disappears
+    // against a dark menu bar. The asset also carries the template rendering
+    // intent; this covers the image whichever way it was loaded.
+    [menuIcon setTemplate:YES];
+
+    // statusItem's own setImage:/setHighlightMode: are deprecated; the button
+    // is where appearance-aware drawing happens now.
+    statusItem.button.image = menuIcon;
+    statusItem.button.title = @"";
+
+    [self applyMenuItemIcons];
 
     // Figure out where out directory is
     // Get our destination directory
@@ -602,6 +611,42 @@
 
 #pragma mark -
 #pragma mark Auto-start on Login
+
+/**
+ * Give the menulet's items SF Symbols, the way modern menu bar apps look.
+ *
+ * Keyed off each item's action rather than its title so the mapping survives
+ * renaming or localising the menu. Symbols are template images already, so
+ * they tint themselves for light and dark automatically.
+ */
+- (void)applyMenuItemIcons {
+    NSDictionary<NSString *, NSString *> *iconsForActions = @{
+        @"showAboutWindow:":       @"info.circle",
+        @"showPreferencesWindow:": @"gearshape",
+        @"showBrowseSliceWindow:": @"photo.on.rectangle",
+        @"showLiveStatsWindow:":   @"chart.line.uptrend.xyaxis",
+        @"doLogNow:":              @"camera",
+        @"deleteLatestSlice:":     @"trash",
+        @"quitApplication:":       @"power",
+    };
+
+    for (NSMenuItem *item in statusMenu.itemArray) {
+        if (!item.action) {
+            continue;
+        }
+        NSString *symbol = iconsForActions[NSStringFromSelector(item.action)];
+        if (!symbol) {
+            continue;
+        }
+        NSImage *image = [NSImage imageWithSystemSymbolName:symbol
+                                   accessibilityDescription:item.title];
+        if (image) {
+            item.image = image;
+        } else {
+            NSLog(@"No SF Symbol named %@ for menu item %@", symbol, item.title);
+        }
+    }
+}
 
 /**
  * Webcam access. Without an authorization request the first ImageSnap call
