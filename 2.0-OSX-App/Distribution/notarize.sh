@@ -32,10 +32,7 @@ INFO_PLIST="../LifeSlice-Info.plist"
 BUILD_DIR="$(pwd)/build"
 RELEASE_DIR="$(pwd)/releases"
 
-VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" "$INFO_PLIST")
-SHORT_VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$INFO_PLIST")
-
-echo "==> Building ${PRODUCT_NAME} ${SHORT_VERSION} (${VERSION})"
+echo "==> Building ${PRODUCT_NAME}"
 
 # Refuse to ship with the placeholder key still in place: Sparkle would hand
 # users an update it cannot verify.
@@ -48,6 +45,24 @@ fi
 
 rm -rf "$BUILD_DIR"
 mkdir -p "$RELEASE_DIR"
+
+# Sparkle ships its helpers ad-hoc signed, and Xcode's code-sign-on-copy only
+# re-signs the framework wrapper, not the executables nested inside it. Apple
+# rejects those, so re-sign them here, innermost first.
+SPARKLE="../Helpers/Sparkle.framework"
+echo "==> Re-signing Sparkle's nested helpers"
+for nested in \
+    "$SPARKLE/Versions/B/XPCServices/Downloader.xpc" \
+    "$SPARKLE/Versions/B/XPCServices/Installer.xpc" \
+    "$SPARKLE/Versions/B/Autoupdate" \
+    "$SPARKLE/Versions/B/Updater.app" \
+    "$SPARKLE/Versions/B/Sparkle"
+do
+    [[ -e "$nested" ]] || continue
+    echo "    $(basename "$nested")"
+    codesign --force --sign "Developer ID Application" \
+        --timestamp --options runtime "$nested"
+done
 
 # archive, rather than build, so both architectures are produced
 echo "==> Archiving"
@@ -63,7 +78,12 @@ xcodebuild -project "$PROJECT" \
 APP=$(find "$BUILD_DIR/${PRODUCT_NAME}.xcarchive/Products" -name "${PRODUCT_NAME}.app" -maxdepth 4 | head -1)
 [[ -n "$APP" ]] || { echo "ERROR: no .app in archive" >&2; exit 1; }
 
-echo "==> Built: $(lipo -info "$APP/Contents/MacOS/${PRODUCT_NAME}" | sed 's/.*: //')"
+# Read the version from the built app, not the source plist: a build phase
+# bumps CFBundleVersion during the archive, so the source value is one behind.
+VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleVersion" "$APP/Contents/Info.plist")
+SHORT_VERSION=$(/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" "$APP/Contents/Info.plist")
+
+echo "==> Built ${SHORT_VERSION} (${VERSION}): $(lipo -info "$APP/Contents/MacOS/${PRODUCT_NAME}" | sed 's/.*: //')"
 codesign --verify --strict --verbose=1 "$APP"
 
 # notarytool takes a zip, and ditto is the only archiver that preserves the
@@ -74,9 +94,22 @@ echo "==> Zipping for submission"
 ditto -c -k --keepParent "$APP" "$ZIP"
 
 echo "==> Submitting to Apple (this usually takes a few minutes)"
-xcrun notarytool submit "$ZIP" \
+# notarytool exits 0 even when Apple rejects the build, so read the status out
+# of the JSON rather than trusting the exit code.
+SUBMIT_JSON=$(xcrun notarytool submit "$ZIP" \
     --keychain-profile "$KEYCHAIN_PROFILE" \
-    --wait
+    --wait --output-format json)
+echo "$SUBMIT_JSON"
+
+SUBMISSION_ID=$(echo "$SUBMIT_JSON" | /usr/bin/python3 -c 'import json,sys; print(json.load(sys.stdin)["id"])')
+STATUS=$(echo "$SUBMIT_JSON" | /usr/bin/python3 -c 'import json,sys; print(json.load(sys.stdin)["status"])')
+
+if [[ "$STATUS" != "Accepted" ]]; then
+    echo
+    echo "ERROR: notarization returned ${STATUS}. Apple's log:" >&2
+    xcrun notarytool log "$SUBMISSION_ID" --keychain-profile "$KEYCHAIN_PROFILE" >&2
+    exit 1
+fi
 
 # Stapling attaches the ticket to the bundle so Gatekeeper clears it even when
 # the user is offline. It has to happen on the .app, then be re-zipped.
@@ -89,8 +122,6 @@ ditto -c -k --keepParent "$APP" "$ZIP"
 
 echo "==> Verifying as Gatekeeper sees it"
 spctl --assess --type execute --verbose=2 "$APP"
-
-cp -R "$APP" "$RELEASE_DIR/" 2>/dev/null || true
 
 echo "==> Generating Sparkle appcast"
 ./sparkle-tools/generate_appcast "$RELEASE_DIR"
