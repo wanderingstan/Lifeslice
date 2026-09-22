@@ -47,7 +47,7 @@
 	<key>SUFeedURL</key>
 	<string>https://wanderingstan.com/apps/lifeslice/sparkle-lifeslice-appcast-xml.php</string>
 	<key>SUPublicEDKey</key>
-	<string>REPLACE_WITH_EDDSA_PUBLIC_KEY</string>
+	<string>rCz1wNlIAwuwt76o3cv4aeHiu5wh0uKywCGlYy/osDs=</string>
 	<key>SUScheduledCheckInterval</key>
 	<integer>86400</integer>
 </dict>
