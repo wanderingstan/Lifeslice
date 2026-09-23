@@ -798,9 +798,22 @@
         
         [self showYesterdaySummaryNotification];
         
-        // Reset log file (so it doesn't get too big)
+        // Reset log file (so it doesn't get too big).
+        //
+        // This used to unlink the file. stderr is freopen'd onto it at launch,
+        // and unlinking an open file does not move the descriptor: stderr went
+        // on writing into an orphaned inode, so from the first rollover until
+        // the next relaunch nothing was logged anywhere readable and "Send
+        // Error Log" found no file at the path. Reopening with "w" truncates
+        // the file and rebinds stderr to it in one step.
         NSString *logPath = [self.appDirectory stringByAppendingPathComponent:@"LifeSlice_error_log.txt"];
+#ifdef RELEASE_TEST_BUILD
+        freopen([logPath fileSystemRepresentation], "w", stderr);
+#else
+        // stderr was never redirected in this configuration, so there is only
+        // a leftover file to clear.
         [[NSFileManager defaultManager] removeItemAtPath:logPath error:nil];
+#endif
         NSLog(@"Daily reset. Cleared log file");
         
     }
