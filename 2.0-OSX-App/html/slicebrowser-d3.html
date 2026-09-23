@@ -22,6 +22,7 @@ TODO: use jqueryUI do show images
                 --text-dim: #9b9ba1;
                 --accent: #6cc04a;
                 --radius: 6px;   /* buttons, date field, slice tiles */
+                --slot-gap: 1px; /* smaller inset than the day view: a month cell is far smaller */
                 --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
             }
 
@@ -171,8 +172,9 @@ TODO: use jqueryUI do show images
                 display: block;
             }
 
-            /* Same token as the day view and the toolbar buttons. */
-            .hour { clip-path: inset(0 round var(--radius)); }
+            /* Same treatment as the day view: one clip both rounds the cell and
+               insets it, so neighbouring cells do not butt together. */
+            .hour { clip-path: inset(var(--slot-gap) round var(--radius)); }
 
             .wordCountLine { fill: #5b9bd5; fill-opacity: 0.85; }
             .mouseCursorDistanceLine { fill: #6cc04a; fill-opacity: 0.85; }

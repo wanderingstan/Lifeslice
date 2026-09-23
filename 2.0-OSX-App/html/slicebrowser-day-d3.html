@@ -21,6 +21,7 @@ TODO: use jqueryUI do show images
                 --text-dim: #9b9ba1;
                 --accent: #6cc04a;
                 --radius: 6px;   /* buttons, date field, slice tiles */
+                --slot-gap: 2px; /* inset per tile, so neighbours sit 4px apart */
                 --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
             }
 
@@ -209,19 +210,20 @@ TODO: use jqueryUI do show images
 
             .chartLine { fill-opacity: 0.75; }
 
-            /* Rounding on the thumbnails. SVG <image> has no rx, so this clips
-               instead; inset() rounds against the element's own box. The radius
-               is shared with the empty tiles below so the two always agree. */
-            .gridBackground { clip-path: inset(0 round var(--radius)); }
+            /* Thumbnails and empty tiles get identical geometry: inset() takes
+               an offset as well as a radius, so one clip both rounds the corners
+               and pulls each tile in from its cell. That gap is what stops
+               neighbouring tiles butting together, and it needs no change to
+               where d3 positions anything. */
+            .gridBackground,
+            .emptySlot {
+                clip-path: inset(var(--slot-gap) round var(--radius));
+            }
 
             /* Hours with no capture. Drawn under the photos, so a slot only
                shows through where there is nothing on top of it. No stroke:
                the shape alone is the signal. */
-            .emptySlot {
-                fill: #2a2a2e;
-                rx: var(--radius);
-                ry: var(--radius);
-            }
+            .emptySlot { fill: #2a2a2e; }
 
             /* ---- hover preview ------------------------------------------ */
 
