@@ -250,6 +250,15 @@ TODO: use jqueryUI do show images
 
             .webcam, .screenshot, .latlon { cursor: pointer; }
 
+            /* Shown only while the location background is selected. */
+            #mapAttribution {
+                display: none;
+                margin-top: 10px;
+                font-size: 11px;
+                color: var(--text-dim);
+            }
+            #mapAttribution a { color: var(--text-dim); }
+
             /* Too narrow to sit the grid beside the panel: put the panel above
                it full width and lay its options out in rows, instead of letting
                a tall floated panel push the grid off the bottom of the window. */
@@ -313,6 +322,10 @@ TODO: use jqueryUI do show images
     <h1 id="pageHeader"><!--date will be inserted here--></h1>
 
     <div id="chart"></div>
+
+    <div id="mapAttribution">
+        Map data &copy; <a href="https://www.openstreetmap.org/copyright" target="_new">OpenStreetMap</a> contributors
+    </div>
 
     <script>
 
@@ -593,6 +606,14 @@ TODO: use jqueryUI do show images
                 function(value, index, self) {
                     return (index==0) || (isoDateHour(self[index].datetime)!=isoDateHour(self[index-1].datetime));
                 } 
+            ).filter(
+                // Older rows logged a missing fix as 0,0, which is a real point
+                // in the Gulf of Guinea and would map as though it were real.
+                // The app now leaves those blank; drop both forms here.
+                function(d) {
+                    var lat = parseFloat(d.lat), lon = parseFloat(d.lon);
+                    return !isNaN(lat) && !isNaN(lon) && !(lat === 0 && lon === 0);
+                }
             ) : [] ;
             latlonHourFilteredData.forEach(
                 function(value,index,self) {
@@ -683,36 +704,110 @@ TODO: use jqueryUI do show images
             // latlon / location
             //
             // Place date on the grid, with minutes spaced across the width of a grid square
-            var locationImageHref = function(d,i,self) {
-                // if (d.sameAsPrev) {
-                //     return MAP_SEQUENCE_IMAGE;
-                // }
-                // else {
-                return "http://maps.googleapis.com/maps/api/staticmap?zoom=16&size=120x100&maptype=roadmap&sensor=true&center="+parseFloat(d.lat).toPrecision(MAP_LATLON_PRECISION)+","+parseFloat(d.lon).toPrecision(MAP_LATLON_PRECISION);
-                // }
+            // Google Static Maps has required an API key since 2016, so the old
+            // keyless URL just returned 403 and the whole view came up blank.
+            // These are OpenStreetMap tiles instead: no key, no account.
+            //
+            // Tiles are fixed squares of the world, so the fix falls wherever it
+            // happens to inside one. Work out its exact pixel position at this
+            // zoom, then offset the tile so the fix sits at the centre of the
+            // cell. A cell can straddle a tile edge, so gather every tile the
+            // cell actually overlaps rather than assuming one covers it.
+            var SLOT_GAP = 2;      // matches --slot-gap
+            var SLOT_RADIUS = 6;   // matches --radius
+
+            var TILE_SIZE = 256;
+            var MAP_ZOOM = 15;
+
+            function worldPixel(lat, lon, zoom) {
+                var n = Math.pow(2, zoom) * TILE_SIZE;
+                var latRad = parseFloat(lat) * Math.PI / 180;
+                return {
+                    x: (parseFloat(lon) + 180) / 360 * n,
+                    y: (1 - Math.log(Math.tan(latRad) + 1 / Math.cos(latRad)) / Math.PI) / 2 * n
+                };
             }
+
             if (document.getElementById("latlonRadioButton").checked) {
-                hourCells = svg.selectAll(".latlon.gridBackground")
-                    .data(latlonHourFilteredData.filter(inSelectedDateRange))
-                        .enter().append("svg:image")
-                        .attr("xlink:href", locationImageHref)
-                        .attr("x", gridX)
-                        .attr("y", gridY)
-                        .attr("width", gridSizeX)
-                        .attr("height", gridSizeY)
-                        .attr("datetime",function(d) {return d.datetime;})
-                        .attr("class", "latlon gridBackground")    
-                        .on("click", function(d){document.location="https://maps.google.com/maps?q="+parseFloat(d.lat)+","+parseFloat(d.lon);})                                       
-                            .append("svg:title")
-                            .text(function(d) { return d.datetime; });
-                ;
-                svg.selectAll(".latlon.gridBackground")
-                    .data(latlonHourFilteredData.filter(inSelectedDateRange))
-                    .exit().remove();
+                var mapData = latlonHourFilteredData.filter(inSelectedDateRange);
+
+                // A rounded rect per cell, used to clip that cell's tiles. Doing
+                // the rounding with a clipPath rather than the css inset() the
+                // other backgrounds use, because on these cells the css clip
+                // fought with the tile cropping.
+                var defs = svgRoot.selectAll("defs").data([0]);
+                defs.enter().append("defs");
+
+                var clipId = function(d) { return "mapClip" + isoDateHour(d.datetime); };
+
+                var clips = defs.selectAll(".mapClip").data(mapData, clipId);
+                clips.enter().append("clipPath").attr("class", "mapClip").append("rect");
+                clips.attr("id", clipId);
+                clips.select("rect")
+                    .attr("x", function(d) { return gridX(d) + SLOT_GAP; })
+                    .attr("y", function(d) { return gridY(d) + SLOT_GAP; })
+                    .attr("width", gridSizeX - (2 * SLOT_GAP))
+                    .attr("height", gridSizeY - (2 * SLOT_GAP))
+                    .attr("rx", SLOT_RADIUS)
+                    .attr("ry", SLOT_RADIUS);
+                clips.exit().remove();
+
+                // Flatten to one entry per tile, since a cell may need two or
+                // four of them to be covered edge to edge.
+                var mapTiles = [];
+                mapData.forEach(function(d) {
+                    var p = worldPixel(d.lat, d.lon, MAP_ZOOM);
+                    var cx = gridX(d) + (gridSizeX / 2);
+                    var cy = gridY(d) + (gridSizeY / 2);
+                    var x0 = Math.floor((p.x - gridSizeX / 2) / TILE_SIZE);
+                    var x1 = Math.floor((p.x + gridSizeX / 2) / TILE_SIZE);
+                    var y0 = Math.floor((p.y - gridSizeY / 2) / TILE_SIZE);
+                    var y1 = Math.floor((p.y + gridSizeY / 2) / TILE_SIZE);
+                    for (var tx = x0; tx <= x1; tx++) {
+                        for (var ty = y0; ty <= y1; ty++) {
+                            mapTiles.push({
+                                datum: d,
+                                key: d.datetime + ":" + tx + ":" + ty,
+                                href: "https://tile.openstreetmap.org/" + MAP_ZOOM + "/" + tx + "/" + ty + ".png",
+                                x: cx - (p.x - (tx * TILE_SIZE)),
+                                y: cy - (p.y - (ty * TILE_SIZE))
+                            });
+                        }
+                    }
+                });
+
+                var tiles = svg.selectAll(".latlon.gridBackground")
+                    .data(mapTiles, function(t) { return t.key; });
+
+                tiles.enter().append("svg:image")
+                    .attr("class", "latlon gridBackground")
+                    .attr("width", TILE_SIZE)
+                    .attr("height", TILE_SIZE)
+                    .on("click", function(t){
+                        var d = t.datum;
+                        document.location = "https://www.openstreetmap.org/?mlat=" + parseFloat(d.lat) +
+                            "&mlon=" + parseFloat(d.lon) + "#map=16/" + parseFloat(d.lat) + "/" + parseFloat(d.lon);
+                    })
+                    .append("svg:title");
+
+                tiles
+                    .attr("xlink:href", function(t) { return t.href; })
+                    .attr("x", function(t) { return t.x; })
+                    .attr("y", function(t) { return t.y; })
+                    .attr("datetime", function(t) { return t.datum.datetime; })
+                    // inline style, so it beats the stylesheet's inset() rule
+                    .style("clip-path", function(t) { return "url(#" + clipId(t.datum) + ")"; });
+
+                tiles.select("title").text(function(t) { return t.datum.datetime; });
+                tiles.exit().remove();
+
+                // OpenStreetMap's tile policy asks for visible attribution
+                d3.select("#mapAttribution").style("display", "block");
             }
             else {
                  svg.selectAll(".latlon.gridBackground")
                     .remove();
+                 d3.select("#mapAttribution").style("display", "none");
             }
 
             //

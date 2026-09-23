@@ -65,6 +65,7 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
     int appSwitchCount;
     float lat;
     float lon;
+    BOOL hasLocationFix;
     int lastSliceDay; // day of month of our last slice
     NSDate *lastSliceDate; // when did we make our last slice?
     NSPoint lastCursorPoint;
@@ -119,6 +120,7 @@ static const int MIN_SCROLLEVENTS_FOR_SCROLL = 5;
 @property int wordKeyCount;
 @property float lat; // our lat/lon coords
 @property float lon; // our lat/lon coords
+@property BOOL hasLocationFix; // NO until the location manager actually reports one
 @property (retain) FMDatabase *db; // our SQLite database - Why can't I refer to this in more than one place without crashing?
 
 // TODO: Add KeyReturnCount

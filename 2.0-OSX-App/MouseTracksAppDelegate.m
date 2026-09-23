@@ -36,6 +36,7 @@
 @synthesize lastSliceIsoDate;
 @synthesize lat;
 @synthesize lon;
+@synthesize hasLocationFix;
 @synthesize appDirectory;
 @synthesize db;
 
@@ -977,23 +978,35 @@
 	if (doLocation || doAll) {
         // save for csv output
         [logColumnValues setObject: [NSString stringWithFormat:@"%u",locationIntervalMins] forKey: @"locationIntervalMins"];
-        [logColumnValues setObject: [NSString stringWithFormat:@"%.6f",[self lat]] forKey: @"lat"];
-        [logColumnValues setObject: [NSString stringWithFormat:@"%.6f",[self lon]] forKey: @"lon"];
-        // write to sql
-        if (![self.db executeUpdate:@"INSERT INTO location (timestamp,datetime,lat,lon) VALUES (?, ?, ?, ?)",
-            [NSNumber numberWithInt:0],
-            nowIsoString,
-            [NSNumber numberWithFloat:self.lat],
-            [NSNumber numberWithFloat:self.lon]
-        ]) {
-            NSLog(@"geo-location stats: Database Error %d: %@", [self.db lastErrorCode], [self.db lastErrorMessage]);
-        };
+        // The location manager is only given a minute's head start, so a cold
+        // fix does not always arrive in time. Leave the columns empty in that
+        // case: 0,0 is not "unknown", it is a real point in the Gulf of Guinea
+        // that would plot as a genuine reading.
+        if (self.hasLocationFix) {
+            [logColumnValues setObject: [NSString stringWithFormat:@"%.6f",[self lat]] forKey: @"lat"];
+            [logColumnValues setObject: [NSString stringWithFormat:@"%.6f",[self lon]] forKey: @"lon"];
+            // write to sql
+            if (![self.db executeUpdate:@"INSERT INTO location (timestamp,datetime,lat,lon) VALUES (?, ?, ?, ?)",
+                [NSNumber numberWithInt:0],
+                nowIsoString,
+                [NSNumber numberWithFloat:self.lat],
+                [NSNumber numberWithFloat:self.lon]
+            ]) {
+                NSLog(@"geo-location stats: Database Error %d: %@", [self.db lastErrorCode], [self.db lastErrorMessage]);
+            };
+        }
+        else {
+            [logColumnValues setObject: @"" forKey: @"lat"];
+            [logColumnValues setObject: @"" forKey: @"lon"];
+            NSLog(@"No location fix in time for this slice; logging it as unknown.");
+        }
         // stop updating location until we need it again
         [locationManager stopUpdatingLocation];
 	}
     if (!doLocation) {
         self.lat = 0.00;
         self.lon = 0.00;
+        self.hasLocationFix = NO;
     }
     
     
@@ -1317,6 +1330,7 @@
     
 	self.lat = newLocation.coordinate.latitude;
 	self.lon = newLocation.coordinate.longitude;
+    self.hasLocationFix = YES;
 	
 //	// Ignore updates where nothing we care about changed
 //	if (newLocation.coordinate.longitude == oldLocation.coordinate.longitude &&
