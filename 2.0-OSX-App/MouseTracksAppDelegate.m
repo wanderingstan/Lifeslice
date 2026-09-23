@@ -627,7 +627,7 @@
         @"showLiveStatsWindow:":   @"chart.line.uptrend.xyaxis",
         @"doLogNow:":              @"camera",
         @"deleteLatestSlice:":     @"trash",
-        @"quitApplication:":       @"power",
+        @"quitApplication:":       @"xmark.rectangle",
     };
 
     for (NSMenuItem *item in statusMenu.itemArray) {
