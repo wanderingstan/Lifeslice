@@ -20,7 +20,7 @@ TODO: use jqueryUI do show images
                 --text: #f2f2f7;
                 --text-dim: #9b9ba1;
                 --accent: #6cc04a;
-                --radius: 8px;
+                --radius: 6px;   /* buttons, date field, slice tiles */
                 --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
             }
 
@@ -77,7 +77,7 @@ TODO: use jqueryUI do show images
                 color: var(--text);
                 background: var(--surface);
                 border: 1px solid var(--border);
-                border-radius: 6px;
+                border-radius: var(--radius);
                 padding: 5px 11px;
                 cursor: pointer;
                 transition: background 0.12s ease;
@@ -109,7 +109,7 @@ TODO: use jqueryUI do show images
                 color: var(--text);
                 background: rgba(0,0,0,0.35);
                 border: 1px solid var(--border);
-                border-radius: 6px;
+                border-radius: var(--radius);
                 padding: 5px 8px;
                 width: 100px;
                 text-align: center;
@@ -209,16 +209,18 @@ TODO: use jqueryUI do show images
 
             .chartLine { fill-opacity: 0.75; }
 
-            /* Slight rounding on the thumbnails. SVG <image> has no rx, so this
-               clips instead; inset() rounds against the element's own box. */
-            .gridBackground { clip-path: inset(0 round 4px); }
+            /* Rounding on the thumbnails. SVG <image> has no rx, so this clips
+               instead; inset() rounds against the element's own box. The radius
+               is shared with the empty tiles below so the two always agree. */
+            .gridBackground { clip-path: inset(0 round var(--radius)); }
 
             /* Hours with no capture. Drawn under the photos, so a slot only
-               shows through where there is nothing on top of it. */
+               shows through where there is nothing on top of it. No stroke:
+               the shape alone is the signal. */
             .emptySlot {
                 fill: #2a2a2e;
-                stroke: rgba(255,255,255,0.06);
-                stroke-width: 1;
+                rx: var(--radius);
+                ry: var(--radius);
             }
 
             /* ---- hover preview ------------------------------------------ */
@@ -569,9 +571,7 @@ TODO: use jqueryUI do show images
                 .attr("x", function(h) { return (h % 6) * gridSizeX; })
                 .attr("y", function(h) { return Math.floor(h / 6) * gridSizeY; })
                 .attr("width", gridSizeX)
-                .attr("height", gridSizeY)
-                .attr("rx", 4)
-                .attr("ry", 4);
+                .attr("height", gridSizeY);
             emptySlots.exit().remove();
 
 

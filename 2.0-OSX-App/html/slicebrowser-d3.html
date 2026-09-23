@@ -21,6 +21,7 @@ TODO: use jqueryUI do show images
                 --text: #f2f2f7;
                 --text-dim: #9b9ba1;
                 --accent: #6cc04a;
+                --radius: 6px;   /* buttons, date field, slice tiles */
                 --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
             }
 
@@ -75,7 +76,7 @@ TODO: use jqueryUI do show images
                 color: var(--text);
                 background: var(--surface);
                 border: 1px solid var(--border);
-                border-radius: 6px;
+                border-radius: var(--radius);
                 padding: 5px 11px;
                 cursor: pointer;
                 transition: background 0.12s ease;
@@ -118,7 +119,7 @@ TODO: use jqueryUI do show images
                 color: var(--text);
                 background: rgba(0,0,0,0.35);
                 border: 1px solid var(--border);
-                border-radius: 6px;
+                border-radius: var(--radius);
                 padding: 5px 8px;
                 width: 100px;
                 text-align: center;
@@ -170,9 +171,8 @@ TODO: use jqueryUI do show images
                 display: block;
             }
 
-            /* Matches the day view's rounding. Smaller radius because a month
-               cell is roughly a third the width of a day cell. */
-            .hour { clip-path: inset(0 round 2px); }
+            /* Same token as the day view and the toolbar buttons. */
+            .hour { clip-path: inset(0 round var(--radius)); }
 
             .wordCountLine { fill: #5b9bd5; fill-opacity: 0.85; }
             .mouseCursorDistanceLine { fill: #6cc04a; fill-opacity: 0.85; }
