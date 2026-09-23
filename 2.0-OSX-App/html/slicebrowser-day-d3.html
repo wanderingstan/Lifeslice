@@ -187,10 +187,21 @@ TODO: use jqueryUI do show images
 
             #chart { clear: none; }
 
-            text.hourLabel { fill: var(--text); font-family: var(--font); }
+            /* The hour numbers sit on top of the thumbnails, and over a bright
+               screenshot or a map tile plain white vanishes. paint-order draws
+               the stroke before the fill, so the outline sits behind the glyph
+               instead of eating into it. */
+            text.hourLabel {
+                fill: var(--text);
+                font-family: var(--font);
+                font-size: 12px;
+                font-weight: 600;
+                paint-order: stroke;
+                stroke: rgba(0,0,0,0.9);
+                stroke-width: 3px;
+                stroke-linejoin: round;
+            }
 
-            /* Hour and day labels sit on top of photos, so they carry a shadow
-               to stay legible over a bright thumbnail. */
             text.axis-day {
                 fill: var(--text);
                 font-size: 28px;
@@ -883,19 +894,23 @@ TODO: use jqueryUI do show images
                 {"datetime":"1999-01-01T22-00-00","label":"10"},
                 {"datetime":"1999-01-01T23-00-00","label":"11"  }
             ];
-            hourCells = svg.selectAll(".hourLabel")
-                .data(hourArray)
-                .enter().append("text")
+            var hourLabels = svg.selectAll(".hourLabel").data(hourArray);
+            hourLabels.enter().append("text").attr("class", "hourLabel");
+            // Position on the update selection, not just on enter: the labels
+            // outlive a redraw, so on a resize they kept their old coordinates
+            // while every cell around them moved.
+            hourLabels
                 .text(function (d) { return d.label; })
                 .attr("x", gridX)
-                .attr("y", function(d,i) { return (gridY(d)+gridSizeY) })
-                .attr("width", gridSizeX)
-                .attr("height", gridSizeY)
-                .attr("class", "hourLabel")                       
-            ;
-            svg.selectAll(".hourLabel")
-                .data(hourArray)
-                .exit().remove();
+                .attr("y", function(d,i) { return (gridY(d)+gridSizeY) });
+            hourLabels.exit().remove();
+
+            // svg has no z-index: whatever comes last in the document paints on
+            // top. The backgrounds are re-appended on every draw, so they ended
+            // up over labels created in an earlier pass and the hours vanished
+            // into the map tiles. Appending an existing node moves it, so this
+            // lifts the labels back above whatever was just drawn.
+            hourLabels.each(function() { this.parentNode.appendChild(this); });
 
 
         }
