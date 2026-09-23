@@ -209,6 +209,18 @@ TODO: use jqueryUI do show images
 
             .chartLine { fill-opacity: 0.75; }
 
+            /* Slight rounding on the thumbnails. SVG <image> has no rx, so this
+               clips instead; inset() rounds against the element's own box. */
+            .gridBackground { clip-path: inset(0 round 4px); }
+
+            /* Hours with no capture. Drawn under the photos, so a slot only
+               shows through where there is nothing on top of it. */
+            .emptySlot {
+                fill: #2a2a2e;
+                stroke: rgba(255,255,255,0.06);
+                stroke-width: 1;
+            }
+
             /* ---- hover preview ------------------------------------------ */
 
             #preview {
@@ -547,6 +559,20 @@ TODO: use jqueryUI do show images
             // hack for now
             svg.selectAll(".gridBackground").remove();
             svg.selectAll(".chartLine").remove();
+
+            // One tile per hour of the day, so an hour with no webcam or screen
+            // capture reads as an empty slot rather than a hole in the grid.
+            // Created before any photo is appended, which keeps them beneath.
+            var emptySlots = svg.selectAll(".emptySlot").data(d3.range(24));
+            emptySlots.enter().append("rect").attr("class", "emptySlot");
+            emptySlots
+                .attr("x", function(h) { return (h % 6) * gridSizeX; })
+                .attr("y", function(h) { return Math.floor(h / 6) * gridSizeY; })
+                .attr("width", gridSizeX)
+                .attr("height", gridSizeY)
+                .attr("rx", 4)
+                .attr("ry", 4);
+            emptySlots.exit().remove();
 
 
             // filter data so we only have one picture per hour

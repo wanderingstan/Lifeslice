@@ -170,6 +170,10 @@ TODO: use jqueryUI do show images
                 display: block;
             }
 
+            /* Matches the day view's rounding. Smaller radius because a month
+               cell is roughly a third the width of a day cell. */
+            .hour { clip-path: inset(0 round 2px); }
+
             .wordCountLine { fill: #5b9bd5; fill-opacity: 0.85; }
             .mouseCursorDistanceLine { fill: #6cc04a; fill-opacity: 0.85; }
             </style>
